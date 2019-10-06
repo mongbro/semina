@@ -19,7 +19,7 @@ int gold = 0;
 ITEM ilist[41] = { 0 };				//인벤토리에 있는 아이템
 ITEM aitem[41] = { 0 };				//모든 종류의 아이템
 ITEM dilist[10] = { 0 };			//드랍되는 아이템
-ITEM emptylist[10] = { 0 };
+ITEM emptylist[1] = { 0 };
 
 void initial_item();
 void all_item();
