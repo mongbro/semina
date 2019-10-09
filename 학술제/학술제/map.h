@@ -1,6 +1,8 @@
 // made by ±Ë¡æ¿∫
 
-#pragma once
+#ifndef MAP_H
+#define MAP_H
+
 #include<stdio.h>
 #include<windows.h>
 #include<conio.h>
@@ -1152,15 +1154,15 @@ void choice_stage() {
 		}
 		if (a == '2') {
 			if (stlist[2].is_clear == 1)
-				c_choice(clist, mlist, 0);
+				c_choice(clist, mlist);
 		}
 		if (a == '3') {
 			if (stlist[3].is_clear == 1)
-				c_choice(clist, mlist, 0);
+				c_choice(clist, mlist);
 		}
 		if (a == '4') {
 			if (stlist[4].is_clear == 1)
-				c_choice(clist, mlist, 0);
+				c_choice(clist, mlist);
 		}
 		if (a == 'b' || a == 'B')
 			break;
@@ -1822,3 +1824,5 @@ void stun(int mnum) {
 			break;
 	}
 }
+
+#endif

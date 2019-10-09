@@ -1,6 +1,8 @@
 // made by ±Ë¡æ¿∫
 
-#pragma once
+#ifndef CHARACTER_H
+#define CHARACTER_H
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -118,3 +120,4 @@ void check_equip_m() {
 		}
 	}
 }
+#endif

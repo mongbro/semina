@@ -1,6 +1,8 @@
 // made by ±Ë¡æ¿∫
 
-#pragma once
+#ifndef COMBET_H
+#define COMBET_H
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -198,3 +200,5 @@ void prologue_kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum
 		}
 	}
 }
+
+#endif

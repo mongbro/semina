@@ -1,6 +1,8 @@
 // made by ±Ë¡æ¿∫
 
-#pragma once
+#ifndef MENU_H
+#define MENU_H
+
 #include<stdio.h>
 #include<windows.h>
 #include"character.h"
@@ -2888,3 +2890,4 @@ void sell3(int inum) {
 			break;
 	}
 }
+#endif
