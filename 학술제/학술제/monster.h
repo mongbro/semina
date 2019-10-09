@@ -13,6 +13,8 @@ typedef struct monster {
 	int def;
 	int condition;				//0일 경우 살아있음, 1일경우 죽어있음
 	int mexp;
+	int is_stun;
+	int turn;
 }MON;
 
 MON mlist[3] = { 0 };
@@ -28,7 +30,7 @@ void prologue_monster(MON mlist[3]) {
 		mlist[i].att = 10;
 		mlist[i].def = 10;
 		mlist[i].condition = 0;
-		mlist[i].mexp = 50;
+		mlist[i].mexp = 70;
 	}
 }
 
@@ -97,7 +99,7 @@ void stage1_3_monster(MON mlist[3]) {
 
 void stage1_B_monster(MON mlist[3]) {
 
-	strcpy(mlist[0].name, "발표과제");
+	strcpy(mlist[0].name, "조별과제 중간 제출");
 
 	mlist[0].fhp = 200;
 	mlist[0].hp = 200;
@@ -106,6 +108,10 @@ void stage1_B_monster(MON mlist[3]) {
 	mlist[0].condition = 0;
 	mlist[0].mexp = 100;
 }
+
+
+//////////////////////스테이지1//////////////////////
+
 
 void stage2_1_monster(MON mlist[3]) {
 
@@ -212,6 +218,10 @@ void stage2_B_monster(MON mlist[3]) {
 	mlist[0].mexp = 1000;
 }
 
+
+//////////////////////스테이지2//////////////////////
+
+
 void stage3_1_monster(MON mlist[3]) {
 
 	strcpy(mlist[0].name, "회의");
@@ -291,7 +301,7 @@ void stage3_3_monster(MON mlist[3]) {
 
 void stage3_B_monster(MON mlist[3]) {
 
-	strcpy(mlist[0].name, "합동 최종 발표");
+	strcpy(mlist[0].name, "조별과제 최종 발표");
 
 	mlist[0].fhp = 700;
 	mlist[0].hp = 700;
@@ -300,6 +310,10 @@ void stage3_B_monster(MON mlist[3]) {
 	mlist[0].condition = 0;
 	mlist[0].mexp = 100;
 }
+
+
+//////////////////////스테이지3//////////////////////
+
 
 void stage4_1_monster(MON mlist[3]) {
 

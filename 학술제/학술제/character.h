@@ -25,8 +25,10 @@ typedef struct charac {
 	int readership;					//리더십 : 공격력 관련 스텟
 	int noteship;					//필기력 : 방어력 관련 스텟
 	int wealth;						//부 : 마나 관련 스텟      
-	int condition;				//0일 경우 살아있음, 1일경우 죽어있음
-	int spare_stat;
+	int condition;					//0일 경우 살아있음, 1일경우 죽어있음
+	int spare_stat;					//렙업시 추가포인트 5
+	int armor;						//공격무시 남은 횟수
+	int turn;						//캐릭터가 공격이나 스킬, 아이템을 사용했는지 여부
 }CHA;
 
 void initial_charac(CHA clist[3], SKILL slist[30]);

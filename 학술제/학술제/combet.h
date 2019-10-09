@@ -9,11 +9,16 @@
 #include"skill.h"
 #include"item.h"
 #include"stage.h"
+#include"map.h"
+#include"menu.h"
+#include"exp.h"
+
 
 void damage_character_to_monster(CHA clist[3], MON mlist[3], int cnum, int mnum, int snum);			//캐릭터배열, 몬스터배열, 캐릭터번호, 몬스터번호, 스킬번호
 void damage_monster_to_character(CHA clist[3], MON mlist[3], int cnum, int mnum);
 int choice_monster_to_character();
 int check_exter(CHA clist[3], MON mlist[3]);
+int check_exter_boss(CHA clist[3], MON mlist[3], int stage);
 void kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum, int stnum);
 void kill_character(CHA clist[3], MON mlist[3], STAGE stlist[6], int mnum);
 
@@ -31,8 +36,20 @@ void damage_character_to_monster(CHA clist[3], MON mlist[3], int cnum, int mnum,
 }
 
 void damage_monster_to_character(CHA clist[3], MON mlist[3], int cnum, int mnum) {
-	clist[cnum].hp = clist[cnum].hp - (mlist[mnum].att - (clist[cnum].def / 10));
-	hit_damage = mlist[mnum].att - (clist[cnum].def / 10);
+	extern void stun(int mnum);
+	if (mlist[mnum].is_stun == 0) {
+		if (clist[cnum].armor == 0) {
+			clist[cnum].hp = clist[cnum].hp - (mlist[mnum].att - (clist[cnum].def / 10));
+			hit_damage = mlist[mnum].att - (clist[cnum].def / 10);
+		}
+		if (clist[cnum].armor > 0) {
+			clist[cnum].armor--;
+			hit_damage = 0;
+		}
+	}
+	if (mlist[mnum].is_stun == 1) {
+		stun(mnum);
+	}
 }
 
 int choice_monster_to_character() {
@@ -95,12 +112,36 @@ int check_exter(CHA clist[3], MON mlist[3]) {
 			die_monster++;
 	}
 	if (die_character == 3)
-		return 1;
-	else if (die_monster == 3)
-		return 2;
+		return 1;								//캐릭터가 모두 죽었을때
+	else if (die_monster == 3) 
+		return 2;								//몬스터가 모두 죽었을때
 	else
-		return 0;
+		return 0;								//양쪽 모두 생존자가 있을때
 }
+
+
+int check_exter_boss(CHA clist[3], MON mlist[3], int stage) {
+	int die_character = 0, die_monster = 0;
+	for (int i = 0; i < 3; i++) {
+		if (clist[i].hp <= 0)
+			die_character++;
+	}
+	for (int i = 0; i < 3; i++) {
+		if (mlist[i].hp <= 0)
+			die_monster++;
+	}
+	if (die_character == 3)
+		return 1;								//캐릭터가 모두 죽었을때
+	else if (die_monster == 3) {
+		stlist[stage].is_clear = 1;
+		return 2;								//몬스터가 모두 죽었을때
+	}
+	else
+		return 0;								//양쪽 모두 생존자가 있을때
+}
+
+
+
 
 void kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum, int stnum) {
 	srand((unsigned)time(NULL));
@@ -139,7 +180,7 @@ void kill_character(CHA clist[3], MON mlist[3], STAGE stlist[6], int mnum) {
 void prologue_kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum, int stnum) {
 	srand((unsigned)time(NULL));
 	int add_gold = rand() % 10 + 1;
-	int chance_drop = 1;		//100%확률로 드랍 => 0일때 드랍
+	int chance_drop = 0;		//100%확률로 드랍 => 0일때 드랍
 	int item_num;
 	for (int i = 0; i < 3; i++) {
 		if (mlist[i].hp <= 0 && mlist[i].condition == 0) {

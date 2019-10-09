@@ -18,7 +18,8 @@ int main() {
 	initial_exp();
 	initial_charac(clist, slist);
 	print_initial_disp();
-
+	stlist[0].is_clear = 1;
+	stlist[1].is_clear = 1;
 
 	//////=====================        프롤로그         ==============================
 
@@ -66,7 +67,7 @@ int main() {
 	ilist[33].ea++;
 
 	gold += 50;
-	
+
 	town(clist, ilist);
 
 

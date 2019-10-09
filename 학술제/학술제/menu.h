@@ -4,10 +4,13 @@
 #include<stdio.h>
 #include<windows.h>
 #include"character.h"
+#include"monster.h"
 #include"skill.h"
 #include"item.h"
+#include"stage.h"
+#include"combet.h"
 #include"map.h"
-#include"monster.h"
+#include"exp.h"
 
 void town(CHA clist[3], ITEM ilist[41]);
 void dun_menu(CHA clist[3], MON mlist[3]);
@@ -53,6 +56,7 @@ void sell2(int inum);
 void sell3(int inum);
 
 void town(CHA clist[3], ITEM ilist[41]) {
+	extern void choice_stage();
 	while (1) {
 		char a;
 		system("cls");
@@ -85,7 +89,7 @@ void town(CHA clist[3], ITEM ilist[41]) {
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("\n  원하는 메뉴를 선택하세요.\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n  게임을 종료하시려면 b버튼을 눌러주세요.");
 		check_exp();
 		a = (_getch());
 		if (a == '1') {
@@ -94,6 +98,16 @@ void town(CHA clist[3], ITEM ilist[41]) {
 
 		if (a == '3')
 			town_menu(clist);
+		if (a == '4')
+			choice_stage();
+		if (a == 'b' || a == 'B') {
+			printf("\n\n      게임을 종료하시겠습니까?\n\n      이 게임은 저장 기능이 없습니다.\n\n      다시 실행하면 프롤로그부터 시작합니다.\n\n      (Y or N)");
+			a = (_getch());
+			if (a == 'y' || a == 'Y')
+				break;
+			if (a == 'n' || a == 'N')
+				continue;
+		}
 	}
 }
 
@@ -145,7 +159,7 @@ void town_menu(CHA clist[3]) {
 			town_inf_cha(clist);
 		if (a == '2')
 			town_inventory0(clist);
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -195,7 +209,7 @@ void town_inventory0(CHA clist[3]) {
 			town_inventory4();
 		if (a == '5')
 			town_inventory5();
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -332,7 +346,7 @@ void town_inventory1() {
 					continue;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -361,7 +375,7 @@ void town_inventory2() {
 				ilist[i + 20].index = index;
 				index++;
 			}
-		}		
+		}
 		printf("  ■   %d. 장비 해제                                                                                                             ■\n", index);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
@@ -469,7 +483,7 @@ void town_inventory2() {
 					continue;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -607,7 +621,7 @@ void town_inventory3() {
 					continue;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -644,13 +658,13 @@ void town_inventory4() {
 				ilist[i].index = index;
 				index++;
 			}
-	}
+		}
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  마을 안에서는 소비형 아이템을 사용할 수 없습니다.\n\n  뒤로가기는 'b'를 선택해주세요.\n\n  마을 안에서는 장비형 아이템만 장착이 가능합니다.\n");
 		a = (_getch());
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -704,7 +718,7 @@ void town_inventory5() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  이 화면에서는 아이템 소지 현황을 확인만 할 수 있습니다.\n\n  뒤로가기는 'b'를 선택해주세요.\n\n  마을 안에서는 장비형 아이템만 장착이 가능합니다.\n");
 		a = (_getch());
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -725,7 +739,7 @@ void equip1(int cnum, int inum) {
 				b--;
 			}
 		}
-		if(inum==40)
+		if (inum == 40)
 			b = 5000;
 
 		printf("\n");
@@ -738,7 +752,7 @@ void equip1(int cnum, int inum) {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                           능력치1                                                                          ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		if (clist[0].item[0].add_readership >0) {
+		if (clist[0].item[0].add_readership > 0) {
 			printf("  ■      1. %20s        리더십(공격력) : %2d                                                                    ■\n", clist[0].item[0].name, clist[0].item[0].add_readership);
 		}
 		else {
@@ -802,7 +816,7 @@ void equip1(int cnum, int inum) {
 					break;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -898,7 +912,7 @@ void equip2(int cnum, int inum) {
 					break;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -994,7 +1008,7 @@ void equip3(int cnum, int inum) {
 					break;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1035,7 +1049,7 @@ void town_inf_cha(CHA clist[3]) {
 			town_inf_cha_2();
 		if (a == '3')
 			town_inf_cha_3();
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1134,7 +1148,7 @@ void town_inf_cha_1() {
 				clist[0].wealth++;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1150,7 +1164,7 @@ void town_inf_cha_2() {
 		printf("  ■                             ■                       ■    ■                                                              ■\n");
 		printf("  ■             ■              ■   ■■■■■■■■    ■    ■         이름                    능력치1          능력치2     ■\n");
 		printf("  ■           ■■■            ■               ■■    ■    ■                                                              ■\n");
-		printf("  ■         ■■  ■■          ■             ■■      ■    ■                                                              ■\n"); 
+		printf("  ■         ■■  ■■          ■             ■■      ■    ■                                                              ■\n");
 		if (clist[1].item[0].num == 0) {
 			printf("  ■       ■■      ■■    ■■■           ■■        ■    ■    현재 장비 미착용중                                        ■\n");
 		}
@@ -1159,7 +1173,7 @@ void town_inf_cha_2() {
 		}
 		printf("  ■     ■■          ■■      ■         ■■          ■    ■                                                              ■\n");
 		printf("  ■   ■■              ■■    ■       ■■            ■    ■                                                              ■\n");
-		printf("  ■ ■■                  ■■  ■     ■■              ■    ■                                                              ■\n"); 
+		printf("  ■ ■■                  ■■  ■     ■■              ■    ■                                                              ■\n");
 		if (clist[1].item[1].num == 0) {
 			printf("  ■                             ■                       ■    ■    현재 장비 미착용중                                        ■\n");
 		}
@@ -1174,8 +1188,8 @@ void town_inf_cha_2() {
 		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[1].readership, clist[1].att);
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[1].def);
-		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[1].noteship+ clist[1].item[0].add_noteship+ clist[1].item[1].add_noteship);
-		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[1].fhp+ clist[1].item[0].add_hp+ clist[1].item[1].add_hp);
+		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[1].noteship + clist[1].item[0].add_noteship + clist[1].item[1].add_noteship);
+		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[1].fhp + clist[1].item[0].add_hp + clist[1].item[1].add_hp);
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■              3.   부         :       %3d                   ■                   총 hp        :       %3d                   ■\n", clist[1].wealth, clist[1].fmp);
 		printf("  ■                                                            ■                                                              ■\n");
@@ -1214,7 +1228,7 @@ void town_inf_cha_2() {
 				clist[1].wealth++;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1230,7 +1244,7 @@ void town_inf_cha_3() {
 		printf("  ■    ■■■■■■■■■■■    ■  ■■■■■■  ■          ■                                                              ■\n");
 		printf("  ■                    ■■      ■            ■  ■          ■         이름                    능력치1          능력치2     ■\n");
 		printf("  ■                  ■■        ■            ■  ■■■      ■                                                              ■\n");
-		printf("  ■                ■■          ■            ■  ■          ■                                                              ■\n"); 
+		printf("  ■                ■■          ■            ■  ■          ■                                                              ■\n");
 		if (clist[2].item[0].num == 0) {
 			printf("  ■              ■■■          ■          ■    ■          ■    현재 장비 미착용중                                        ■\n");
 		}
@@ -1239,7 +1253,7 @@ void town_inf_cha_3() {
 		}
 		printf("  ■            ■■  ■■        ■        ■      ■          ■                                                              ■\n");
 		printf("  ■          ■■      ■■      ■    ■            ■        ■                                                              ■\n");
-		printf("  ■        ■■          ■■    ■    ■■■■■■■■        ■                                                              ■\n"); 
+		printf("  ■        ■■          ■■    ■    ■■■■■■■■        ■                                                              ■\n");
 		if (clist[2].item[1].num == 0) {
 
 
@@ -1259,7 +1273,7 @@ void town_inf_cha_3() {
 		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[2].noteship);
 		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[2].fhp);
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■              3.   부         :       %3d                   ■                   총 hp        :       %3d                   ■\n", clist[2].wealth+ clist[2].item[0].add_wealth+ clist[2].item[1].add_wealth, clist[2].fmp+ clist[2].item[0].add_mp+ clist[2].item[1].add_mp);
+		printf("  ■              3.   부         :       %3d                   ■                   총 hp        :       %3d                   ■\n", clist[2].wealth + clist[2].item[0].add_wealth + clist[2].item[1].add_wealth, clist[2].fmp + clist[2].item[0].add_mp + clist[2].item[1].add_mp);
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■              남은 스텟       :       %2d                    ■                            소지 골드 : %5d                 ■\n", clist[2].spare_stat, gold);
@@ -1296,7 +1310,7 @@ void town_inf_cha_3() {
 				clist[2].wealth++;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1427,7 +1441,7 @@ void dun_inventory(CHA clist[3]) {
 				continue;
 		}
 
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1512,7 +1526,7 @@ void use_item(CHA clist[3], ITEM ilist[40], int index) {
 			else
 				effect_item(clist, ilist, 2, check);
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1630,7 +1644,7 @@ void prologue_dun_inventory(CHA clist[3]) {
 			else
 				continue;
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1693,7 +1707,7 @@ void item_store_choice1() {
 			item_store_choice_buy();
 		if (a == '2')
 			item_store_choice_sell();
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			town(clist, ilist);
 	}
 }
@@ -1743,7 +1757,7 @@ void item_store_choice_buy() {
 			item_store_choice_buy3();
 		if (a == '4')
 			item_store_choice_buy0();
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice1();
 	}
 }
@@ -1801,7 +1815,7 @@ void item_store_choice_buy1() {
 			buy1(7);
 		if (a == '8')
 			buy1(8);
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice_buy();
 	}
 }
@@ -1859,7 +1873,7 @@ void item_store_choice_buy2() {
 			buy2(7);
 		if (a == '8')
 			buy2(8);
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice_buy();
 	}
 }
@@ -1917,7 +1931,7 @@ void item_store_choice_buy3() {
 			buy3(7);
 		if (a == '8')
 			buy3(8);
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice_buy();
 	}
 }
@@ -1973,7 +1987,7 @@ void item_store_choice_buy0() {
 			buy0(6);
 		if (a == '7')
 			buy0(7);
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice_buy();
 	}
 }
@@ -1983,13 +1997,13 @@ void buy0(int inum) {
 		system("cls");
 		char a;
 		int check;
-		
+
 		check = inum - 1;
 		printf("\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  ■              이름                                        능력치1             능력치2             소지 개수      가격       ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■                                                                                                                            ■\n");		
+		printf("  ■                                                                                                                            ■\n");
 		printf("  ■     %15s                                      hp : %2d              mp : %2d             %2d 개      %3d 골드      ■\n", ilist[check].name, ilist[check].add_hp, ilist[check].add_mp, ilist[check].ea, ilist[check].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
@@ -2013,11 +2027,11 @@ void buy0(int inum) {
 			}
 			else {
 				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-				if(_getch());
-					break;
+				if (_getch());
+				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -2061,7 +2075,7 @@ void buy1(int inum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -2105,7 +2119,7 @@ void buy2(int inum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -2149,7 +2163,7 @@ void buy3(int inum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -2203,14 +2217,14 @@ void item_store_choice_sell() {
 			item_store_choice_sell3();
 		if (a == '4')
 			item_store_choice_sell0();
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice1();
 	}
 }
 
 void item_store_choice_sell0() {
 	while (1) {
-		char a;		
+		char a;
 		int n[10];
 		for (int i = 0; i < 10; i++) {
 			n[i] = 40;
@@ -2225,7 +2239,7 @@ void item_store_choice_sell0() {
 		printf("  ■                                                                                                                            ■\n");
 		for (int i = 0; i < 10; i++) {
 			if (ilist[i].ea > 0) {
-				printf("  ■   %d. %20s                    hp 회복 : %2d                  mp 회복 : %2d          %2d 개      %2d 골드        ■\n", index, ilist[i].name, ilist[i].add_hp, ilist[i].add_mp, ilist[i].ea, ilist[i].price/10*5);
+				printf("  ■   %d. %20s                    hp 회복 : %2d                  mp 회복 : %2d          %2d 개      %2d 골드        ■\n", index, ilist[i].name, ilist[i].add_hp, ilist[i].add_mp, ilist[i].ea, ilist[i].price / 10 * 5);
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                                                                                                            ■\n");
 				n[index - 1] = i;
@@ -2315,7 +2329,7 @@ void item_store_choice_sell0() {
 					continue;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice_sell();
 	}
 }
@@ -2336,8 +2350,8 @@ void item_store_choice_sell1() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		for (int i = 0; i < 10; i++) {
-			if (ilist[i+10].ea > 0) {
-				printf("  ■   %d. %20s                 리더십(공격력) : %2d                         %2d 개               %2d 골드          ■\n", index, ilist[i+10].name, ilist[i+10].add_readership, ilist[i+10].ea, ilist[i+10].price / 10 * 5);
+			if (ilist[i + 10].ea > 0) {
+				printf("  ■   %d. %20s                 리더십(공격력) : %2d                         %2d 개               %2d 골드          ■\n", index, ilist[i + 10].name, ilist[i + 10].add_readership, ilist[i + 10].ea, ilist[i + 10].price / 10 * 5);
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                                                                                                            ■\n");
 				n[index - 1] = i;
@@ -2353,16 +2367,9 @@ void item_store_choice_sell1() {
 		if (a == '1') {
 			if (ilist[n[0] + 10].index != 0) {
 				sell1(n[0] + 10);
-				if (ilist[n[0] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[0] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[0] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2370,16 +2377,9 @@ void item_store_choice_sell1() {
 		if (a == '2') {
 			if (ilist[n[1] + 10].index != 0) {
 				sell1(n[1] + 10);
-				if (ilist[n[1] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[1] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[1] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2387,16 +2387,9 @@ void item_store_choice_sell1() {
 		if (a == '3') {
 			if (ilist[n[2] + 10].index != 0) {
 				sell1(n[2] + 10);
-				if (ilist[n[2] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[2] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[2] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2404,16 +2397,9 @@ void item_store_choice_sell1() {
 		if (a == '4') {
 			if (ilist[n[3] + 10].index != 0) {
 				sell1(n[3] + 10);
-				if (ilist[n[3] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[3] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[3] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2421,16 +2407,9 @@ void item_store_choice_sell1() {
 		if (a == '5') {
 			if (ilist[n[4] + 10].index != 0) {
 				sell1(n[4] + 10);
-				if (ilist[n[4] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[4] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[4] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2438,16 +2417,9 @@ void item_store_choice_sell1() {
 		if (a == '6') {
 			if (ilist[n[5] + 10].index != 0) {
 				sell1(n[5] + 10);
-				if (ilist[n[5] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[5] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[5] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2455,16 +2427,9 @@ void item_store_choice_sell1() {
 		if (a == '7') {
 			if (ilist[n[6] + 10].index != 0) {
 				sell1(n[6] + 10);
-				if (ilist[n[6] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[6] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[6] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2472,21 +2437,14 @@ void item_store_choice_sell1() {
 		if (a == '8') {
 			if (ilist[n[7] + 10].index != 0) {
 				sell1(n[7] + 10);
-				if (ilist[n[7] + 10].ea == 0) {
-					if (strcmp(clist[0].item[0].name, ilist[n[7] + 10].name) == 0)
-						clist[0].item[0] = emptylist[0];
-					if (strcmp(clist[0].item[1].name, ilist[n[7] + 10].name) == 0)
-						clist[0].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice_sell();
 	}
 }
@@ -2524,16 +2482,9 @@ void item_store_choice_sell2() {
 		if (a == '1') {
 			if (ilist[n[0] + 20].index != 0) {
 				sell2(n[0] + 20);
-				if (ilist[n[0] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[0] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[0] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2541,16 +2492,9 @@ void item_store_choice_sell2() {
 		if (a == '2') {
 			if (ilist[n[1] + 20].index != 0) {
 				sell2(n[1] + 20);
-				if (ilist[n[1] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[1] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[1] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2558,16 +2502,9 @@ void item_store_choice_sell2() {
 		if (a == '3') {
 			if (ilist[n[2] + 20].index != 0) {
 				sell2(n[2] + 20);
-				if (ilist[n[2] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[2] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[2] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2575,16 +2512,9 @@ void item_store_choice_sell2() {
 		if (a == '4') {
 			if (ilist[n[3] + 20].index != 0) {
 				sell2(n[3] + 20);
-				if (ilist[n[3] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[3] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[3] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2592,16 +2522,9 @@ void item_store_choice_sell2() {
 		if (a == '5') {
 			if (ilist[n[4] + 20].index != 0) {
 				sell2(n[4] + 20);
-				if (ilist[n[4] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[4] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[4] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2609,16 +2532,9 @@ void item_store_choice_sell2() {
 		if (a == '6') {
 			if (ilist[n[5] + 20].index != 0) {
 				sell2(n[5] + 20);
-				if (ilist[n[5] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[5] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[5] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2626,16 +2542,9 @@ void item_store_choice_sell2() {
 		if (a == '7') {
 			if (ilist[n[6] + 20].index != 0) {
 				sell2(n[6] + 20);
-				if (ilist[n[6] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[6] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[6] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2643,21 +2552,14 @@ void item_store_choice_sell2() {
 		if (a == '8') {
 			if (ilist[n[7] + 20].index != 0) {
 				sell2(n[7] + 20);
-				if (ilist[n[7] + 20].ea == 0) {
-					if (strcmp(clist[1].item[0].name, ilist[n[7] + 20].name) == 0)
-						clist[1].item[0] = emptylist[0];
-					if (strcmp(clist[1].item[1].name, ilist[n[7] + 20].name) == 0)
-						clist[1].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			item_store_choice_sell();
 	}
 }
@@ -2695,16 +2597,9 @@ void item_store_choice_sell3() {
 		if (a == '1') {
 			if (ilist[n[0] + 30].index != 0) {
 				sell3(n[0] + 30);
-				if (ilist[n[0] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[0] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[0] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2712,16 +2607,9 @@ void item_store_choice_sell3() {
 		if (a == '2') {
 			if (ilist[n[1] + 30].index != 0) {
 				sell3(n[1] + 30);
-				if (ilist[n[1] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[1] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[1] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2729,16 +2617,9 @@ void item_store_choice_sell3() {
 		if (a == '3') {
 			if (ilist[n[2] + 30].index != 0) {
 				sell3(n[2] + 30);
-				if (ilist[n[2] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[2] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[2] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2746,16 +2627,9 @@ void item_store_choice_sell3() {
 		if (a == '4') {
 			if (ilist[n[3] + 30].index != 0) {
 				sell3(n[3] + 30);
-				if (ilist[n[3] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[3] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[3] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2763,16 +2637,9 @@ void item_store_choice_sell3() {
 		if (a == '5') {
 			if (ilist[n[4] + 30].index != 0) {
 				sell3(n[4] + 30);
-				if (ilist[n[4] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[4] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[4] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2780,16 +2647,9 @@ void item_store_choice_sell3() {
 		if (a == '6') {
 			if (ilist[n[5] + 30].index != 0) {
 				sell3(n[5] + 30);
-				if (ilist[n[5] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[5] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[5] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
@@ -2797,38 +2657,24 @@ void item_store_choice_sell3() {
 		if (a == '7') {
 			if (ilist[n[6] + 30].index != 0) {
 				sell3(n[6] + 30);
-				if (ilist[n[6] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[6] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[6] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
 		}
-		if (a == '8'){
+		if (a == '8') {
 			if (ilist[n[7] + 30].index != 0) {
 				sell3(n[7] + 30);
-				if (ilist[n[7] + 30].ea == 0) {
-					if (strcmp(clist[2].item[0].name, ilist[n[7] + 30].name) == 0)
-						clist[2].item[0] = emptylist[0];
-					if (strcmp(clist[2].item[1].name, ilist[n[7] + 30].name) == 0)
-						clist[2].item[1] = emptylist[0];
-				}
 			}
 			else {
 				printf("  소지중인 아이템이 없습니다!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-
 				if (_getch())
 					continue;
 			}
-	}
-		if (a == 'b')
+		}
+		if (a == 'b' || a == 'B')
 			item_store_choice_sell();
 	}
 }
@@ -2873,7 +2719,7 @@ void sell0(int inum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -2905,12 +2751,22 @@ void sell1(int inum) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
 				printf("   %s ", ilist[inum].name);
+
+				if (strcmp(clist[0].item[0].name, clist[0].item[1].name) == 0 && strcmp(clist[0].item[0].name, ilist[inum].name) == 0)
+					clist[0].item[1] = emptylist[0];
+
 				continue;
 			}
 			if (ilist[inum].ea == 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
 				printf("   %s ", ilist[inum].name);
+
+				if (strcmp(clist[0].item[0].name, ilist[inum].name) == 0)
+					clist[0].item[0] = emptylist[0];
+				if (strcmp(clist[0].item[1].name, ilist[inum].name) == 0)
+					clist[0].item[1] = emptylist[0];
+
 				break;
 			}
 			else {
@@ -2918,7 +2774,7 @@ void sell1(int inum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -2950,12 +2806,22 @@ void sell2(int inum) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
 				printf("   %s ", ilist[inum].name);
+
+				if (strcmp(clist[1].item[0].name, clist[1].item[1].name) == 0 && strcmp(clist[1].item[0].name, ilist[inum].name) == 0)
+					clist[1].item[1] = emptylist[0];
+
 				continue;
 			}
 			if (ilist[inum].ea == 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
 				printf("   %s ", ilist[inum].name);
+
+				if (strcmp(clist[1].item[0].name, ilist[inum].name) == 0)
+					clist[1].item[0] = emptylist[0];
+				if (strcmp(clist[1].item[1].name, ilist[inum].name) == 0)
+					clist[1].item[1] = emptylist[0];
+
 				break;
 			}
 			else {
@@ -2963,7 +2829,7 @@ void sell2(int inum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -2995,12 +2861,22 @@ void sell3(int inum) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
 				printf("   %s ", ilist[inum].name);
+
+				if (strcmp(clist[2].item[0].name, clist[2].item[1].name) == 0 && strcmp(clist[2].item[0].name, ilist[inum].name) == 0)
+					clist[2].item[1] = emptylist[0];
+
 				continue;
 			}
 			if (ilist[inum].ea == 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
 				printf("   %s ", ilist[inum].name);
+
+				if (strcmp(clist[2].item[0].name, ilist[inum].name) == 0)
+					clist[2].item[0] = emptylist[0];
+				if (strcmp(clist[2].item[1].name, ilist[inum].name) == 0)
+					clist[2].item[1] = emptylist[0];
+
 				break;
 			}
 			else {
@@ -3008,7 +2884,7 @@ void sell3(int inum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }

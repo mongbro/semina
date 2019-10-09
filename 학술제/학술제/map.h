@@ -6,8 +6,12 @@
 #include<conio.h>
 #include"character.h"
 #include"monster.h"
+#include"skill.h"
+#include"item.h"
+#include"stage.h"
 #include"combet.h"
 #include"menu.h"
+#include"exp.h"
 
 
 void print_line();
@@ -17,7 +21,6 @@ void event_hit();
 void print_map(CHA clist[3], MON mlist[3]);
 void print_hp(CHA clist[3], MON mlist[3]);
 void print_choice_mon(CHA clist[3], MON mlist[3]);
-void dungeon(CHA clist[3], MON mlist[3]);
 void prologue();
 void c_choice(CHA clist[3], MON mlist[3], int cnum);
 void c_attack(CHA clist[3], MON mlist[3], int cnum);
@@ -25,6 +28,18 @@ void cs_attack(CHA clist[3], MON mlist[3], int cnum, int snum);
 void c_skill(CHA clist[3], MON mlist[3], int cnum);
 void turn_player();
 void turn_monster();
+void enter_dungeon1();
+void enter_dungeon2();
+void enter_dungeon3();
+void enter_dungeon4();
+void choice_stage();
+void double_attack(CHA clist[3], MON mlist[3], int cnum, int snum);
+void wide_attack(CHA clist[3], MON mlist[3], int cnum, int snum);
+void stun_attack(CHA clist[3], MON mlist[3], int cnum, int snum);
+void armor(CHA clist[3], MON mlist[3], int cnum, int snum);
+void m_choice(CHA clist[3], MON mlist[3], int mnum);
+void stun(int mnum);
+
 
 void print_line() {
 	printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -101,21 +116,6 @@ void print_choice_mon(CHA clist[3], MON mlist[3]) {
 	if (mlist[2].hp <= 0)
 		printf("                                                                \n");
 }
-
-void dungeon(CHA clist[3], MON mlist[3]) {
-	system("cls");
-	print_line();
-	printf("\n");
-	printf("%s                                                          ○                                                          %s\n", clist[0].name, mlist[0].name);
-	printf("%s                                                          ○                                                          %s\n", clist[1].name, mlist[1].name);
-	printf("%s                                                          ○                                                          %s\n", clist[2].name, mlist[2].name);
-	printf("\n");
-	print_line();
-	print_hp(clist, mlist);
-	print_line();
-	printf("\n");
-}
-
 
 void hit1() {
 	system("cls");
@@ -785,6 +785,8 @@ void prologue() {
 			printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 			print_line();
+			stlist[0].is_clear = 1;
+			stlist[1].is_clear = 1;
 			if (_getch())
 				break;
 		}
@@ -801,32 +803,45 @@ void prologue() {
 ////////////////////////////////////////////////////////////   여기까지 프롤로그   ////////////////////////////////////////////////////////////
 
 void c_choice(CHA clist[3], MON mlist[3], int cnum) {
-	while (1) {
-		char a;
-		system("cls");
-		print_line();
-		print_map(clist, mlist);
-		print_line();
-		printf("\n");
-		print_hp(clist, mlist);
-		print_line();
-		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[cnum].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
-		printf("\n\n  기술을 선택하시오.\n");
-		print_line();
-		a = _getch();
-		if (a == '1')
-			c_attack(clist, mlist, cnum);
-		if (a == '2')
-			c_attack(clist, mlist, cnum);
+	for (int i = 0; i < 3; i++) {
+		if (clist[i].turn == 0) {
+			if (clist[i].hp > 0) {
+				while (1) {
+					char a;
+					system("cls");
+					print_line();
+					print_map(clist, mlist);
+					print_line();
+					printf("\n");
+					print_hp(clist, mlist);
+					print_line();
+					printf("\n");
+					printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[i].name);
+					printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
+					printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
+					printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
+					printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+					printf("\n\n  기술을 선택하시오.\n");
+					print_line();
+					a = _getch();
+					if (a == '1') {
+						c_attack(clist, mlist, i);
+						if (clist[i].turn == 1)
+							break;
+					}
+					if (a == '2') {
+						c_skill(clist, mlist, i);
+						if (clist[i].turn == 1)
+							break;
+					}
+				}
+			}
+		}
 		else
 			continue;
 	}
 }
+
 void c_attack(CHA clist[3], MON mlist[3], int cnum) {
 	while (1) {
 		char a;
@@ -859,14 +874,23 @@ void c_attack(CHA clist[3], MON mlist[3], int cnum) {
 		printf("\n\n  공격할 적을 선택하세요.\n");
 		print_line();
 		a = _getch();
-		if (a == '1')
+		if (a == '1') {
 			damage_character_to_monster(clist, mlist, cnum, 0, 0);
-		if (a == '2')
+			clist[cnum].turn = 1;
+			break;
+		}
+		if (a == '2') {
 			damage_character_to_monster(clist, mlist, cnum, 1, 0);
-		if (a == '3')
+			clist[cnum].turn = 1;
+			break;
+		}
+		if (a == '3') {
 			damage_character_to_monster(clist, mlist, cnum, 2, 0);
-		else
-			continue;
+			clist[cnum].turn = 1;
+			break;
+		}
+		if (a == 'b' || a == 'B')
+			break;
 	}
 }
 
@@ -881,23 +905,33 @@ void cs_attack(CHA clist[3], MON mlist[3], int cnum, int snum) {
 		print_hp(clist, mlist);
 		print_line();
 		printf("\n");
-		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[0].name, clist[0].skill[1].name);
-		printf("  1. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[0].name, clist[0].skill[1].name, mlist[0].name);
-		printf("  2. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[1].name, clist[0].skill[1].name, mlist[1].name);
-		printf("  3. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[2].name, clist[0].skill[1].name, mlist[2].name);
+		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[cnum].name, clist[cnum].skill[snum].name);
+		printf("  1. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[0].name, clist[cnum].skill[snum].name, mlist[0].name);
+		printf("  2. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[1].name, clist[cnum].skill[snum].name, mlist[1].name);
+		printf("  3. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[2].name, clist[cnum].skill[snum].name, mlist[2].name);
 		printf("\n\n  공격할 적을 선택하세요.\n");
 		print_line();
 		a = _getch();
 		if (a == '1') {
-			damage_character_to_monster(clist, mlist, cnum, 0, 1);
+			damage_character_to_monster(clist, mlist, cnum, 0, snum);
 			clist[cnum].mp -= clist[cnum].skill[0].diff_mp;
+			clist[cnum].turn = 1;
+			break;
 		}
 		if (a == '2') {
-			damage_character_to_monster(clist, mlist, cnum, 1, 2);
+			damage_character_to_monster(clist, mlist, cnum, 1, snum);
 			clist[cnum].mp -= clist[cnum].skill[1].diff_mp;
+			clist[cnum].turn = 1;
+			break;
 		}
-		else
-			continue;
+		if (a == '3') {
+			damage_character_to_monster(clist, mlist, cnum, 2, snum);
+			clist[cnum].mp -= clist[cnum].skill[1].diff_mp;
+			clist[cnum].turn = 1;
+			break;
+		}
+		if (a == 'b' || a == 'B')
+			break;
 	}
 }
 
@@ -918,12 +952,54 @@ void c_skill(CHA clist[3], MON mlist[3], int cnum) {
 		printf("\n\n  스킬을 선택하세요.\n");
 		print_line();
 		a = _getch();
-		if (a == '1')
-			cs_attack(clist, mlist, cnum, 1);
-		if (a == '2')
-			cs_attack(clist, mlist, cnum, 2);
-		else
-			continue;
+		if (a == '1') {
+			if (clist[cnum].mp >= clist[cnum].skill[1].diff_mp) {
+				if (clist[cnum].skill[1].num == 3 || clist[cnum].skill[1].num == 4)
+					double_attack(clist, mlist, cnum, slist[clist[cnum].skill[1].num].num);
+				if (clist[cnum].skill[1].num == 5 || clist[cnum].skill[1].num == 6 || clist[cnum].skill[1].num == 7 || clist[cnum].skill[1].num == 13 || clist[cnum].skill[1].num == 15)
+					wide_attack(clist, mlist, cnum, slist[clist[cnum].skill[1].num].num);
+				if (clist[cnum].skill[1].num == 14)
+					stun_attack(clist, mlist, cnum, slist[clist[cnum].skill[1].num].num);
+				if (clist[cnum].skill[1].num == 16)
+					armor(clist, mlist, cnum, slist[clist[cnum].skill[1].num].num);
+
+
+
+				else
+					cs_attack(clist, mlist, cnum, 1);
+				break;
+			}
+			else {
+				printf("\n  현재 마나가 부족합니다.\n\n  계속 하시려면 아무키나 누르세요.\n");
+				if (_getch())
+					continue;
+			}
+		}
+		if (a == '2') {
+			if (clist[cnum].mp >= clist[cnum].skill[1].diff_mp) {
+				if (clist[cnum].mp >= clist[cnum].skill[1].diff_mp) {
+					if (clist[cnum].skill[2].num == 3 || clist[cnum].skill[2].num == 4)
+						double_attack(clist, mlist, cnum, slist[clist[cnum].skill[2].num].num);
+					if (clist[cnum].skill[2].num == 5 || clist[cnum].skill[2].num == 6 || clist[cnum].skill[2].num == 7 || clist[cnum].skill[2].num == 13 || clist[cnum].skill[2].num == 15)
+						wide_attack(clist, mlist, cnum, slist[clist[cnum].skill[2].num].num);
+					if (clist[cnum].skill[2].num == 14)
+						stun_attack(clist, mlist, cnum, slist[clist[cnum].skill[2].num].num);
+
+
+
+					else
+						cs_attack(clist, mlist, cnum, 2);
+					break;
+				}
+				else {
+					printf("\n  현재 마나가 부족합니다.\n\n  계속 하시려면 아무키나 누르세요.\n");
+					if (_getch())
+						continue;
+				}
+			}
+		}
+		if (a == 'b' || a == 'B')
+			break;
 	}
 }
 
@@ -965,6 +1041,635 @@ void turn_monster() {
 		printf("\n\n\n");
 		print_line();
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+		print_line();
+		if (_getch())
+			break;
+	}
+}
+
+void choice_stage() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      현재 진행할 수 있는 스테이지                                                     보스                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (stlist[0].is_clear == 1) {
+			printf("  ■      0. 프롤로그                                                                   보스 없음                               ■\n");
+		}
+		else
+			printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (stlist[1].is_clear == 1) {
+			printf("  ■      1. 스테이지1                                                            조별과제 중간 제출                            ■\n");
+		}
+		else
+			printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (stlist[2].is_clear == 1) {
+			printf("  ■      2. 스테이지2                                                                   중간고사                               ■\n");
+		}
+		else
+			printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (stlist[3].is_clear == 1) {
+			printf("  ■      3. 스테이지3                                                              조별과제 최종 발표                          ■\n");
+		}
+		else
+			printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (stlist[4].is_clear == 1) {
+			printf("  ■      4. 스테이지4                                                                   기말고사                               ■\n");
+		}
+		else
+			printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+		if (a == '0') {
+			if (stlist[0].is_clear == 1)
+				prologue();
+		}
+		if (a == '1') {
+			if (stlist[1].is_clear == 1)
+				enter_dungeon1();
+		}
+		if (a == '2') {
+			if (stlist[2].is_clear == 1)
+				c_choice(clist, mlist, 0);
+		}
+		if (a == '3') {
+			if (stlist[3].is_clear == 1)
+				c_choice(clist, mlist, 0);
+		}
+		if (a == '4') {
+			if (stlist[4].is_clear == 1)
+				c_choice(clist, mlist, 0);
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+}
+
+void enter_dungeon1() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+		printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+		printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+		printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+		printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+		printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+		printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                           ■■■                                                           ■\n");
+		printf("  ■                                                         ■■■■                                                           ■\n");
+		printf("  ■                                                       ■■  ■■                                                           ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                             ■■                                                           ■\n");
+		printf("  ■                                                       ■■■■■■■■                                                     ■\n");
+		printf("  ■                                                       ■■■■■■■■                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+
+		if (a != 'b' && a != 'B') {
+			stage1_1_monster(mlist);
+			while (check_exter(clist, mlist) != 1 || check_exter(clist, mlist) != 2) {
+				c_choice(clist, mlist, 0);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				m_choice(clist, mlist, 1);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				m_choice(clist, mlist, 2);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+
+			stage1_2_monster(mlist);
+			while (check_exter(clist, mlist) != 1 || check_exter(clist, mlist) != 2) {
+				c_choice(clist, mlist, 0);
+				c_choice(clist, mlist, 1);
+				c_choice(clist, mlist, 2);
+				m_choice(clist, mlist, 0);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				m_choice(clist, mlist, 1);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				m_choice(clist, mlist, 2);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+
+			stage1_3_monster(mlist);
+			while (check_exter(clist, mlist) != 1 || check_exter(clist, mlist) != 2) {
+				c_choice(clist, mlist, 0);
+				c_choice(clist, mlist, 1);
+				c_choice(clist, mlist, 2);
+				m_choice(clist, mlist, 0);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				m_choice(clist, mlist, 1);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				m_choice(clist, mlist, 2);
+				if (check_exter(clist, mlist) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+
+			stage1_2_monster(mlist);
+			while (check_exter_boss(clist, mlist, 1) != 1 || check_exter_boss(clist, mlist, 1) != 2) {
+				c_choice(clist, mlist, 0);
+				if (check_exter_boss(clist, mlist, 1) == 2) {
+					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				c_choice(clist, mlist, 1);
+				if (check_exter_boss(clist, mlist, 1) == 2) {
+					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				c_choice(clist, mlist, 2);
+				if (check_exter_boss(clist, mlist, 1) == 2) {
+					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+				m_choice(clist, mlist, 0);
+				if (check_exter_boss(clist, mlist, 1) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+
+				}
+			}
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+}
+
+void enter_dungeon2() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+		printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+		printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+		printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+		printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+		printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+		printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                         ■■■■■                                                         ■\n");
+		printf("  ■                                                       ■■■■■■■                                                       ■\n");
+		printf("  ■                                                     ■■          ■■                                                     ■\n");
+		printf("  ■                                                     ■■          ■■                                                     ■\n");
+		printf("  ■                                                                   ■■                                                     ■\n");
+		printf("  ■                                                                 ■■■                                                     ■\n");
+		printf("  ■                                                               ■■■                                                       ■\n");
+		printf("  ■                                                             ■■■                                                         ■\n");
+		printf("  ■                                                           ■■■                                                           ■\n");
+		printf("  ■                                                         ■■■                                                             ■\n");
+		printf("  ■                                                       ■■■                                                               ■\n");
+		printf("  ■                                                     ■■■■■■■■■                                                     ■\n");
+		printf("  ■                                                     ■■■■■■■■■                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+		if (a != 'b' && a != 'B') {
+			stage2_1_monster(mlist);
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+}
+
+void enter_dungeon3() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+		printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+		printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+		printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+		printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+		printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+		printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                         ■■■■■                                                         ■\n");
+		printf("  ■                                                       ■■■■■■■                                                       ■\n");
+		printf("  ■                                                     ■■■      ■■■                                                     ■\n");
+		printf("  ■                                                     ■■          ■■                                                     ■\n");
+		printf("  ■                                                       ■■        ■■                                                     ■\n");
+		printf("  ■                                                       ■■      ■■                                                       ■\n");
+		printf("  ■                                                               ■■■                                                       ■\n");
+		printf("  ■                                                       ■■      ■■                                                       ■\n");
+		printf("  ■                                                       ■■        ■■                                                     ■\n");
+		printf("  ■                                                     ■■          ■■                                                     ■\n");
+		printf("  ■                                                     ■■        ■■■                                                     ■\n");
+		printf("  ■                                                       ■■■■■■■                                                       ■\n");
+		printf("  ■                                                         ■■■■■                                                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+		if (a != 'b' && a != 'B') {
+			stage3_1_monster(mlist);
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+}
+
+void enter_dungeon4() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+		printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+		printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+		printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+		printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+		printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+		printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+		printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                               ■■                                                         ■\n");
+		printf("  ■                                                             ■■■                                                         ■\n");
+		printf("  ■                                                           ■■■■                                                         ■\n");
+		printf("  ■                                                         ■■  ■■                                                         ■\n");
+		printf("  ■                                                       ■■    ■■                                                         ■\n");
+		printf("  ■                                                     ■■      ■■                                                         ■\n");
+		printf("  ■                                                   ■■■      ■■                                                         ■\n");
+		printf("  ■                                                   ■■■■■■■■■■                                                     ■\n");
+		printf("  ■                                                   ■■■■■■■■■■                                                     ■\n");
+		printf("  ■                                                               ■■                                                         ■\n");
+		printf("  ■                                                               ■■                                                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+		if (a != 'b' && a != 'B') {
+			stage4_1_monster(mlist);
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+}
+
+void double_attack(CHA clist[3], MON mlist[3], int cnum, int snum) {
+	while (1) {
+		char a;
+		system("cls");
+		print_line();
+		print_map(clist, mlist);
+		print_line();
+		printf("\n");
+		print_hp(clist, mlist);
+		print_line();
+		printf("\n");
+		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[cnum].name, clist[cnum].skill[snum].name);
+		printf("  1. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[0].name, clist[cnum].skill[snum].name, mlist[0].name);
+		printf("  2. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[1].name, clist[cnum].skill[snum].name, mlist[1].name);
+		printf("  3. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[2].name, clist[cnum].skill[snum].name, mlist[2].name);
+		printf("\n\n  공격할 적을 선택하세요.\n");
+		print_line();
+		a = _getch();
+		if (a == '1') {
+			if (snum == 3) {
+				damage_character_to_monster(clist, mlist, cnum, 0, 0);
+				damage_character_to_monster(clist, mlist, cnum, 0, 0);
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+			if (snum == 4) {
+				damage_character_to_monster(clist, mlist, cnum, 0, 0);
+				damage_character_to_monster(clist, mlist, cnum, 0, 0);
+				damage_character_to_monster(clist, mlist, cnum, 0, 0);
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+		}
+		if (a == '2') {
+			if (snum == 3) {
+				damage_character_to_monster(clist, mlist, cnum, 1, 0);
+				damage_character_to_monster(clist, mlist, cnum, 1, 0);
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+			if (snum == 4) {
+				damage_character_to_monster(clist, mlist, cnum, 1, 0);
+				damage_character_to_monster(clist, mlist, cnum, 1, 0);
+				damage_character_to_monster(clist, mlist, cnum, 1, 0);
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+		}
+
+		if (a == '3') {
+			if (snum == 3) {
+				damage_character_to_monster(clist, mlist, cnum, 2, 0);
+				damage_character_to_monster(clist, mlist, cnum, 2, 0);
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+			if (snum == 4) {
+				damage_character_to_monster(clist, mlist, cnum, 2, 0);
+				damage_character_to_monster(clist, mlist, cnum, 2, 0);
+				damage_character_to_monster(clist, mlist, cnum, 2, 0);
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+}
+
+void wide_attack(CHA clist[3], MON mlist[3], int cnum, int snum) {
+	while (1) {
+		char a;
+		system("cls");
+		print_line();
+		print_map(clist, mlist);
+		print_line();
+		printf("\n");
+		print_hp(clist, mlist);
+		print_line();
+		printf("\n");
+		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[cnum].name, clist[cnum].skill[snum].name);
+		printf("     %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[0].name, clist[cnum].skill[snum].name, mlist[0].name);
+		printf("     %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[1].name, clist[cnum].skill[snum].name, mlist[1].name);
+		printf("     %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[2].name, clist[cnum].skill[snum].name, mlist[2].name);
+		printf("\n\n  광역기 입니다.\n\n  계속 진행하시려면 아무키나 눌러주세요.\n\n  뒤로가고 싶으시면 'b'를 눌러주세요.\n\n");
+		print_line();
+		a = _getch();
+		if (a == 'b' || a == 'B')
+			break;
+
+		if (_getch()) {
+			if (snum != 15) {
+				damage_character_to_monster(clist, mlist, cnum, 0, snum);
+				damage_character_to_monster(clist, mlist, cnum, 1, snum);
+				damage_character_to_monster(clist, mlist, cnum, 2, snum);
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+			if (snum == 15) {
+				mlist[0].is_stun = 1;
+				mlist[1].is_stun = 1;
+				mlist[2].is_stun = 1;
+				clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			}
+		}
+	}
+}
+
+void stun_attack(CHA clist[3], MON mlist[3], int cnum, int snum) {
+	while (1) {
+		char a;
+		system("cls");
+		print_line();
+		print_map(clist, mlist);
+		print_line();
+		printf("\n");
+		print_hp(clist, mlist);
+		print_line();
+		printf("\n");
+		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[cnum].name, clist[cnum].skill[snum].name);
+		printf("  1. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[0].name, clist[cnum].skill[snum].name, mlist[0].name);
+		printf("  2. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[1].name, clist[cnum].skill[snum].name, mlist[1].name);
+		printf("  3. %s                                                        = %s스킬로 %s을 공격합니다.\n", mlist[2].name, clist[cnum].skill[snum].name, mlist[2].name);
+		printf("\n\n  공격할 적을 선택하세요.\n\n  뒤로가고 싶으시면 'b'를 눌러주세요.\n\n");
+		print_line();
+		a = _getch();
+		if (a == '1') {
+			mlist[0].is_stun = 1;
+			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+		}
+		if (a == '2') {
+			mlist[1].is_stun = 1;
+			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+		}
+		if (a == '3') {
+			mlist[2].is_stun = 1;
+			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+}
+
+void armor(CHA clist[3], MON mlist[3], int cnum, int snum) {
+	while (1) {
+		char a;
+		system("cls");
+		print_line();
+		print_map(clist, mlist);
+		print_line();
+		printf("\n");
+		print_hp(clist, mlist);
+		print_line();
+		printf("\n");
+		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[cnum].name, clist[cnum].skill[snum].name);
+		if (snum == 16)
+			printf("\n\n  해당 캐릭터가 %d회의 공격을 무시합니다.\n\n  뒤로가고 싶으시면 'b'를 눌러주세요.\n\n", 1);
+		if (snum == 17)
+			printf("\n\n  해당 캐릭터가 %d회의 공격을 무시합니다.\n\n  뒤로가고 싶으시면 'b'를 눌러주세요.\n\n", 2);
+		print_line();
+		a = _getch();
+		if (a == 'b' || a == 'B')
+			break;
+		if (_getch()) {
+			if (snum == 16)
+				clist[cnum].armor = 1;
+			if (snum == 17)
+				clist[cnum].armor = 2;
+		}
+	}
+}
+
+void m_choice(CHA clist[3], MON mlist[3], int mnum) {
+	for (int i = 0; i < 3; i++) {
+		if (clist[i].turn == 0) {
+			if (clist[i].hp > 0) {
+				int who;
+				who = choice_monster_to_character();
+				while (1) {
+					system("cls");
+					print_line();
+					print_map(clist, mlist);
+					print_line();
+					printf("\n");
+					print_hp(clist, mlist);
+					print_line();
+					printf("\n");
+					printf("  %s이(가) %s을(를) 공격!!                                              = 선택된 몬스터입니다.\n\n", mlist[i].name, clist[who].name);
+					printf("\n\n");
+					printf("\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					damage_monster_to_character(clist, mlist, who, 0);
+					print_line();
+					if (_getch())
+						break;
+				}
+				if (mlist[i].is_stun == 0) {
+					event_hit();
+
+					while (1) {
+						system("cls");
+						print_line();
+						print_map(clist, mlist);
+						print_line();
+						printf("\n");
+						print_hp(clist, mlist);
+						print_line();
+						printf("\n");
+						printf("\n\n");
+						printf("  %s이(가) %d의 데미지를 입음!!!                                = %s이(가) %d의 데미지를 입었습니다.\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
+						kill_character(clist, mlist, stlist, 0);
+						mlist[i].turn = 1;
+						printf("\n\n");
+						printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+						print_line();
+						if (_getch())
+							break;
+					}
+				}
+				if (mlist[i].is_stun == 1)
+					stun(i);
+			}
+		}
+	}
+}
+
+void stun(int mnum) {
+	while (1) {
+		system("cls");
+		print_line();
+		print_map(clist, mlist);
+		print_line();
+		printf("\n");
+		print_hp(clist, mlist);
+		print_line();
+		printf("\n");
+		printf("\n\n");
+		printf("  %s은(는) 현재 스턴상태입니다!!!                                \n", mlist[mnum].name);
+		printf("\n\n");
+		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+		mlist[mnum].turn = 1;
 		print_line();
 		if (_getch())
 			break;

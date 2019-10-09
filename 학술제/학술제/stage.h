@@ -11,9 +11,10 @@ typedef struct stage {
 	ITEM drop_item[10];
 	MON monster[30];
 	int num_item;
+	int is_clear;
 }STAGE;
 
-STAGE stlist[6] = { 0 };
+STAGE stlist[5] = { 0 };
 
 void prologue_stage() {
 	stlist[0].num_item = 0;
@@ -26,5 +27,8 @@ void prologue_stage() {
 	for (int i = 0; i < 10; i++) {
 		if (stlist[0].drop_item[i].ea == 1)
 			stlist[0].num_item++;
+	}
+	for (int i = 0; i < 5; i++) {
+		stlist[i].chapter = i;
 	}
 }
