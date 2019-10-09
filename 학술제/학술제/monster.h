@@ -18,6 +18,7 @@ typedef struct monster {
 }MON;
 
 MON mlist[3] = { 0 };
+MON empty_mlist[3] = { 0 };
 
 void prologue_monster(MON mlist[3]) {
 
