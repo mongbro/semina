@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{F732E4F7-86D4-417D-AC7D-1DC9A685998A}</ProjectGuid>
     <RootNamespace>학술제</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -123,11 +123,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="character.c" />
+    <ClCompile Include="combat.c" />
+    <ClCompile Include="exp.c" />
+    <ClCompile Include="item.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="map.c" />
+    <ClCompile Include="menu.c" />
+    <ClCompile Include="monster.c" />
+    <ClCompile Include="skill.c" />
+    <ClCompile Include="stage.c" />
+    <ClCompile Include="start_display.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h" />
-    <ClInclude Include="combet.h" />
+    <ClInclude Include="combat.h" />
     <ClInclude Include="exp.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="map.h" />

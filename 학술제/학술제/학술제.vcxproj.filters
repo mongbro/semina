@@ -18,6 +18,36 @@
     <ClCompile Include="main.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="character.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="combat.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="exp.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="item.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="map.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="monster.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="skill.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stage.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="start_display.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="map.h">
@@ -41,13 +71,13 @@
     <ClInclude Include="exp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="combet.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="character.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="stage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="combat.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,5 @@
 // made by 김종은
 
-#ifndef COMBET_H
-#define COMBET_H
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -15,18 +12,7 @@
 #include"menu.h"
 #include"exp.h"
 
-
-void damage_character_to_monster(CHA clist[3], MON mlist[3], int cnum, int mnum, int snum);			//캐릭터배열, 몬스터배열, 캐릭터번호, 몬스터번호, 스킬번호
-void damage_monster_to_character(CHA clist[3], MON mlist[3], int cnum, int mnum);
-int choice_monster_to_character();
-int check_exter(CHA clist[3], MON mlist[3]);
-int check_exter_boss(CHA clist[3], MON mlist[3], int stage);
-void kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum, int stnum);
-void kill_character(CHA clist[3], MON mlist[3], STAGE stlist[6], int mnum);
-
-int hit_damage;
-
-void damage_character_to_monster(CHA clist[3], MON mlist[3], int cnum, int mnum, int snum) {
+void damage_character_to_monster(int cnum, int mnum, int snum) {
 	if (mlist[mnum].def >= 10)
 		mlist[mnum].hp = mlist[mnum].hp - (clist[cnum].att + clist[cnum].skill[snum].add_att + (clist[cnum].readership / 10) - (mlist[mnum].def / 10));
 	else
@@ -37,7 +23,7 @@ void damage_character_to_monster(CHA clist[3], MON mlist[3], int cnum, int mnum,
 		hit_damage = (clist[cnum].att + clist[cnum].skill[snum].add_att - (mlist[mnum].def / 10));
 }
 
-void damage_monster_to_character(CHA clist[3], MON mlist[3], int cnum, int mnum) {
+void damage_monster_to_character(int cnum, int mnum) {
 	extern void stun(int mnum);
 	if (mlist[mnum].is_stun == 0) {
 		if (clist[cnum].armor == 0) {
@@ -101,9 +87,7 @@ int choice_monster_to_character() {
 	}
 }
 
-
-
-int check_exter(CHA clist[3], MON mlist[3]) {
+int check_exter() {
 	int die_character = 0, die_monster = 0;
 	for (int i = 0; i < 3; i++) {
 		if (clist[i].hp <= 0)
@@ -115,14 +99,13 @@ int check_exter(CHA clist[3], MON mlist[3]) {
 	}
 	if (die_character == 3)
 		return 1;								//캐릭터가 모두 죽었을때
-	else if (die_monster == 3) 
+	else if (die_monster == 3)
 		return 2;								//몬스터가 모두 죽었을때
 	else
 		return 0;								//양쪽 모두 생존자가 있을때
 }
 
-
-int check_exter_boss(CHA clist[3], MON mlist[3], int stage) {
+int check_exter_boss(int stage) {
 	int die_character = 0, die_monster = 0;
 	for (int i = 0; i < 3; i++) {
 		if (clist[i].hp <= 0)
@@ -142,10 +125,7 @@ int check_exter_boss(CHA clist[3], MON mlist[3], int stage) {
 		return 0;								//양쪽 모두 생존자가 있을때
 }
 
-
-
-
-void kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum, int stnum) {
+void kill_monster(int cnum, int stnum) {
 	srand((unsigned)time(NULL));
 	int add_gold = rand() % 10 + 1;
 	int chance_drop = rand() % 3;		//33%확률로 드랍 => 0일때 드랍
@@ -170,7 +150,7 @@ void kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum, int stn
 	}
 }
 
-void kill_character(CHA clist[3], MON mlist[3], STAGE stlist[6], int mnum) {
+void kill_character(int mnum) {
 	for (int i = 0; i < 3; i++) {
 		if (clist[i].hp <= 0 && clist[i].condition == 0) {
 			printf("\n\n  %s이(가) 죽었습니다!!", clist[i].name);
@@ -179,7 +159,7 @@ void kill_character(CHA clist[3], MON mlist[3], STAGE stlist[6], int mnum) {
 	}
 }
 
-void prologue_kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum, int stnum) {
+void prologue_kill_monster(int cnum, int stnum) {
 	srand((unsigned)time(NULL));
 	int add_gold = rand() % 10 + 1;
 	int chance_drop = 0;		//100%확률로 드랍 => 0일때 드랍
@@ -191,14 +171,12 @@ void prologue_kill_monster(CHA clist[3], MON mlist[3], STAGE stlist[6], int cnum
 			if (chance_drop == 0) {
 				item_num = rand() % stlist[stnum].num_item;
 				printf("  %s을(를) 획득!!\n", stlist[stnum].drop_item[item_num].name);
-				
-						ilist[stlist[stnum].drop_item[item_num].num].ea++;
-				
+
+				ilist[stlist[stnum].drop_item[item_num].num].ea++;
+
 			}
 			clist[cnum].expe += mlist[i].mexp;
 			mlist[i].condition = 1;
 		}
 	}
 }
-
-#endif
