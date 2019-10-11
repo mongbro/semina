@@ -142,7 +142,8 @@ void kill_monster(int cnum, int stnum) {
 				}
 			}
 			clist[cnum].expe += mlist[i].mexp;
-			mlist[i].condition = 1;
+			mlist[i].condition = 1; 
+			check_level();
 		}
 	}
 }
@@ -174,6 +175,7 @@ void prologue_kill_monster(int cnum, int stnum) {
 			}
 			clist[cnum].expe += mlist[i].mexp;
 			mlist[i].condition = 1;
+			check_level();
 		}
 	}
 }

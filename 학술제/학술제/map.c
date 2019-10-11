@@ -195,6 +195,7 @@ void prologue() {
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
 		printf("\n    ※아군 캐릭터는 조장, 서기, 지갑 순으로 진행됩니다.\n    ※취소 기능은 지원하지 않습니다!! \n    신중히 선택하세요.");
+		check_level();
 		a = _getch();
 		if (a == '2')
 			break;
@@ -754,7 +755,7 @@ void prologue() {
 		printf("\n");
 		printf("  %s의 공격!!                                                   = 선택한 캐릭터입니다.\n\n", clist[2].name);
 		printf("  %s이(가) %d의 데미지를 입음!!!                               = %s이(가) %d의 데미지를 입었습니다.\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
-		kill_monster(2, 0);
+		prologue_kill_monster(2, 0);
 		printf("\n\n");
 
 		if (check_exter() == 1) {
@@ -782,14 +783,6 @@ void prologue() {
 	}
 /////////////////////////////////////////////////////////////   전투 프롤로그 종료/////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////   마을 프롤로그 시작/////////////////////////////////////////////////////////////
-
-	extern void choice_stage();
-	clist[0].hp = clist[0].fhp;
-	clist[1].hp = clist[1].fhp;
-	clist[2].hp = clist[2].fhp;
-	clist[0].mp = clist[0].fmp;
-	clist[1].mp = clist[1].fmp;
-	clist[2].mp = clist[2].fmp;
 	while (1) {
 		char a;
 		system("cls");
@@ -976,7 +969,7 @@ void prologue() {
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("\n  계속 하시려면 4를 눌러주세요.");
+		printf("\n  계속 하시려면 1를 눌러주세요.");
 		printf("\n");
 		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
 		a = (_getch());
@@ -984,7 +977,7 @@ void prologue() {
 			if (gold >= ilist[check].price) {
 				gold -= ilist[check].price;
 				ilist[check].ea++;
-				printf("  %s 을(를) 1개 획득!", ilist[check].name);
+				printf("  %s 을(를) 1개 획득!\n\n  계속 하시려면 아무키나 누르세요.", ilist[check].name);
 				if (_getch())
 					break;
 			}
@@ -1207,7 +1200,7 @@ void prologue() {
 		printf("  ■              이름                                        능력치1             능력치2             소지 개수      가격       ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■       %20s                    hp 회복 : %2d                  mp 회복 : %2d          %2d 개      %2d 골드       ■\n", ilist[2].name, ilist[2].add_hp, ilist[2].add_mp, ilist[2].ea, ilist[2].price);
+		printf("  ■       %20s                    hp 회복 : %2d                  mp 회복 : %2d          %2d 개      %2d 골드       ■\n", ilist[3].name, ilist[3].add_hp, ilist[3].add_mp, ilist[3].ea, ilist[3].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■      판매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
@@ -1221,18 +1214,18 @@ void prologue() {
 		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
 		a = (_getch());
 		if (a == '1') {
-			if (ilist[2].ea > 1) {
-				ilist[2].ea--;
-				gold += ilist[2].price;
+			if (ilist[3].ea > 1) {
+				ilist[3].ea--;
+				gold += ilist[3].price;
 				break;
 			}
-			if (ilist[2].ea == 1) {
-				ilist[2].ea--;
-				gold += ilist[2].price;
+			if (ilist[3].ea == 1) {
+				ilist[3].ea--;
+				gold += ilist[3].price;
 				break;
 			}
 			else {
-				printf("  남은 %s 이(가) 없습니다!!", ilist[2].name);
+				printf("  남은 %s 이(가) 없습니다!!", ilist[3].name);
 				break;
 			}
 		}
@@ -1626,13 +1619,13 @@ void prologue() {
 				gold -= slist[22].price;
 				slist[22].ea = 1;
 				printf(" %20s 을(를) 획득!\n\n  뒤로 가시려면 아무키나 누르세요.\n", slist[22].name);
-				if (_getch());
-				break;
+				if (_getch())
+					break;
 			}
 			else {
 				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
-				if (_getch());
-				break;
+				if (_getch())
+					break;
 			}
 		}
 		else

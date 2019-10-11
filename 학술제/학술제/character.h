@@ -34,9 +34,8 @@ typedef struct charac {
 }CHA;
 
 void initial_charac();
-void check_equip_p();
-void check_equip_m();
 void check_exp();
+void check_level();
 
 extern CHA clist[3];
 

@@ -24,8 +24,8 @@ int main() {
 	//////=====================        프롤로그         ==============================
 
 
-	//stage_prologue();
-	//prologue();
+	stage_prologue();
+	prologue();
 
 
 	//=====================          본게임 시작         ===========================
@@ -43,26 +43,26 @@ int main() {
 
 
 	///////////////////////////        아이템 시험               //////////////////////////////
-	clist[0].readership = 100;
+	//clist[0].readership = 100;
 
-	ilist[0].ea++;
-	ilist[6].ea++;
-	ilist[3].ea++;
-	ilist[5].ea++;
+	//ilist[0].ea++;
+	//ilist[6].ea++;
+	//ilist[3].ea++;
+	//ilist[5].ea++;
 
-	ilist[10].ea++;
-	ilist[15].ea++;
-	ilist[13].ea++;
+	//ilist[10].ea++;
+	//ilist[15].ea++;
+	//ilist[13].ea++;
 
-	ilist[20].ea++;
-	ilist[25].ea++;
-	ilist[23].ea++;
+	//ilist[20].ea++;
+	//ilist[25].ea++;
+	//ilist[23].ea++;
 
-	ilist[30].ea++;
-	ilist[35].ea++;
-	ilist[33].ea++;
+	//ilist[30].ea++;
+	//ilist[35].ea++;
+	//ilist[33].ea++;
 
-	gold += 50;
+	//gold += 50;
 
 	town(clist, ilist);
 }

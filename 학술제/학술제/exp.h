@@ -6,6 +6,6 @@
 
 void initial_exp();
 
-int fexp[11];
+extern int fexp[11];
 
 #endif
