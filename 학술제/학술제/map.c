@@ -780,6 +780,1792 @@ void prologue() {
 				break;
 		}
 	}
+/////////////////////////////////////////////////////////////   전투 프롤로그 종료/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////   마을 프롤로그 시작/////////////////////////////////////////////////////////////
+
+	extern void choice_stage();
+	clist[0].hp = clist[0].fhp;
+	clist[1].hp = clist[1].fhp;
+	clist[2].hp = clist[2].fhp;
+	clist[0].mp = clist[0].fmp;
+	clist[1].mp = clist[1].fmp;
+	clist[2].mp = clist[2].fmp;
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                  ■             ■                 ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                  ■             ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■        ■■■■■■■■■■■   ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■       1.아이템 상점        ■            ■          ■       ■■■■■         ■        2. 스킬 상점        ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■                ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■     3. 정보 및 인벤토리    ■                                  ■                ■     4. 과제 하러 가는길    ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■                        ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■      ■■■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.");
+		check_exp();
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      1. 구매            2. 판매                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.");
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                    ■■■■    ■        ■   ■          ■                                               ■\n");
+		printf("  ■                                    ■      ■  ■        ■     ■      ■                                                 ■\n");
+		printf("  ■                                    ■■■■    ■        ■       ■  ■                                                   ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■■■■      ■■■■           ■                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■            1. 조장 전용 장비          2. 서기 전용 장비          3. 지갑 전용 장비          4. 소비 아이템                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.");
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                    능력치1                       능력치2                            가격                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     1. %15s            체력회복 : %2d                                                    %3d  골드               ■\n", ilist[0].name, ilist[0].add_hp, ilist[0].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     2. %15s            체력회복 : %2d                                                    %3d  골드               ■\n", ilist[1].name, ilist[1].add_hp, ilist[1].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     3. %15s            체력회복 : %2d                                                    %3d  골드               ■\n", ilist[2].name, ilist[2].add_hp, ilist[2].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     4. %15s                                            마나회복 : %2d                    %3d  골드               ■\n", ilist[3].name, ilist[3].add_mp, ilist[3].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     5. %15s                                            마나회복 : %2d                    %3d  골드               ■\n", ilist[4].name, ilist[4].add_mp, ilist[4].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     6. %15s                                            마나회복 : %2d                    %3d  골드               ■\n", ilist[5].name, ilist[5].add_mp, ilist[5].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     7. %15s            체력회복 : %2d                   마나회복 : %2d                    %3d  골드               ■\n", ilist[6].name, ilist[6].add_hp, ilist[6].add_mp, ilist[6].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 4를 눌러주세요.");
+		a = (_getch());
+		if (a == '4')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		system("cls");
+		char a;
+		int check;
+
+		check = 4 - 1;
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                        능력치1             능력치2             소지 개수      가격       ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     %15s                                      hp : %2d              mp : %2d             %2d 개      %3d 골드      ■\n", ilist[check].name, ilist[check].add_hp, ilist[check].add_mp, ilist[check].ea, ilist[check].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      구매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 4를 눌러주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+		if (a == '1') {
+			if (gold >= ilist[check].price) {
+				gold -= ilist[check].price;
+				ilist[check].ea++;
+				printf("  %s 을(를) 1개 획득!", ilist[check].name);
+				if (_getch())
+					break;
+			}
+			else {
+				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
+				if (_getch());
+				break;
+			}
+		}
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                    능력치1                       능력치2                            가격                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     1. %15s            체력회복 : %2d                                                    %3d  골드               ■\n", ilist[0].name, ilist[0].add_hp, ilist[0].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     2. %15s            체력회복 : %2d                                                    %3d  골드               ■\n", ilist[1].name, ilist[1].add_hp, ilist[1].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     3. %15s            체력회복 : %2d                                                    %3d  골드               ■\n", ilist[2].name, ilist[2].add_hp, ilist[2].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     4. %15s                                            마나회복 : %2d                    %3d  골드               ■\n", ilist[3].name, ilist[3].add_mp, ilist[3].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     5. %15s                                            마나회복 : %2d                    %3d  골드               ■\n", ilist[4].name, ilist[4].add_mp, ilist[4].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     6. %15s                                            마나회복 : %2d                    %3d  골드               ■\n", ilist[5].name, ilist[5].add_mp, ilist[5].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■     7. %15s            체력회복 : %2d                   마나회복 : %2d                    %3d  골드               ■\n", ilist[6].name, ilist[6].add_hp, ilist[6].add_mp, ilist[6].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                    ■■■■    ■        ■   ■          ■                                               ■\n");
+		printf("  ■                                    ■      ■  ■        ■     ■      ■                                                 ■\n");
+		printf("  ■                                    ■■■■    ■        ■       ■  ■                                                   ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■■■■      ■■■■           ■                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■            1. 조장 전용 장비          2. 서기 전용 장비          3. 지갑 전용 장비          4. 소비 아이템                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      1. 구매            2. 판매                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 2를 눌러주세요.");
+		a = (_getch());
+		if (a == '2')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                   ■■■■■      ■■■■■    ■          ■                                             ■\n");
+		printf("  ■                                 ■          ■  ■          ■  ■          ■                                             ■\n");
+		printf("  ■                                 ■              ■          ■  ■          ■                                             ■\n");
+		printf("  ■                                   ■■■■■    ■■■■■■    ■          ■                                             ■\n");
+		printf("  ■                                             ■  ■              ■          ■                                             ■\n");
+		printf("  ■                                 ■          ■  ■              ■          ■                                             ■\n");
+		printf("  ■                                   ■■■■■      ■■■■■■  ■■■■■  ■■■■■                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■            1. 조장 전용 장비          2. 서기 전용 장비          3. 지갑 전용 장비          4. 소비 아이템                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 4를 눌러주세요.");
+		a = (_getch());
+		if (a == '4')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		int n[10];
+		for (int i = 0; i < 10; i++) {
+			n[i] = 40;
+			ilist[i].index = 0;
+		}
+		int index = 1;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                      이름                      능력치1                       능력치2            남은 개수     가격         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 0; i < 10; i++) {
+			if (ilist[i].ea > 0) {
+				printf("  ■   %d. %20s                    hp 회복 : %2d                  mp 회복 : %2d          %2d 개      %2d 골드        ■\n", index, ilist[i].name, ilist[i].add_hp, ilist[i].add_mp, ilist[i].ea, ilist[i].price);
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				n[index - 1] = i;
+				ilist[i].index = index;
+				index++;
+			}
+		}
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 2를 눌러주세요.\n\n  판매 할때는 구매한 값의 절반가격으로 판매합니다.\n\n  프롤로그이기때문에 원래 가격으로 판매됩니다.");
+		a = (_getch());
+		if (a == '2')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                        능력치1             능력치2             소지 개수      가격       ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■       %20s                    hp 회복 : %2d                  mp 회복 : %2d          %2d 개      %2d 골드       ■\n", ilist[2].name, ilist[2].add_hp, ilist[2].add_mp, ilist[2].ea, ilist[2].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      판매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.\n\n  판매 할때는 구매한 값의 절반가격으로 판매합니다.\n\n  프롤로그이기때문에 원래 가격으로 판매됩니다.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+		if (a == '1') {
+			if (ilist[2].ea > 1) {
+				ilist[2].ea--;
+				gold += ilist[2].price;
+				break;
+			}
+			if (ilist[2].ea == 1) {
+				ilist[2].ea--;
+				gold += ilist[2].price;
+				break;
+			}
+			else {
+				printf("  남은 %s 이(가) 없습니다!!", ilist[2].name);
+				break;
+			}
+		}
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		int n[10];
+		for (int i = 0; i < 10; i++) {
+			n[i] = 40;
+			ilist[i].index = 0;
+		}
+		int index = 1;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                      이름                      능력치1                       능력치2            남은 개수     가격         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 0; i < 10; i++) {
+			if (ilist[i].ea > 0) {
+				printf("  ■   %d. %20s                    hp 회복 : %2d                  mp 회복 : %2d          %2d 개      %2d 골드        ■\n", index, ilist[i].name, ilist[i].add_hp, ilist[i].add_mp, ilist[i].ea, ilist[i].price);
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				n[index - 1] = i;
+				ilist[i].index = index;
+				index++;
+			}
+		}
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.\n\n  판매 할때는 구매한 값의 절반가격으로 판매합니다.\n\n  프롤로그이기때문에 원래 가격으로 판매됩니다.");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                   ■■■■■      ■■■■■    ■          ■                                             ■\n");
+		printf("  ■                                 ■          ■  ■          ■  ■          ■                                             ■\n");
+		printf("  ■                                 ■              ■          ■  ■          ■                                             ■\n");
+		printf("  ■                                   ■■■■■    ■■■■■■    ■          ■                                             ■\n");
+		printf("  ■                                             ■  ■              ■          ■                                             ■\n");
+		printf("  ■                                 ■          ■  ■              ■          ■                                             ■\n");
+		printf("  ■                                   ■■■■■      ■■■■■■  ■■■■■  ■■■■■                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■            1. 조장 전용 장비          2. 서기 전용 장비          3. 지갑 전용 장비          4. 소비 아이템                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      1. 구매            2. 판매                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                  ■             ■                 ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                  ■             ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■        ■■■■■■■■■■■   ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■       1.아이템 상점        ■            ■          ■       ■■■■■         ■        2. 스킬 상점        ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■                ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■     3. 정보 및 인벤토리    ■                                  ■                ■     4. 과제 하러 가는길    ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■                        ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■      ■■■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 2를 눌러주세요.");
+		check_exp();
+		a = (_getch());
+		if (a == '2')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                                ■                                               ■■■■■■■■   ■                      ■\n");
+		printf("  ■                              ■■■                                                           ■   ■                      ■\n");
+		printf("  ■                            ■■  ■■                                           ■■■■■■■■   ■                      ■\n");
+		printf("  ■                          ■■      ■■                                                       ■   ■                      ■\n");
+		printf("  ■                        ■■          ■■                                                     ■   ■                      ■\n");
+		printf("  ■                      ■■              ■■                                                        ■                      ■\n");
+		printf("  ■                    ■■                  ■■                                      ■■■■■■■■■                      ■\n");
+		printf("  ■                  ■■                      ■■                                                    ■                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■              ■■■■■■■■■■■■■■■■■■■                                ■                                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      1. 구매          2. 인벤                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.");
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                    ■■■■    ■        ■   ■          ■                                               ■\n");
+		printf("  ■                                    ■      ■  ■        ■     ■      ■                                                 ■\n");
+		printf("  ■                                    ■■■■    ■        ■       ■  ■                                                   ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■■■■      ■■■■           ■                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                           1. 조장 전용 스킬          2. 서기 전용 스킬          3. 지갑 전용 스킬                          ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 3를 눌러주세요.");
+		a = (_getch());
+		if (a == '3')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		int index = 1;
+
+		for (int i = 21; i < 31; i++) {
+			slist[i].index = -1;
+		}
+
+		system("cls");
+		printf("\n");
+
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                             능력치                   소모 마나                  가격                   ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 21; i < 31; i++) {
+			if (slist[i].ea == 0) {
+				switch (i) {
+				case 21:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                  추가 공격력 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_att, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 22:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 23:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 24:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 25:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 26:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 27:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 28:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 29:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 30:
+					if (index == 10) {
+						printf("  ■                                                                                                                            ■\n");
+						printf("  ■   %d. %-20s                     회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+						printf("  ■                                                                                                                            ■\n");
+						slist[i].index = 0;
+						index++;
+						break;
+					}
+					else {
+						printf("  ■                                                                                                                            ■\n");
+						printf("  ■   %d. %-20s                       회복량 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+						printf("  ■                                                                                                                            ■\n");
+						slist[i].index = index;
+						index++;
+					}
+
+				}
+
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 2를 눌러주세요.");
+
+		a = (_getch());
+
+		if (a == '2')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		system("cls");
+		char a;
+		char exist[6] = "";
+
+		if (slist[22].ea == 1)
+			strcpy(exist, "보유중");
+		else
+			strcpy(exist, "없음");
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나              보유 여부      가격       ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      %-20s                              회복량 : %2d      소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[22].name, slist[22].add_hp, slist[22].diff_mp, exist, slist[22].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[22].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      구매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+		if (a == '1') {
+			if (gold >= slist[22].price) {
+				gold -= slist[22].price;
+				slist[22].ea = 1;
+				printf(" %20s 을(를) 획득!\n\n  뒤로 가시려면 아무키나 누르세요.\n", slist[22].name);
+				if (_getch());
+				break;
+			}
+			else {
+				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
+				if (_getch());
+				break;
+			}
+		}
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		int index = 1;
+
+		for (int i = 21; i < 31; i++) {
+			slist[i].index = -1;
+		}
+
+		system("cls");
+		printf("\n");
+
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                             능력치                   소모 마나                  가격                   ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 21; i < 31; i++) {
+			if (slist[i].ea == 0) {
+				switch (i) {
+				case 21:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                  추가 공격력 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_att, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 22:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 23:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 24:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 25:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 26:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 27:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 28:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 29:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 30:
+					if (index == 10) {
+						printf("  ■                                                                                                                            ■\n");
+						printf("  ■   %d. %-20s                     회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+						printf("  ■                                                                                                                            ■\n");
+						slist[i].index = 0;
+						index++;
+						break;
+					}
+					else {
+						printf("  ■                                                                                                                            ■\n");
+						printf("  ■   %d. %-20s                       회복량 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+						printf("  ■                                                                                                                            ■\n");
+						slist[i].index = index;
+						index++;
+					}
+
+				}
+
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+
+		a = (_getch());
+
+		if (a == 'b'||a=='B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                    ■■■■    ■        ■   ■          ■                                               ■\n");
+		printf("  ■                                    ■      ■  ■        ■     ■      ■                                                 ■\n");
+		printf("  ■                                    ■■■■    ■        ■       ■  ■                                                   ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■■■■      ■■■■           ■                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                           1. 조장 전용 스킬          2. 서기 전용 스킬          3. 지갑 전용 스킬                          ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b'|| a=='B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                                ■                                               ■■■■■■■■   ■                      ■\n");
+		printf("  ■                              ■■■                                                           ■   ■                      ■\n");
+		printf("  ■                            ■■  ■■                                           ■■■■■■■■   ■                      ■\n");
+		printf("  ■                          ■■      ■■                                                       ■   ■                      ■\n");
+		printf("  ■                        ■■          ■■                                                     ■   ■                      ■\n");
+		printf("  ■                      ■■              ■■                                                        ■                      ■\n");
+		printf("  ■                    ■■                  ■■                                      ■■■■■■■■■                      ■\n");
+		printf("  ■                  ■■                      ■■                                                    ■                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■              ■■■■■■■■■■■■■■■■■■■                                ■                                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      1. 구매          2. 인벤                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 2를 눌러주세요.");
+		a = (_getch());
+		if (a == '2')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■     1. 조장 전용 스킬      ■          ■     2. 서기 전용 스킬      ■          ■     3. 지갑 전용 스킬      ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 3를 눌러주세요.");
+		a = (_getch());
+		if (a == '3')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		int index = 1;
+		char a;
+
+		for (int i = 1; i < 11; i++) {
+			slist[i + 20].index = -1;
+		}
+
+		system("cls");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                                                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 1; i < 11; i++) {
+			if (slist[i + 20].ea == 1) {
+				if (index != 10) {
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                                                                                                  ■\n", index, slist[i + 20].name);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i + 20].index = index;
+					index++;
+					continue;
+				}
+				if (index == 10) {
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                                                                                                 ■\n", index, slist[i + 20].name);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i + 20].index = 0;
+					index++;
+				}
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.\n\n  여기에서 원하는 스킬을 선택하여 총 2개까지 장착 가능합니다.\n");
+		a = (_getch());
+
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		system("cls");
+		char a;
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      %-20s                           회복량 : %2d         소모 마나 : %2d                                     ■\n", slist[22].name, slist[22].add_hp, slist[22].diff_mp);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[22].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      장비 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[2].skill[1].ea == 1) {
+			if (clist[2].skill[1].num == 21) {
+				printf("  ■      1.%-20s                          추가 공격력 : %2d     소모 마나 : %2d                                   ■\n", clist[2].skill[1].name, clist[2].skill[1].add_att, clist[2].skill[1].diff_mp);
+			}
+			if (clist[2].skill[1].num > 21 && clist[2].skill[1].num < 28 && clist[2].skill[1].num != 24) {
+				printf("  ■      1.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[1].name, clist[2].skill[1].add_hp, clist[2].skill[1].diff_mp);
+			}
+			if (clist[2].skill[1].num > 27) {
+				printf("  ■      1.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[1].name, clist[2].skill[1].add_mp, clist[2].skill[1].diff_mp);
+			}
+			if (clist[2].skill[1].num == 24)
+				printf("  ■      1.%-20s                          회복량 : %2d      소모 마나 : %2d                                      ■\n", clist[2].skill[1].name, clist[2].skill[1].add_hp, clist[2].skill[1].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[clist[2].skill[1].num].info);
+		}
+		else {
+			printf("  ■      1. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[2].skill[2].ea == 1) {
+			if (clist[2].skill[2].num == 21) {
+				printf("  ■      2.%-20s                          추가 공격력 : %2d     소모 마나 : %2d                                   ■\n", clist[2].skill[2].name, clist[2].skill[2].add_att, clist[2].skill[2].diff_mp);
+			}
+			if (clist[2].skill[2].num > 21 && clist[2].skill[2].num < 28 && clist[2].skill[2].num != 24) {
+				printf("  ■      2.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[2].name, clist[2].skill[2].add_hp, clist[2].skill[2].diff_mp);
+			}
+			if (clist[2].skill[2].num > 27) {
+				printf("  ■      2.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[2].name, clist[2].skill[2].add_mp, clist[2].skill[2].diff_mp);
+			}
+			if (clist[2].skill[2].num == 24)
+				printf("  ■      2.%-20s                          회복량 : %2d      소모 마나 : %2d                                      ■\n", clist[2].skill[2].name, clist[2].skill[2].add_hp, clist[2].skill[2].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[clist[2].skill[2].num].info);
+		}
+		else {
+			printf("  ■      2. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		printf("  계속 하시려면 1를 눌러주세요.\n\n  여기에서 원하는 스킬을 선택하여 총 2개까지 장착 가능합니다.\n");
+
+		a = (_getch());
+
+		if (a == '1') {
+			if (clist[2].skill[1].ea == 1 && clist[2].skill[2].ea == 1) {
+				if (clist[2].skill[2].num == slist[22].num && clist[2].skill[1].ea == 1) {
+					clist[2].skill[2] = clist[2].skill[1];
+					clist[2].skill[1] = slist[22];
+				}
+				else
+					clist[2].skill[1] = slist[22];
+			}
+			if (clist[2].skill[1].ea == 1 && clist[2].skill[2].ea != 1) {
+				clist[2].skill[2] = clist[2].skill[1];
+				clist[2].skill[1] = slist[22];
+			}
+			if (clist[2].skill[2].num == slist[22].num && clist[2].skill[1].ea == 1) {
+				clist[2].skill[2] = clist[2].skill[1];
+				clist[2].skill[1] = slist[22];
+			}
+			if (clist[2].skill[2].num == slist[22].num) {
+				clist[2].skill[2] = empty_character_slist[0];
+				clist[2].skill[1] = slist[22];
+				continue;
+			}
+			else {
+				clist[2].skill[1] = slist[22];
+				continue;
+			}
+		}
+		else
+			continue;
+	}
+
+	while (1) {
+		int index = 1;
+		char a;
+
+		for (int i = 1; i < 11; i++) {
+			slist[i + 20].index = -1;
+		}
+
+		system("cls");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                                                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 1; i < 11; i++) {
+			if (slist[i + 20].ea == 1) {
+				if (index != 10) {
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                                                                                                  ■\n", index, slist[i + 20].name);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i + 20].index = index;
+					index++;
+					continue;
+				}
+				if (index == 10) {
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                                                                                                 ■\n", index, slist[i + 20].name);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i + 20].index = 0;
+					index++;
+				}
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+
+		if (a == 'b' || a == 'B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■     1. 조장 전용 스킬      ■          ■     2. 서기 전용 스킬      ■          ■     3. 지갑 전용 스킬      ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                                ■                                               ■■■■■■■■   ■                      ■\n");
+		printf("  ■                              ■■■                                                           ■   ■                      ■\n");
+		printf("  ■                            ■■  ■■                                           ■■■■■■■■   ■                      ■\n");
+		printf("  ■                          ■■      ■■                                                       ■   ■                      ■\n");
+		printf("  ■                        ■■          ■■                                                     ■   ■                      ■\n");
+		printf("  ■                      ■■              ■■                                                        ■                      ■\n");
+		printf("  ■                    ■■                  ■■                                      ■■■■■■■■■                      ■\n");
+		printf("  ■                  ■■                      ■■                                                    ■                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■              ■■■■■■■■■■■■■■■■■■■                                ■                                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      1. 구매          2. 인벤                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b'||a=='B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                  ■             ■                 ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                  ■             ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■        ■■■■■■■■■■■   ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■       1.아이템 상점        ■            ■          ■       ■■■■■         ■        2. 스킬 상점        ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■                ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■     3. 정보 및 인벤토리    ■                                  ■                ■     4. 과제 하러 가는길    ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■                        ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■      ■■■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 3를 눌러주세요.");
+		check_exp();
+		a = (_getch());
+		if (a == '3')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■       1. 캐릭터 정보       ■                                                    ■        2. 인벤토리         ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 1를 눌러주세요.\n");
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■          1. 조장           ■          ■          2. 서기           ■          ■          3. 지갑           ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 1를 눌러주세요.\n");
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■                                           ■               ■                        착용중인 아이템                       ■\n");
+		printf("  ■       ■■■■■■■          ■■■■■  ■               ■                                                              ■\n");
+		printf("  ■             ■                      ■    ■               ■         이름                    능력치1                      ■\n");
+		printf("  ■           ■  ■                  ■      ■■■           ■                                                              ■\n");
+		printf("  ■         ■      ■              ■  ■    ■               ■                                                              ■\n");
+		if (clist[0].item[0].num == 0) {
+			printf("  ■       ■    ■    ■          ■      ■  ■               ■    현재 장비 미착용중                                        ■\n");
+		}
+		else {
+			printf("  ■       ■    ■    ■          ■      ■  ■               ■  %20s         리더십 + %2d                    ■\n", clist[0].item[0].name, clist[0].item[0].add_readership);
+		}
+		printf("  ■             ■                    ■■■                   ■                                                              ■\n");
+		printf("  ■     ■■■■■■■■■          ■      ■                 ■                                                              ■\n");
+		printf("  ■                                 ■      ■                 ■                                                              ■\n");
+		if (clist[0].item[1].num == 0) {
+			printf("  ■                                   ■■■                   ■    현재 장비 미착용중                                        ■\n");
+		}
+		else {
+			printf("  ■                                   ■■■                   ■  %20s         리더십 + %2d                    ■\n", clist[0].item[1].name, clist[0].item[1].add_readership);
+		}
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[0].readership + clist[0].item[0].add_readership + clist[0].item[1].add_readership, clist[0].att + clist[0].readership);
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[0].def + clist[0].noteship);
+		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[0].noteship);
+		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[0].fhp);
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■              3.   부         :       %3d                   ■                   총 hp        :       %3d                   ■\n", clist[0].wealth, clist[0].fmp);
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■              남은 스텟       :       %2d                    ■                            소지 골드 : %5d                 ■\n", clist[0].spare_stat, gold);
+		printf("  ■                                                            ■                                                              ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                               레벨  :  %2d           경험치  :  %4d / %4d    ( %2d %% )                                     ■\n", clist[0].level, clist[0].expe, fexp[clist[0].level], clist[0].persent);
+		printf("  ■                    ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■                    ■\n");
+		printf("  ■        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        ■\n");
+		printf("  ■        ■           10        20        30        40        50        60        70        80        90           ■        ■\n");
+		printf("  ■        ■  ");
+		for (int i = 0; i < 50; i++) {
+			if (i * 2 < clist[0].persent)
+				printf("■");
+			else
+				printf("□");
+		}
+		printf("  ■        ■\n");
+		printf("  ■        ■                                                                                                        ■        ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 b를 눌러주세요.\n");
+		a = (_getch());
+		if (clist[0].spare_stat > 0) {
+			if (a == '1') {
+				clist[0].spare_stat--;
+				clist[0].readership++;
+			}
+			if (a == '2') {
+				clist[0].spare_stat--;
+				clist[0].noteship++;
+			}
+			if (a == '3') {
+				clist[0].spare_stat--;
+				clist[0].wealth++;
+			}
+		}
+		if (a == 'b' || a == 'B')
+			break;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■          1. 조장           ■          ■          2. 서기           ■          ■          3. 지갑           ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 b를 눌러주세요.\n");
+		a = (_getch());
+		if (a == 'b'|| a=='B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■       1. 캐릭터 정보       ■                                                    ■        2. 인벤토리         ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 2를 눌러주세요.\n");
+		a = (_getch());
+		if (a == '2')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■     1. 조장 전용 아이템    ■                                                    ■     2. 서기 전용 아이템    ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■■■■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■                            ■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                              ■                            ■                                              ■\n");
+		printf("  ■                                              ■       5. 전체 아이템       ■                                              ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■                            ■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■■■■          ■                            ■    ■\n");
+		printf("  ■    ■     3. 지갑 전용 아이템    ■                                                    ■       4. 소비 아이템       ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 2를 눌러주세요.\n\n  마을 안에서는 장비형 아이템만 장착이 가능합니다.\n");
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		int n[10];
+		for (int i = 0; i < 10; i++) {
+			n[i] = 40;
+			ilist[i + 10].index = 0;
+		}
+		int index = 1;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                              능력치1                                                   남은 개수         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 0; i < 10; i++) {
+			if (ilist[i + 10].ea > 0) {
+				printf("  ■   %d. %-20s                 리더십(공격력) : %2d                                             %2d 개            ■\n", index, ilist[i + 10].name, ilist[i + 10].add_readership, ilist[i + 10].ea);
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				n[index - 1] = i;
+				ilist[i + 10].index = index;
+				index++;
+			}
+		}
+		printf("  ■   %d. 장비 해제                                                                                                             ■\n", index);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  계속 하시려면 2를 눌러주세요.\n\n  여기에서 원하는 아이템을 선택하여 총 2개까지 장착 가능합니다.\n\n  아이템 변경사항은 캐릭터 정보에서 확인 가능합니다.\n");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■     1. 조장 전용 아이템    ■                                                    ■     2. 서기 전용 아이템    ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■■■■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■                            ■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                              ■                            ■                                              ■\n");
+		printf("  ■                                              ■       5. 전체 아이템       ■                                              ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■                            ■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■■■■          ■                            ■    ■\n");
+		printf("  ■    ■     3. 지갑 전용 아이템    ■                                                    ■       4. 소비 아이템       ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 b를 눌러주세요.");
+		a = (_getch());
+		if (a == 'b'||a=='B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■       1. 캐릭터 정보       ■                                                    ■        2. 인벤토리         ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                                    ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 b를 눌러주세요.\n");
+		a = (_getch());
+		if (a == 'b'|| a=='B')
+			break;
+		else
+			continue;
+	}
+
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                  ■             ■                 ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■                  ■             ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■        ■■■■■■■■■■■   ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■       1.아이템 상점        ■            ■          ■       ■■■■■         ■        2. 스킬 상점        ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■            ■          ■       ■                 ■                            ■    ■\n");
+		printf("  ■    ■                            ■              ■■■■■         ■                 ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■                ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■                                                                      ■                                                    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■                                                    ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■■■■■■■■■■■■■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■                                  ■                ■                            ■    ■\n");
+		printf("  ■    ■     3. 정보 및 인벤토리    ■                                  ■                ■     4. 과제 하러 가는길    ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■      ■                ■                            ■    ■\n");
+		printf("  ■    ■                            ■               ■         ■                        ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■      ■■■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  이상으로 프롤로그를 모두 종료합니다. 수고하셨습니다!\n\n  계속 하시려면 1를 눌러주세요.");
+		check_exp();
+		a = (_getch());
+		if (a == '1')
+			break;
+		else
+			continue;
+	}
 }
 
 ////////////////////////////////////////////////////////////   여기까지 프롤로그   ////////////////////////////////////////////////////////////
@@ -1441,6 +3227,7 @@ void enter_dungeon1() {
 				if (check_exter_boss(1) == 2) {
 					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					stlist[2].is_clear = 1;
 					print_line();
 					if (_getch())
 						break;

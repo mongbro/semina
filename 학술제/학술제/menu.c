@@ -54,13 +54,12 @@ void town() {
 		printf("\n  원하는 메뉴를 선택하세요.\n  게임을 종료하시려면 b버튼을 눌러주세요.");
 		check_exp();
 		a = (_getch());
-		if (a == '1') {
+		if (a == '1') 
 			item_store_choice1();
-		}
 		if (a == '2')
 			skill_choice();
 		if (a == '3')
-			town_menu(clist);
+			town_menu();
 		if (a == '4')
 			choice_stage();
 		if (a == 'b' || a == 'B') {
@@ -84,11 +83,11 @@ void dun_menu() {
 		printf("  원하는 메뉴를 선택해주세요.\n");
 		a = (_getch());
 		if (a == '1')
-			dun_inventory(clist);
+			dun_inventory();
 		if (a == '2')
-			dun_inf_cha(clist);
+			dun_inf_cha();
 		if (a == '3')
-			dun_inf_mon(mlist);
+			dun_inf_mon();
 		if (a == '4')
 			break;
 	}
@@ -119,9 +118,9 @@ void town_menu() {
 		printf("  원하는 메뉴를 선택해주세요.\n");
 		a = (_getch());
 		if (a == '1')
-			town_inf_cha(clist);
+			town_inf_cha();
 		if (a == '2')
-			town_inventory0(clist);
+			town_inventory0();
 		if (a == 'b' || a == 'B')
 			break;
 	}
@@ -1068,9 +1067,9 @@ void town_inf_cha_1() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[0].readership + clist[0].item[0].add_readership + clist[0].item[1].add_readership, clist[0].att);
+		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[0].readership + clist[0].item[0].add_readership + clist[0].item[1].add_readership, clist[0].att + clist[0].readership);
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[0].def);
+		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[0].def + clist[0].noteship);
 		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[0].noteship);
 		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[0].fhp);
 		printf("  ■                                                            ■                                                              ■\n");
@@ -1148,9 +1147,9 @@ void town_inf_cha_2() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[1].readership, clist[1].att);
+		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[1].readership, clist[1].att + clist[1].readership);
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[1].def);
+		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[1].def + clist[1].noteship);
 		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[1].noteship + clist[1].item[0].add_noteship + clist[1].item[1].add_noteship);
 		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[1].fhp + clist[1].item[0].add_hp + clist[1].item[1].add_hp);
 		printf("  ■                                                            ■                                                              ■\n");
@@ -1230,9 +1229,9 @@ void town_inf_cha_3() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[2].readership, clist[2].att);
+		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[2].readership, clist[2].att + clist[2].readership);
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[2].def);
+		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[2].def + clist[2].noteship);
 		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[2].noteship);
 		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[2].fhp);
 		printf("  ■                                                            ■                                                              ■\n");
@@ -1986,7 +1985,8 @@ void buy0(int inum) {
 				gold -= ilist[check].price;
 				ilist[check].ea++;
 				printf("  %s 을(를) 1개 획득!", ilist[check].name);
-				continue;
+				if(_getch())
+					continue;
 			}
 			else {
 				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -2029,8 +2029,9 @@ void buy1(int inum) {
 			if (gold >= ilist[check].price) {
 				gold -= ilist[check].price;
 				ilist[check].ea++;
-				printf("  %s 을(를) 1개 획득!", ilist[check].name);
-				continue;
+				printf("  %s 을(를) 1개 획득!", ilist[check].name);	
+				if (_getch())
+					continue;
 			}
 			else {
 				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -2074,12 +2075,13 @@ void buy2(int inum) {
 				gold -= ilist[check].price;
 				ilist[check].ea++;
 				printf("  %s 을(를) 1개 획득!", ilist[check].name);
+				if (_getch())
 				continue;
 			}
 			else {
 				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
 				if (_getch());
-				break;
+					break;
 			}
 		}
 		if (a == '2' || a == 'b' || a == 'B')
@@ -2118,7 +2120,8 @@ void buy3(int inum) {
 				gold -= ilist[check].price;
 				ilist[check].ea++;
 				printf("  %s 을(를) 1개 획득!", ilist[check].name);
-				continue;
+				if (_getch())
+					continue;
 			}
 			else {
 				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -2130,10 +2133,6 @@ void buy3(int inum) {
 			break;
 	}
 }
-
-
-
-
 
 void item_store_choice_sell() {
 	while (1) {
@@ -2668,13 +2667,11 @@ void sell0(int inum) {
 			if (ilist[inum].ea > 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 				continue;
 			}
 			if (ilist[inum].ea == 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 				break;
 			}
 			else {
@@ -2713,7 +2710,6 @@ void sell1(int inum) {
 			if (ilist[inum].ea > 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 
 				if (strcmp(clist[0].item[0].name, clist[0].item[1].name) == 0 && strcmp(clist[0].item[0].name, ilist[inum].name) == 0)
 					clist[0].item[1] = emptylist[0];
@@ -2723,7 +2719,6 @@ void sell1(int inum) {
 			if (ilist[inum].ea == 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 
 				if (strcmp(clist[0].item[0].name, ilist[inum].name) == 0)
 					clist[0].item[0] = emptylist[0];
@@ -2768,7 +2763,6 @@ void sell2(int inum) {
 			if (ilist[inum].ea > 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 
 				if (strcmp(clist[1].item[0].name, clist[1].item[1].name) == 0 && strcmp(clist[1].item[0].name, ilist[inum].name) == 0)
 					clist[1].item[1] = emptylist[0];
@@ -2778,7 +2772,6 @@ void sell2(int inum) {
 			if (ilist[inum].ea == 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 
 				if (strcmp(clist[1].item[0].name, ilist[inum].name) == 0)
 					clist[1].item[0] = emptylist[0];
@@ -2823,7 +2816,6 @@ void sell3(int inum) {
 			if (ilist[inum].ea > 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 
 				if (strcmp(clist[2].item[0].name, clist[2].item[1].name) == 0 && strcmp(clist[2].item[0].name, ilist[inum].name) == 0)
 					clist[2].item[1] = emptylist[0];
@@ -2833,7 +2825,6 @@ void sell3(int inum) {
 			if (ilist[inum].ea == 1) {
 				ilist[inum].ea--;
 				gold += ilist[inum].price / 10 * 5;
-				printf("   %s ", ilist[inum].name);
 
 				if (strcmp(clist[2].item[0].name, ilist[inum].name) == 0)
 					clist[2].item[0] = emptylist[0];

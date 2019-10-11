@@ -27,8 +27,8 @@ void damage_monster_to_character(int cnum, int mnum) {
 	extern void stun(int mnum);
 	if (mlist[mnum].is_stun == 0) {
 		if (clist[cnum].armor == 0) {
-			clist[cnum].hp = clist[cnum].hp - (mlist[mnum].att - (clist[cnum].def / 10));
-			hit_damage = mlist[mnum].att - (clist[cnum].def / 10);
+			clist[cnum].hp = clist[cnum].hp - (mlist[mnum].att - ((clist[cnum].def + clist[cnum].noteship) / 10));
+			hit_damage = mlist[mnum].att - ((clist[cnum].def + clist[cnum].noteship) / 10);
 		}
 		if (clist[cnum].armor > 0) {
 			clist[cnum].armor--;

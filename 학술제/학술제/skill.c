@@ -438,7 +438,7 @@ void s_buy1(int snum) {
 		char a;
 		char exist[6] = "";
 
-		if (clist[1].skill[snum].ea == 1)
+		if (slist[snum].ea == 1)
 			strcpy(exist, "보유중");
 		else
 			strcpy(exist, "없음");
@@ -489,7 +489,7 @@ void s_buy2(int snum) {
 		char a;
 		char exist[6] = "";
 
-		if (clist[2].skill[snum].ea == 1)
+		if (slist[snum].ea == 1)
 			strcpy(exist, "보유중");
 		else
 			strcpy(exist, "없음");
@@ -540,7 +540,7 @@ void s_buy3(int snum) {
 		char a;
 		char exist[6] = "";
 
-		if (clist[2].skill[snum].ea == 1)
+		if (slist[snum].ea == 1)
 			strcpy(exist, "보유중");
 		else
 			strcpy(exist, "없음");
@@ -554,7 +554,7 @@ void s_buy3(int snum) {
 			printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp, exist, slist[snum].price);
 		if (snum > 21 && snum < 28 && snum != 24)
 			printf("  ■      %-20s                              회복량 : %2d      소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp, exist, slist[snum].price);
-		if (snum == 24) {
+		else if (snum == 24) {
 			printf("  ■      %-20s                              회복량 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp, exist, slist[snum].price);
 		}
 		else
@@ -627,9 +627,7 @@ void skill_inventory_choice() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  열람하고 싶은 스킬을 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n");
-
 		a = (_getch());
-
 		if (a == '1')
 			skill_inventory1();
 		if (a == '2')
