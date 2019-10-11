@@ -237,3 +237,119 @@ void prologue_ditem(ITEM dilist[10]) {
 	dilist[3].num = ilist[0].num;
 	dilist[4].num = ilist[3].num;
 }
+
+void stage_1_ditem(ITEM dilist[10]) {
+	strcpy(dilist[0].name, ilist[0].name);
+	strcpy(dilist[1].name, ilist[3].name);
+
+	dilist[0].ea = 1;
+	dilist[1].ea = 1;
+	dilist[0].num = ilist[0].num;
+	dilist[1].num = ilist[3].num;
+}
+
+void stage_1_b_ditem(ITEM dilist[10]) {
+	strcpy(dilist[0].name, ilist[0].name);
+	strcpy(dilist[1].name, ilist[3].name);
+	strcpy(dilist[2].name, ilist[12].name);
+	strcpy(dilist[3].name, ilist[22].name);
+	strcpy(dilist[4].name, ilist[32].name);
+
+	for (int i = 0; i < 5; i++) {
+		dilist[i].ea = 1;
+	}
+
+	dilist[0].num = ilist[0].num;
+	dilist[1].num = ilist[3].num;
+	dilist[2].num = ilist[12].num;
+	dilist[3].num = ilist[22].num;
+	dilist[4].num = ilist[32].num;
+
+}
+
+void stage_2_ditem(ITEM dilist[10]) {
+	strcpy(dilist[0].name, ilist[0].name);
+	strcpy(dilist[1].name, ilist[1].name);
+	strcpy(dilist[2].name, ilist[3].name);
+	strcpy(dilist[3].name, ilist[4].name);
+
+	for (int i = 0; i < 4; i++) {
+		dilist[i].ea = 1;
+	}
+
+	dilist[0].num = ilist[0].num;
+	dilist[1].num = ilist[1].num;
+	dilist[2].num = ilist[3].num;
+	dilist[3].num = ilist[4].num;
+}
+
+void stage_2_b_ditem(ITEM dilist[10]) {
+	strcpy(dilist[0].name, ilist[1].name);
+	strcpy(dilist[1].name, ilist[4].name);
+	strcpy(dilist[2].name, ilist[15].name);
+	strcpy(dilist[3].name, ilist[25].name);
+	strcpy(dilist[4].name, ilist[35].name);
+
+	for (int i = 0; i < 5; i++) {
+		dilist[i].ea = 1;
+	}
+
+	dilist[0].num = ilist[1].num;
+	dilist[1].num = ilist[4].num;
+	dilist[2].num = ilist[15].num;
+	dilist[3].num = ilist[25].num;
+	dilist[4].num = ilist[35].num;
+
+}
+
+void stage_3_ditem(ITEM dilist[10]) {
+	strcpy(dilist[0].name, ilist[1].name);
+	strcpy(dilist[1].name, ilist[2].name);
+	strcpy(dilist[2].name, ilist[4].name);
+	strcpy(dilist[3].name, ilist[5].name);
+
+	for (int i = 0; i < 4; i++) {
+		dilist[i].ea = 1;
+	}
+
+	dilist[0].num = ilist[1].num;
+	dilist[1].num = ilist[2].num;
+	dilist[2].num = ilist[4].num;
+	dilist[3].num = ilist[5].num;
+}
+
+void stage_3_b_ditem(ITEM dilist[10]) {
+	strcpy(dilist[0].name, ilist[2].name);
+	strcpy(dilist[1].name, ilist[5].name);
+	strcpy(dilist[2].name, ilist[17].name);
+	strcpy(dilist[3].name, ilist[27].name);
+	strcpy(dilist[4].name, ilist[37].name);
+
+	for (int i = 0; i < 5; i++) {
+		dilist[i].ea = 1;
+	}
+
+	dilist[0].num = ilist[2].num;
+	dilist[1].num = ilist[5].num;
+	dilist[2].num = ilist[17].num;
+	dilist[3].num = ilist[27].num;
+	dilist[4].num = ilist[37].num;
+}
+
+void stage_4_ditem(ITEM dilist[10]) {
+	strcpy(dilist[0].name, ilist[2].name);
+	strcpy(dilist[1].name, ilist[5].name);
+	strcpy(dilist[2].name, ilist[6].name);
+
+	for (int i = 0; i < 3; i++) {
+		dilist[i].ea = 1;
+	}
+
+	dilist[0].num = ilist[2].num;
+	dilist[1].num = ilist[5].num;
+	dilist[2].num = ilist[6].num;
+}
+
+void stage_4_b_ditem(ITEM dilist[10]) {
+	
+}

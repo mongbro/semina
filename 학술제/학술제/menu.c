@@ -13,6 +13,12 @@
 
 void town() {
 	extern void choice_stage();
+	clist[0].hp = clist[0].fhp;
+	clist[1].hp = clist[1].fhp;
+	clist[2].hp = clist[2].fhp;
+	clist[0].mp = clist[0].fmp;
+	clist[1].mp = clist[1].fmp;
+	clist[2].mp = clist[2].fmp;
 	while (1) {
 		char a;
 		system("cls");
@@ -51,7 +57,8 @@ void town() {
 		if (a == '1') {
 			item_store_choice1();
 		}
-
+		if (a == '2')
+			skill_choice();
 		if (a == '3')
 			town_menu(clist);
 		if (a == '4')
@@ -60,7 +67,7 @@ void town() {
 			printf("\n\n      게임을 종료하시겠습니까?\n\n      이 게임은 저장 기능이 없습니다.\n\n      다시 실행하면 프롤로그부터 시작합니다.\n\n      (Y or N)");
 			a = (_getch());
 			if (a == 'y' || a == 'Y')
-				break;
+				exit(1);
 			if (a == 'n' || a == 'N')
 				continue;
 		}

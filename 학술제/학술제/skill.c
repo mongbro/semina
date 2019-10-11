@@ -2,10 +2,26 @@
 #include<stdio.h>
 #include<string.h>
 #include"skill.h"
+#include"character.h"
 
 SKILL slist[32] = { 0 };
+SKILL empty_character_slist[1] = { 0 };  //스킬 장착 해제시 캐릭터 스킬 칸에 이걸넣어서 아무것도 없게 할거임.
 
 void skill_set() {
+	for (int i = 1; i < 31; i++) {
+		slist[i].price = 0;
+		slist[i].add_att = 0;
+		slist[i].add_def = 0;
+		slist[i].add_hp = 0;
+		slist[i].add_mp = 0;
+		slist[i].diff_mp = 0;
+		slist[i].ea = 0;
+		slist[i].index = -1;
+	}
+
+	for (int i = 1; i < 31; i++) {
+		slist[i].num = i;
+	}
 
 	strcpy(slist[1].name, "돌격");
 	strcpy(slist[1].info, "돌격하여 적을 공격 합니다.");
@@ -22,7 +38,7 @@ void skill_set() {
 	strcpy(slist[7].name, "광역기 상");
 	strcpy(slist[7].info, "전체 대상에게 강력한 피해를 입힙니다.");
 
-
+	slist[5].price = 60;
 	strcpy(slist[11].name, "강타");
 	strcpy(slist[11].info, "강력한 일격을 날립니다.");
 	strcpy(slist[12].name, "방어막 강타");
@@ -59,7 +75,6 @@ void skill_set() {
 	strcpy(slist[29].info, "전체 아군의 마나를 회복시킵니다.");
 	strcpy(slist[30].name, "전체힐 + 마나 회복");
 	strcpy(slist[30].info, "전체 아군의 체력과 마나를 회복시킵니다.");
-
 
 	slist[1].add_att = 20;
 	slist[1].diff_mp = 20;
@@ -123,4 +138,1034 @@ void initial_skill() {
 
 	slist[21].ea = 1;
 	slist[22].ea = 1;
+	for (int i = 1; i < 31; i++) {
+		slist[i].ea = 1;
+	}
+}
+
+void skill_choice() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                                ■                                               ■■■■■■■■   ■                      ■\n");
+		printf("  ■                              ■■■                                                           ■   ■                      ■\n");
+		printf("  ■                            ■■  ■■                                           ■■■■■■■■   ■                      ■\n");
+		printf("  ■                          ■■      ■■                                                       ■   ■                      ■\n");
+		printf("  ■                        ■■          ■■                                                     ■   ■                      ■\n");
+		printf("  ■                      ■■              ■■                                                        ■                      ■\n");
+		printf("  ■                    ■■                  ■■                                      ■■■■■■■■■                      ■\n");
+		printf("  ■                  ■■                      ■■                                                    ■                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■              ■■■■■■■■■■■■■■■■■■■                                ■                                      ■\n");
+		printf("  ■                                                                                    ■■■■■■■■■                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      1. 구매          2. 인벤                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+		if (a == '1')
+			skill_store_choice_buy();
+		if (a == '2')
+			skill_inventory_choice();
+		if (a == 'b')
+			town();
+	}
+}
+
+//스킬함수 정의
+
+
+void skill_store_choice_buy() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                       ■                                                           ■                      ■\n");
+		printf("  ■                         ■            ■                            ■■■■■■■■■■■         ■                      ■\n");
+		printf("  ■                       ■■■          ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                     ■■  ■■        ■                                    ■■■                 ■                      ■\n");
+		printf("  ■                   ■■      ■■      ■■■■                            ■■  ■■         ■■■■                      ■\n");
+		printf("  ■                 ■■          ■■    ■                                ■■      ■■             ■                      ■\n");
+		printf("  ■               ■■              ■■  ■                              ■■          ■■           ■                      ■\n");
+		printf("  ■                                       ■                            ■■              ■■         ■                      ■\n");
+		printf("  ■                                                                                                    ■                      ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                  ■                  ■                                 ■                      ■                         ■\n");
+		printf("  ■                    ■■■■■■■■■                                   ■■■■■■■■■■■■■                         ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                    ■■■■    ■        ■   ■          ■                                               ■\n");
+		printf("  ■                                    ■      ■  ■        ■     ■      ■                                                 ■\n");
+		printf("  ■                                    ■■■■    ■        ■       ■  ■                                                   ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■      ■  ■        ■         ■                                                     ■\n");
+		printf("  ■                                    ■■■■      ■■■■           ■                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                           1. 조장 전용 스킬          2. 서기 전용 스킬          3. 지갑 전용 스킬                          ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+		if (a == '1')
+			skill_store_choice_buy1();
+		if (a == '2')
+			skill_store_choice_buy2();
+		if (a == '3')
+			skill_store_choice_buy3();
+		if (a == 'b')
+			break;
+	}
+}
+
+void skill_store_choice_buy1() {
+	while (1) {
+		char a;
+		int index = 1;
+
+		for (int i = 0; i < 8; i++) {
+			slist[i].index = -1;
+		}
+
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                             능력치                   소모 마나                  가격                   ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 1; i < 8; i++) {
+			if (slist[i].ea == 0) {
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■   %d. %-20s                  추가 공격력 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_att, slist[i].diff_mp, slist[i].price);
+				printf("  ■                                                                                                                            ■\n");
+				slist[i].index = index;
+				index++;
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+		for (int i = 1; i < 8; i++) {
+			if (a == slist[i].index + 48)
+				s_buy1(slist[i].num);
+		}
+		if (a == 'b')
+			break;
+	}
+}
+
+void skill_store_choice_buy2() {
+	while (1) {
+		char a;
+		int index = 1;
+
+		for (int i = 11; i < 18; i++) {
+			slist[i].index = -1;
+		}
+
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                             능력치                   소모 마나                  가격                   ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 11; i < 18; i++) {
+			if (slist[i].ea == 0) {
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■   %d. %-20s                  추가 공격력 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_att, slist[i].diff_mp, slist[i].price);
+				printf("  ■                                                                                                                            ■\n");
+				slist[i].index = index;
+				index++;
+			}
+
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+
+		for (int i = 11; i < 18; i++) {
+			if (a == slist[i].index + 48)
+				s_buy2(slist[i].num);
+		}
+
+		if (a == 'b')
+			break;
+	}
+}
+
+void skill_store_choice_buy3() {
+	while (1) {
+		char a;
+		int index = 1;
+
+		for (int i = 21; i < 31; i++) {
+			slist[i].index = -1;
+		}
+
+		system("cls");
+		printf("\n");
+
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                             능력치                   소모 마나                  가격                   ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 21; i < 31; i++) {
+			if (slist[i].ea == 0) {
+				switch (i) {
+				case 21:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                  추가 공격력 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_att, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 22:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 23:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 24:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 25:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 26:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 27:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_hp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 28:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 29:
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                      회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i].index = index;
+					index++;
+					break;
+				case 30:
+					if (index == 10) {
+						printf("  ■                                                                                                                            ■\n");
+						printf("  ■   %d. %-20s                     회복량 : %2d            소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+						printf("  ■                                                                                                                            ■\n");
+						slist[i].index = 0;
+						index++;
+						break;
+					}
+					else {
+						printf("  ■                                                                                                                            ■\n");
+						printf("  ■   %d. %-20s                       회복량 : %2d           소모 마나 : %2d           %3d  골드                   ■\n", index, slist[i].name, slist[i].add_mp, slist[i].diff_mp, slist[i].price);
+						printf("  ■                                                                                                                            ■\n");
+						slist[i].index = index;
+						index++;
+					}
+
+				}
+
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요(10은 0을 선택해 주세요.).\n\n  뒤로가기는 'b'를 선택해주세요.");
+
+		a = (_getch());
+
+		for (int i = 21; i < 31; i++) {
+			if (a == slist[i].index + 48)
+				s_buy3(slist[i].num);
+		}
+
+		if (a == 'b')
+			break;
+	}
+}
+
+void s_buy1(int snum) {
+	while (1) {
+		system("cls");
+		char a;
+		char exist[6] = "";
+
+		if (clist[1].skill[snum].ea == 1)
+			strcpy(exist, "보유중");
+		else
+			strcpy(exist, "없음");
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나              보유 여부      가격       ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp, exist, slist[snum].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      구매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+		if (a == '1') {
+			if (gold >= slist[snum].price) {
+				gold -= slist[snum].price;
+				slist[snum].ea = 1;
+				printf(" %20s 을(를) 획득!\n\n  계속 하시려면 아무키나 누르세요.\n", slist[snum].name);
+				if (_getch());
+				break;
+			}
+			else {
+				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
+				if (_getch());
+				break;
+			}
+		}
+		if (a == '2' || a == 'b')
+			break;
+	}
+}
+
+void s_buy2(int snum) {
+	while (1) {
+		system("cls");
+		char a;
+		char exist[6] = "";
+
+		if (clist[2].skill[snum].ea == 1)
+			strcpy(exist, "보유중");
+		else
+			strcpy(exist, "없음");
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나              보유 여부      가격       ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp, exist, slist[snum].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      구매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+		if (a == '1') {
+			if (gold >= slist[snum].price) {
+				gold -= slist[snum].price;
+				slist[snum].ea = 1;
+				printf(" %20s 을(를) 획득!\n\n  계속 하시려면 아무키나 누르세요.\n", slist[snum].name);
+				if (_getch());
+				break;
+			}
+			else {
+				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
+				if (_getch());
+				break;
+			}
+		}
+		if (a == '2' || a == 'b')
+			break;
+	}
+}
+
+void s_buy3(int snum) {
+	while (1) {
+		system("cls");
+		char a;
+		char exist[6] = "";
+
+		if (clist[2].skill[snum].ea == 1)
+			strcpy(exist, "보유중");
+		else
+			strcpy(exist, "없음");
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나              보유 여부      가격       ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (snum == 21)
+			printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp, exist, slist[snum].price);
+		if (snum > 21 && snum < 28 && snum != 24)
+			printf("  ■      %-20s                              회복량 : %2d      소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp, exist, slist[snum].price);
+		if (snum == 24) {
+			printf("  ■      %-20s                              회복량 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp, exist, slist[snum].price);
+		}
+		else
+			printf("  ■      %-20s                              회복량 : %2d      소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_mp, slist[snum].diff_mp, exist, slist[snum].price);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      구매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+		if (a == '1') {
+			if (gold >= slist[snum].price) {
+				gold -= slist[snum].price;
+				slist[snum].ea = 1;
+				printf(" %20s 을(를) 획득!\n\n  뒤로 가시려면 아무키나 누르세요.\n", slist[snum].name);
+				if (_getch());
+				break;
+			}
+			else {
+				printf("  소지금액이 부족합니다!!!\n\n  계속 하시려면 아무키나 누르세요.\n");
+				if (_getch());
+				break;
+			}
+		}
+		if (a == '2' || a == 'b')
+			break;
+	}
+}
+
+//스킬 인벤 함수 정의
+void skill_inventory_choice() {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■     1. 조장 전용 스킬      ■          ■     2. 서기 전용 스킬      ■          ■     3. 지갑 전용 스킬      ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■                            ■          ■                            ■          ■                            ■    ■\n");
+		printf("  ■    ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■          ■■■■■■■■■■■■■■■■    ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  열람하고 싶은 스킬을 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n");
+
+		a = (_getch());
+
+		if (a == '1')
+			skill_inventory1();
+		if (a == '2')
+			skill_inventory2();
+		if (a == '3')
+			skill_inventory3();
+		if (a == 'b')
+			skill_choice();
+	}
+}
+
+void skill_inventory1() {
+	while (1) {
+		int index = 1;
+		char a;
+
+		for (int i = 1; i < 8; i++) {
+			slist[i].index = -1;
+		}
+
+		system("cls");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                                                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 1; i < 8; i++) {
+			if (slist[i].ea == 1) {
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■   %d. %-20s                                                                                                  ■\n", index, slist[i].name);
+				printf("  ■                                                                                                                            ■\n");
+				slist[i].index = index;
+				index++;
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+
+		for (int i = 1; i < 8; i++) {				//내가 누른 키(인덱스)와 스킬 인덱스가 같은지 비교 그리고 같으면 
+			if (a == slist[i].index + 48)			//해당 스킬 인덱스의 스킬넘버를 던져줌
+				skill_inven_info1(slist[i].num);
+		}
+		if (a == 'b')
+			skill_inventory_choice();
+	}
+}
+
+void skill_inventory2() {
+	while (1) {
+		int index = 1;
+		char a;
+
+		for (int i = 1; i < 8; i++) {
+			slist[i + 10].index = -1;
+		}
+
+		system("cls");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                                                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 1; i < 8; i++) {
+			if (slist[i + 10].ea == 1) {
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■   %d. %-20s                                                                                                  ■\n", index, slist[i + 10].name);
+				printf("  ■                                                                                                                            ■\n");
+				slist[i + 10].index = index;
+				index++;
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+
+		for (int i = 1; i < 8; i++) {				//내가 누른 키(인덱스)와 스킬 인덱스가 같은지 비교 그리고 같으면 
+			if (a == slist[i + 10].index + 48)			//해당 스킬 인덱스의 스킬넘버를 던져줌
+				skill_inven_info2(slist[i + 10].num);
+		}
+		if (a == 'b')
+			skill_inventory_choice();
+	}
+}
+
+void skill_inventory3() {
+	while (1) {
+		int index = 1;
+		char a;
+
+		for (int i = 1; i < 11; i++) {
+			slist[i + 20].index = -1;
+		}
+
+		system("cls");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                이름                                                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		for (int i = 1; i < 11; i++) {
+			if (slist[i + 20].ea == 1) {
+				if (index != 10) {
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                                                                                                  ■\n", index, slist[i + 20].name);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i + 20].index = index;
+					index++;
+					continue;
+				}
+				if (index == 10) {
+					printf("  ■                                                                                                                            ■\n");
+					printf("  ■   %d. %-20s                                                                                                 ■\n", index, slist[i + 20].name);
+					printf("  ■                                                                                                                            ■\n");
+					slist[i + 20].index = 0;
+					index++;
+				}
+			}
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요(10은 0을 선택해 주세요.).\n\n  뒤로가기는 'b'를 선택해주세요.");
+		a = (_getch());
+
+		for (int i = 1; i < 11; i++) {				//내가 누른 키(인덱스)와 스킬 인덱스가 같은지 비교 그리고 같으면 
+			if (a == slist[i + 20].index + 48)			//해당 스킬 인덱스의 스킬넘버를 던져줌
+				skill_inven_info3(slist[i + 20].num);
+		}
+		if (a == 'b')
+			skill_inventory_choice();
+	}
+}
+
+void skill_inven_info1(int snum) {
+	while (1) {
+		system("cls");
+		char a;
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      장비 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+
+		if (a == '1') {
+			skill_equip1(0, snum);
+		}
+		if (a == '2' || a == 'b')
+			break;
+	}
+}
+
+void skill_inven_info2(int snum) {
+	while (1) {
+		system("cls");
+		char a;
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      장비 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+
+		if (a == '1') {
+			skill_equip2(1, snum);
+		}
+		if (a == '2' || a == 'b')
+			break;
+	}
+}
+
+void skill_inven_info3(int snum) {
+	while (1) {
+		system("cls");
+		char a;
+
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (snum == 21) {
+			printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp);
+		}
+		if (snum > 21 && snum < 28 && snum != 24) {
+			printf("  ■      %-20s                           회복량 : %2d         소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp);
+		}
+		if (snum > 27) {
+			printf("  ■      %-20s                           회복량 : %2d         소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_mp, slist[snum].diff_mp);
+		}
+		if (snum == 24) {
+			printf("  ■      %-20s                           회복량 : %2d        소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp);
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      스킬 설명 :                                                                                                           ■\n");
+		printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■      장비 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("\n  원하는 메뉴를 선택하세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
+		printf("\n");
+		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		a = (_getch());
+
+		if (a == '1') {
+			skill_equip3(2, snum);
+		}
+		if (a == '2' || a == 'b')
+			break;
+	}
+}
+
+void skill_equip1(int character, int snum) {
+	while (1) {
+		char a;
+
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[0].skill[1].ea == 1) {
+			printf("  ■      1. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[0].skill[1].name, clist[0].skill[1].add_att, clist[0].skill[1].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		}
+		else {
+			printf("  ■      1. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[0].skill[2].ea == 1) {
+			printf("  ■      2. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[0].skill[2].name, clist[0].skill[2].add_att, clist[0].skill[2].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		}
+		else {
+			printf("  ■      2. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		printf("  교체하고 싶은 슬롯을 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n");
+
+		a = (_getch());
+
+		if (a == '1') {
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea == 1) {
+				if (clist[character].skill[2].num == slist[snum].num && clist[character].skill[1].ea == 1) {
+					clist[character].skill[2] = clist[character].skill[1];
+					clist[character].skill[1] = slist[snum];
+				}
+				else
+					clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea != 1) {
+				clist[character].skill[2] = clist[character].skill[1];
+				clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[2].num == slist[snum].num && clist[character].skill[1].ea == 1) {
+				clist[character].skill[2] = clist[character].skill[1];
+				clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[2].num == slist[snum].num) {
+				clist[character].skill[2] = empty_character_slist[0];
+				clist[character].skill[1] = slist[snum];
+				continue;
+			}
+			else {
+				clist[character].skill[1] = slist[snum];
+				continue;
+			}
+		}
+		if (a == '2') {
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea == 1) {
+				if (clist[character].skill[1].num == slist[snum].num && clist[character].skill[2].ea == 1) {
+					clist[character].skill[1] = clist[character].skill[2];
+					clist[character].skill[2] = slist[snum];
+				}
+				else
+					clist[character].skill[2] = slist[snum];
+			}
+			if (clist[character].skill[2].ea == 1 && clist[character].skill[1].ea != 1) {
+				clist[character].skill[1] = clist[character].skill[2];
+				clist[character].skill[2] = slist[snum];
+			}
+			if (clist[character].skill[1].num == slist[snum].num) {
+				clist[character].skill[1] = empty_character_slist[0];
+				clist[character].skill[2] = slist[snum];
+				continue;
+			}
+			else {
+				clist[character].skill[2] = slist[snum];
+				continue;
+			}
+		}
+		if (a == 'b')
+			skill_inventory1();
+	}
+}
+
+void skill_equip2(int character, int snum) {
+	while (1) {
+		char a;
+
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[1].skill[1].ea == 1) {
+			printf("  ■      1. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[1].skill[1].name, clist[1].skill[1].add_att, clist[1].skill[1].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		}
+		else {
+			printf("  ■      1. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[1].skill[2].ea == 1) {
+			printf("  ■      2. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[1].skill[2].name, clist[1].skill[2].add_att, clist[1].skill[2].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+		}
+		else {
+			printf("  ■      2. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		printf("  교체하고 싶은 슬롯을 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n");
+
+		a = (_getch());
+
+		if (a == '1') {
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea == 1) {
+				if (clist[character].skill[2].num == slist[snum].num && clist[character].skill[1].ea == 1) {
+					clist[character].skill[2] = clist[character].skill[1];
+					clist[character].skill[1] = slist[snum];
+				}
+				else
+					clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea != 1) {
+				clist[character].skill[2] = clist[character].skill[1];
+				clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[2].num == slist[snum].num && clist[character].skill[1].ea == 1) {
+				clist[character].skill[2] = clist[character].skill[1];
+				clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[2].num == slist[snum].num) {
+				clist[character].skill[2] = empty_character_slist[0];
+				clist[character].skill[1] = slist[snum];
+				continue;
+			}
+			else {
+				clist[character].skill[1] = slist[snum];
+				continue;
+			}
+		}
+		if (a == '2') {
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea == 1) {
+				if (clist[character].skill[1].num == slist[snum].num && clist[character].skill[2].ea == 1) {
+					clist[character].skill[1] = clist[character].skill[2];
+					clist[character].skill[2] = slist[snum];
+				}
+				else
+					clist[character].skill[2] = slist[snum];
+			}
+			if (clist[character].skill[2].ea == 1 && clist[character].skill[1].ea != 1) {
+				clist[character].skill[1] = clist[character].skill[2];
+				clist[character].skill[2] = slist[snum];
+			}
+			if (clist[character].skill[1].num == slist[snum].num) {
+				clist[character].skill[1] = empty_character_slist[0];
+				clist[character].skill[2] = slist[snum];
+				continue;
+			}
+			else {
+				clist[character].skill[2] = slist[snum];
+				continue;
+			}
+		}
+		if (a == 'b')
+			skill_inventory2();
+	}
+}
+
+void skill_equip3(int character, int snum) {
+	while (1) {
+		char a;
+		system("cls");
+		printf("\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■              이름                                      능력치             소모 마나                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[2].skill[1].ea == 1) {
+			if (clist[2].skill[1].num == 21) {
+				printf("  ■      1.%-20s                          추가 공격력 : %2d     소모 마나 : %2d                                   ■\n", clist[2].skill[1].name, clist[2].skill[1].add_att, clist[2].skill[1].diff_mp);
+			}
+			if (clist[2].skill[1].num > 21 && clist[2].skill[1].num < 28 && clist[2].skill[1].num != 24) {
+				printf("  ■      1.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[1].name, clist[2].skill[1].add_hp, clist[2].skill[1].diff_mp);
+			}
+			if (clist[2].skill[1].num > 27) {
+				printf("  ■      1.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[1].name, clist[2].skill[1].add_mp, clist[2].skill[1].diff_mp);
+			}
+			if (clist[2].skill[1].num == 24)
+				printf("  ■      1.%-20s                          회복량 : %2d      소모 마나 : %2d                                      ■\n", clist[2].skill[1].name, clist[2].skill[1].add_hp, clist[2].skill[1].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[clist[2].skill[1].num].info);
+		}
+		else {
+			printf("  ■      1. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		if (clist[2].skill[2].ea == 1) {
+			if (clist[2].skill[2].num == 21) {
+				printf("  ■      2.%-20s                          추가 공격력 : %2d     소모 마나 : %2d                                   ■\n", clist[2].skill[2].name, clist[2].skill[2].add_att, clist[2].skill[2].diff_mp);
+			}
+			if (clist[2].skill[2].num > 21 && clist[2].skill[2].num < 28 && clist[2].skill[2].num != 24) {
+				printf("  ■      2.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[2].name, clist[2].skill[2].add_hp, clist[2].skill[2].diff_mp);
+			}
+			if (clist[2].skill[2].num > 27) {
+				printf("  ■      2.%-20s                          회복량 : %2d      소모 마나 : %2d                                       ■\n", clist[2].skill[2].name, clist[2].skill[2].add_mp, clist[2].skill[2].diff_mp);
+			}
+			if (clist[2].skill[2].num == 24)
+				printf("  ■      2.%-20s                          회복량 : %2d      소모 마나 : %2d                                      ■\n", clist[2].skill[2].name, clist[2].skill[2].add_hp, clist[2].skill[2].diff_mp);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■      스킬 설명 :                                                                                                           ■\n");
+			printf("  ■      %-46s                                                                        ■\n", slist[clist[2].skill[2].num].info);
+		}
+		else {
+			printf("  ■      2. 장비 중인 스킬 없음                                                                                                ■\n");
+		}
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		printf("  교체하고 싶은 슬롯을 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n");
+
+		a = (_getch());
+
+		if (a == '1') {
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea == 1) {
+				if (clist[character].skill[2].num == slist[snum].num && clist[character].skill[1].ea == 1) {
+					clist[character].skill[2] = clist[character].skill[1];
+					clist[character].skill[1] = slist[snum];
+				}
+				else
+					clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea != 1) {
+				clist[character].skill[2] = clist[character].skill[1];
+				clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[2].num == slist[snum].num && clist[character].skill[1].ea == 1) {
+				clist[character].skill[2] = clist[character].skill[1];
+				clist[character].skill[1] = slist[snum];
+			}
+			if (clist[character].skill[2].num == slist[snum].num) {
+				clist[character].skill[2] = empty_character_slist[0];
+				clist[character].skill[1] = slist[snum];
+				continue;
+			}
+			else {
+				clist[character].skill[1] = slist[snum];
+				continue;
+			}
+		}
+		if (a == '2') {
+			if (clist[character].skill[1].ea == 1 && clist[character].skill[2].ea == 1) {
+				if (clist[character].skill[1].num == slist[snum].num && clist[character].skill[2].ea == 1) {
+					clist[character].skill[1] = clist[character].skill[2];
+					clist[character].skill[2] = slist[snum];
+				}
+				else
+					clist[character].skill[2] = slist[snum];
+			}
+			if (clist[character].skill[2].ea == 1 && clist[character].skill[1].ea != 1) {
+				clist[character].skill[1] = clist[character].skill[2];
+				clist[character].skill[2] = slist[snum];
+			}
+			if (clist[character].skill[1].num == slist[snum].num) {
+				clist[character].skill[1] = empty_character_slist[0];
+				clist[character].skill[2] = slist[snum];
+				continue;
+			}
+			else {
+				clist[character].skill[2] = slist[snum];
+				continue;
+			}
+		}
+		if (a == 'b')
+			skill_inventory3();
+	}
 }

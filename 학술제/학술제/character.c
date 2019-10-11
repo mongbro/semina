@@ -30,9 +30,13 @@ void initial_charac() {
 		clist[i].condition = 0;
 		clist[i].spare_stat = 0;
 	}
+
+	slist[3].ea = 1;
+	slist[4].ea = 1;
+
 	clist[0].skill[0] = slist[0];
-	clist[0].skill[1] = slist[1];
-	clist[0].skill[2] = slist[2];
+	clist[0].skill[1] = slist[3];
+	clist[0].skill[2] = slist[4];
 
 	clist[0].item[0] = ilist[10];
 	clist[1].item[0] = ilist[20];
