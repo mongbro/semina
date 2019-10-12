@@ -27,7 +27,7 @@ void damage_monster_to_character(int cnum, int mnum) {
 	extern void stun(int mnum);
 	if (mlist[mnum].is_stun == 0) {
 		if (clist[cnum].armor == 0) {
-			clist[cnum].hp = clist[cnum].hp - (mlist[mnum].att - ((clist[cnum].def + clist[cnum].noteship) / 10));
+			clist[cnum].hp -= (mlist[mnum].att - ((clist[cnum].def + clist[cnum].noteship) / 10));
 			hit_damage = mlist[mnum].att - ((clist[cnum].def + clist[cnum].noteship) / 10);
 		}
 		if (clist[cnum].armor > 0) {
@@ -35,8 +35,8 @@ void damage_monster_to_character(int cnum, int mnum) {
 			hit_damage = 0;
 		}
 	}
-	if (mlist[mnum].is_stun == 1) {
-		stun(mnum);
+	if (mlist[mnum].is_stun > 0) {
+		hit_damage = 0;
 	}
 }
 
@@ -127,7 +127,7 @@ int check_exter_boss(int stage) {
 
 void kill_monster(int cnum, int stnum) {
 	srand((unsigned)time(NULL));
-	int add_gold = (rand() % 10 + 1)*stnum;
+	int add_gold = (rand() % 10 + 1)*(stnum/10);
 	int chance_drop = (rand() % 3)*0;		//33%확률로 드랍 => 0일때 드랍
 	int item_num;
 	for (int i = 0; i < 3; i++) {
@@ -152,8 +152,8 @@ void kill_character(int mnum) {
 	for (int i = 0; i < 3; i++) {
 		if (clist[i].hp <= 0 && clist[i].condition == 0) {
 			printf("\n\n  %s이(가) 죽었습니다!!", clist[i].name);
+			clist[i].condition = 1;
 		}
-		clist[i].condition = 1;
 	}
 }
 

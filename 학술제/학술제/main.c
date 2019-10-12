@@ -20,49 +20,31 @@ int main() {
 	print_initial_disp();
 	stlist[0].is_clear = 1;
 	stlist[1].is_clear = 1;
-
 	//////=====================        프롤로그         ==============================
 
 
-	stage_prologue();
-	prologue();
+	
+	//prologue();
 
 
 	//=====================          본게임 시작         ===========================
 
+	//=====================          테스트 구역         ===========================
+
+	clist[0].skill[2] = slist[6];
+	clist[1].skill[1] = slist[14];
+	clist[1].skill[2] = slist[16];
+	clist[2].skill[1] = slist[22];
+	clist[2].skill[2] = slist[25];
+	slist[6].ea = 1;
+	slist[14].ea = 1;
+	slist[16].ea = 1;
+	slist[22].ea = 1;
+	slist[25].ea = 1;
 
 
 
-
-
-
-
-
-
-
-
-
-	///////////////////////////        아이템 시험               //////////////////////////////
-	//clist[0].readership = 100;
-
-	//ilist[0].ea++;
-	//ilist[6].ea++;
-	//ilist[3].ea++;
-	//ilist[5].ea++;
-
-	//ilist[10].ea++;
-	//ilist[15].ea++;
-	//ilist[13].ea++;
-
-	//ilist[20].ea++;
-	//ilist[25].ea++;
-	//ilist[23].ea++;
-
-	//ilist[30].ea++;
-	//ilist[35].ea++;
-	//ilist[33].ea++;
-
-	//gold += 50;
-
+	//=====================          테스트 종료         ===========================
 	town(clist, ilist);
+
 }

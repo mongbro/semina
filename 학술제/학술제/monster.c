@@ -19,7 +19,7 @@ void prologue_monster() {
 		mlist[i].att = 10;
 		mlist[i].def = 10;
 		mlist[i].condition = 0;
-		mlist[i].mexp = 70;
+		mlist[i].mexp = 120;
 	}
 }
 
@@ -96,6 +96,8 @@ void stage1_B_monster() {
 	mlist[0].def = 10;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 100;
+	mlist[1].condition = 1;
+	mlist[2].condition = 1;
 }
 
 

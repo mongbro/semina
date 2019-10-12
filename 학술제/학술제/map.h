@@ -39,5 +39,12 @@ void armor(int cnum, int snum);
 void m_choice();
 void stun(int mnum);
 void hit_monster(int cnum, int mnum, int stnum);
+void statp_check();
+void statm_check();
+void character_hp_heal(int cnum, int snum);
+void all_character_hp_heal(int cnum, int snum);
+void character_mp_heal(int cnum, int snum);
+void all_character_mp_heal(int cnum, int snum);
+void all_character_hp_mp_heal(int cnum, int snum);
 
 #endif
