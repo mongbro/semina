@@ -38,14 +38,14 @@ void initial_charac() {
 	clist[0].skill[1] = slist[1];
 	clist[0].skill[2] = slist[2];
 
-	///////////테스트
+	///////////테스트 시작
 
 	clist[1].skill[1] = slist[15];
 	clist[1].skill[2] = slist[17];
 	clist[2].skill[1] = slist[22];
-	clist[2].skill[2] = slist[28];
+	clist[2].skill[2] = slist[30];
 
-	///////////테스트
+	///////////테스트 끝
 
 	clist[0].item[0] = ilist[10];
 	clist[1].item[0] = ilist[20];

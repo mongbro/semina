@@ -80,9 +80,28 @@ void dun_menu() {
 	while (1) {
 		char a;
 		system("cls");
-		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n\n");
-		printf("  1. 인벤토리\n\n  2. 캐릭터 정보\n\n  3. 몬스터 정보\n\n  4. 돌아가기\n\n\n\n\n\n\n");
-		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    1. 아이템 사용                                                                                                          ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    2. 캐릭터 정보 보기                                                                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    3. 몬스터 정보 보기                                                                                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■    4. 돌아가기                                                                                                             ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  원하는 메뉴를 선택해주세요.\n");
 		a = (_getch());
 		if (a == '1')
@@ -91,7 +110,7 @@ void dun_menu() {
 			dun_inf_cha();
 		if (a == '3')
 			dun_inf_mon();
-		if (a == '4')
+		if (a == '4' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -1270,16 +1289,26 @@ void dun_inventory() {
 		}
 		int index = 1;
 		system("cls");
-		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		for (int i = 0; i < 10; i++) {
 			if (ilist[i].ea > 0) {
-				printf("  %d. %20s                   hp 회복 : %2d    mp 회복 : %2d    남은 개수 : %2d\n\n", index, ilist[i].name, ilist[i].add_hp, ilist[i].add_mp, ilist[i].ea);
+				printf("  ■  %d. %20s                          hp 회복 : %2d        mp 회복 : %2d        남은 개수 : %2d                   ■\n", index, ilist[i].name, ilist[i].add_hp, ilist[i].add_mp, ilist[i].ea);
 				n[index - 1] = i;
 				ilist[i].index = index;
 				index++;
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
 			}
 		}
-		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  사용하고 싶은 아이템을 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n\n  던전 안에서는 소비형 아이템만 사용이 가능합니다.\n");
 		a = (_getch());
 
@@ -1350,11 +1379,101 @@ void dun_inventory() {
 }
 
 void dun_inf_cha() {
-
+	while (1) {
+		char a;
+		system("cls");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                           조  장 □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[0].att, clist[0].def);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □           hp                       mp          □                                      ■\n");
+		printf("  ■                                  □       %3d / %3d                %3d / %3d       □                                      ■\n", clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                           서  기 □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[1].att, clist[1].def);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □           hp                       mp          □                                      ■\n");
+		printf("  ■                                  □       %3d / %3d                %3d / %3d       □                                      ■\n", clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                           지  갑 □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[2].att, clist[2].def);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □           hp                       mp          □                                      ■\n");
+		printf("  ■                                  □       %3d / %3d                %3d / %3d       □                                      ■\n", clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 b를 눌러주세요.\n");
+		a = (_getch());
+		if (a == 'b'||a=='B')
+			break;
+	}
 }
 
 void dun_inf_mon() {
-
+	while (1) {
+		char a;
+		system("cls");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■            %20s  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n", mlist[0].name);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", mlist[0].att, mlist[0].def);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □           hp                                   □                                      ■\n");
+		printf("  ■                                  □       %3d / %3d                                □                                      ■\n", mlist[0].hp, mlist[0].fhp);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■            %20s  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n", mlist[1].name);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", mlist[1].att, mlist[1].def);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □           hp                                   □                                      ■\n");
+		printf("  ■                                  □       %3d / %3d                                □                                      ■\n", mlist[1].hp, mlist[1].fhp);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■            %20s  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n", mlist[2].name);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", mlist[2].att, mlist[2].def);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □           hp                                   □                                      ■\n");
+		printf("  ■                                  □       %3d / %3d                                □                                      ■\n", mlist[2].hp, mlist[2].fhp);
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  계속 하시려면 b를 눌러주세요.\n");
+		a = (_getch());
+		if (a == 'b' || a == 'B')
+			break;
+	}
 }
 
 void use_item(int index) {
@@ -1368,45 +1487,69 @@ void use_item(int index) {
 		}
 		char a;
 		system("cls");
-		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[0].hp > 0)
-			printf("  %s                                                           ○                                                        \n", clist[0].name);
+			printf("  ■  %s                                                       ○                                                        ■\n", clist[0].name);
 		if (clist[0].hp <= 0)
-			printf("                                                                   ○                                                        \n");
-
+			printf("  ■                                                                 ○                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[1].hp > 0)
-			printf("  %s                                                           ○                                                        \n", clist[1].name);
+			printf("  ■  %s                                                       ○                                                        ■\n", clist[1].name);
 		if (clist[1].hp <= 0)
-			printf("                                                                   ○                                                        \n");
-
+			printf("  ■                                                                 ○                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[2].hp > 0)
-			printf("  %s                                                           ○                                                        \n", clist[2].name);
+			printf("  ■  %s                                                       ○                                                        ■\n", clist[2].name);
 		if (clist[2].hp <= 0)
-			printf("                                                                   ○                                                        \n");
+			printf("  ■                                                                 ○                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		printf("\n");
-		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
-
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[0].hp > 0)
-			printf("  1. %s의 체력 : %3d / %3d    마나 : %3d / %3d                 ○                                     \n", clist[0].name, clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp);
+			printf("  ■  1. %s의 체력 : %3d / %3d    마나 : %3d / %3d               ○                                   ■\n", clist[0].name, clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[0].hp <= 0)
-			printf("                                                                 ○                                     \n");
-
+			printf("  ■                                                       ○                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[1].hp > 0)
-			printf("  2. %s의 체력 : %3d / %3d    마나 : %3d / %3d                 ○                                     \n", clist[1].name, clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp);
+			printf("  ■  2. %s의 체력 : %3d / %3d    마나 : %3d / %3d               ○                                     ■\n", clist[1].name, clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[1].hp <= 0)
-			printf("                                                                 ○                                     \n");
-
+			printf("  ■                                                       ○                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[2].hp > 0)
-			printf("  3. %s의 체력 : %3d / %3d    마나 : %3d / %3d                 ○                                     \n", clist[2].name, clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp);
+			printf("  ■  3. %s의 체력 : %3d / %3d    마나 : %3d / %3d               ○                                     ■\n", clist[2].name, clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		if (clist[2].hp <= 0)
-			printf("                                                                 ○                                     \n");
+			printf("  ■                                                       ○                                     ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 
-		printf("\n\n\n");
-
-		printf("  아이템 이름 : %20s             hp : %2d   mp : %2d   남은 개수 : %2d", ilist[check].name, ilist[check].add_hp, ilist[check].add_mp, ilist[check].ea);
-
-		printf("\n");
-		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■  아이템 이름 : %20s             hp : %2d   mp : %2d   남은 개수 : %2d                ■\n", ilist[check].name, ilist[check].add_hp, ilist[check].add_mp, ilist[check].ea);
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  사용할 캐릭터를 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n\n  던전 안에서는 소비형 아이템만 사용이 가능합니다.\n");
 		a = (_getch());
 		if (a == '1') {
