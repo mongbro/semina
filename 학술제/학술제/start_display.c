@@ -11,6 +11,7 @@ void print_initial_disp() {
 	while (1) {
 		system("cls");
 		printf("\n\n\n");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
 		printf("                  бсбсбсбсбсбсбс  бс  бс              бс              бсбсбсбсбсбсбс  бс\n");
 		printf("                        бс        бс  бс            бс  бс                      бсбс  бс\n");
 		printf("                        бс        бс  бс          бс      бс                  бсбс    бсбсбс\n");
@@ -21,6 +22,7 @@ void print_initial_disp() {
 		printf("                  бс          бс  бс  бс              бс                бс              бс\n");
 		printf("                  бс          бс  бс  бс              бс                  бсбсбсбсбсбсбс\n");
 		printf("\n\n");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 		printf("                                                      бс            бс        бс                          бс\n");
 		printf("                                    бсбсбсбсбсбсбсбс  бс            бс        бс        бсбсбсбсбсбсбсбс  бс\n");
 		printf("                                        бс    бс      бс      бсбсбсбсбсбсбс  бс                    бсбс  бс\n");

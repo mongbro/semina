@@ -143,6 +143,8 @@ void kill_monster(int cnum, int stnum) {
 			mlist[i].condition = 1; 
 			check_level();
 		}
+		if (mlist[i].condition == 1)
+			mlist[i].hp = 0;
 	}
 }
 

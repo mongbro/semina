@@ -139,7 +139,7 @@ void town_menu() {
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("  원하는 메뉴를 선택해주세요.\n");
+		printf("  원하는 메뉴를 선택해주세요.\n  뒤로가기는 b를 눌러주세요\n");
 		a = (_getch());
 		if (a == '1')
 			town_inf_cha();
@@ -1021,7 +1021,7 @@ void town_inf_cha() {
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("  원하는 메뉴를 선택해주세요.\n");
+		printf("  원하는 메뉴를 선택해주세요.\n  뒤로가기는 b를 눌러주세요\n");
 		a = (_getch());
 		if (a == '1')
 			town_inf_cha_1();
@@ -1084,7 +1084,7 @@ void town_inf_cha_1() {
 		printf("  ■                               레벨  :  %2d           경험치  :  %4d / %4d    ( %2d %% )                                     ■\n", clist[0].level, clist[0].expe, fexp[clist[0].level], clist[0].persent);
 		printf("  ■                    ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■                    ■\n");
 		printf("  ■        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        ■\n");
-		printf("  ■        ■           10        20        30        40        50        60        70        80        90           ■        ■\n");
+		printf("  ■        ■           10%%       20%%       30%%       40%%       50%%       60%%       70%%       80%%       90%%          ■        ■\n");
 		printf("  ■        ■  ");
 		for (int i = 0; i < 50; i++) {
 			if (i * 2 < clist[0].persent)
@@ -1166,7 +1166,7 @@ void town_inf_cha_2() {
 		printf("  ■                               레벨  :  %2d           경험치  :  %4d / %4d    ( %2d %% )                                     ■\n", clist[1].level, clist[1].expe, fexp[clist[1].level], clist[1].persent);
 		printf("  ■                    ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■                    ■\n");
 		printf("  ■        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        ■\n");
-		printf("  ■        ■           10        20        30        40        50        60        70        80        90           ■        ■\n");
+		printf("  ■        ■           10%%       20%%       30%%       40%%       50%%       60%%       70%%       80%%       90%%          ■        ■\n");
 		printf("  ■        ■  ");
 		for (int i = 0; i < 50; i++) {
 			if (i * 2 < clist[1].persent)
@@ -1253,7 +1253,7 @@ void town_inf_cha_3() {
 		printf("  ■                               레벨  :  %2d           경험치  :  %4d / %4d    ( %2d %% )                                     ■\n", clist[2].level, clist[2].expe, fexp[clist[2].level], clist[2].persent);
 		printf("  ■                    ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■                    ■\n");
 		printf("  ■        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        ■\n");
-		printf("  ■        ■           10        20        30        40        50        60        70        80        90           ■        ■\n");
+		printf("  ■        ■           10%%       20%%       30%%       40%%       50%%       60%%       70%%       80%%       90%%          ■        ■\n");
 		printf("  ■        ■  ");
 		for (int i = 0; i < 50; i++) {
 			if (i * 2 < clist[2].persent)

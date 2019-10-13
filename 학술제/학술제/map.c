@@ -23,29 +23,29 @@ void print_map() {
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	if (clist[0].hp > 0 && mlist[0].hp > 0)
-		printf("  ■  %s                                                           ○                                     %18s  ■\n", clist[0].name, mlist[0].name);
+		printf("  ■  %s                                                       ○                                         %18s  ■\n", clist[0].name, mlist[0].name);
 	if (clist[0].hp <= 0 && mlist[0].hp > 0)
-		printf("  ■                                                                 ○                                     %18s  ■\n", mlist[0].name);
+		printf("  ■                                                             ○                                         %18s  ■\n", mlist[0].name);
 	if (clist[0].hp > 0 && mlist[0].hp <= 0)
-		printf("  ■  %s                                                           ○                                                         ■\n", clist[0].name);
+		printf("  ■  %s                                                       ○                                                             ■\n", clist[0].name);
 	if (clist[0].hp <= 0 && mlist[0].hp <= 0)
-		printf("  ■                                                                 ○                                                       ■\n");
+		printf("  ■                                                             ○                                                             ■\n");
 	if (clist[1].hp > 0 && mlist[1].hp > 0)
-		printf("  ■  %s                                                           ○                                     %18s  ■\n", clist[1].name, mlist[1].name);
+		printf("  ■  %s                                                       ○                                         %18s  ■\n", clist[1].name, mlist[1].name);
 	if (clist[1].hp <= 0 && mlist[1].hp > 0)
-		printf("  ■                                                                 ○                                     %18s  ■\n", mlist[1].name);
+		printf("  ■                                                             ○                                         %18s  ■\n", mlist[1].name);
 	if (clist[1].hp > 0 && mlist[1].hp <= 0)
-		printf("  ■  %s                                                           ○                                                         ■\n", clist[1].name);
+		printf("  ■  %s                                                       ○                                                             ■\n", clist[1].name);
 	if (clist[1].hp <= 0 && mlist[1].hp <= 0)
-		printf("  ■                                                                 ○                                                       ■\n");
+		printf("  ■                                                             ○                                                             ■\n");
 	if (clist[2].hp > 0 && mlist[2].hp > 0)
-		printf("  ■  %s                                                           ○                                     %18s  ■\n", clist[2].name, mlist[2].name);
+		printf("  ■  %s                                                       ○                                         %18s  ■\n", clist[2].name, mlist[2].name);
 	if (clist[2].hp <= 0 && mlist[2].hp > 0)
-		printf("  ■                                                                 ○                                     %18s  ■\n", mlist[2].name);
+		printf("  ■                                                             ○                                         %18s  ■\n", mlist[2].name);
 	if (clist[2].hp > 0 && mlist[2].hp <= 0)
-		printf("  ■  %s                                                           ○                                                         ■\n", clist[2].name);
+		printf("  ■  %s                                                       ○                                                             ■\n", clist[2].name);
 	if (clist[2].hp <= 0 && mlist[2].hp <= 0)
-		printf("  ■                                                                 ○                                                         ■\n");
+		printf("  ■                                                             ○                                                           ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■");
@@ -62,7 +62,7 @@ void print_hp() {
 	if (clist[0].hp > 0 && mlist[0].hp <= 0)
 		printf("  ■  %s의 체력 : %3d / %3d                                    ○                                                             ■\n", clist[0].name, clist[0].hp, clist[0].fhp);
 	if (clist[0].hp <= 0 && mlist[0].hp <= 0)
-		printf("  ■                                                             ○                                                           ■\n");
+		printf("  ■                                                             ○                                                             ■\n");
 	if (clist[1].hp > 0 && mlist[1].hp > 0)
 		printf("  ■  %s의 체력 : %3d / %3d                                    ○                      %18s의 체력 : %3d / %3d  ■\n", clist[1].name, clist[1].hp, clist[1].fhp, mlist[1].name, mlist[1].hp, mlist[1].fhp);
 	if (clist[1].hp <= 0 && mlist[1].hp > 0)
@@ -70,7 +70,7 @@ void print_hp() {
 	if (clist[1].hp > 0 && mlist[1].hp <= 0)
 		printf("  ■  %s의 체력 : %3d / %3d                                    ○                                                             ■\n", clist[1].name, clist[1].hp, clist[1].fhp);
 	if (clist[1].hp <= 0 && mlist[1].hp <= 0)
-		printf("  ■                                                             ○                                                           ■\n");
+		printf("  ■                                                             ○                                                             ■\n");
 	if (clist[2].hp > 0 && mlist[2].hp > 0)
 		printf("  ■  %s의 체력 : %3d / %3d                                    ○                      %18s의 체력 : %3d / %3d  ■\n", clist[2].name, clist[2].hp, clist[2].fhp, mlist[2].name, mlist[2].hp, mlist[2].fhp);
 	if (clist[2].hp <= 0 && mlist[2].hp > 0)
@@ -78,7 +78,7 @@ void print_hp() {
 	if (clist[2].hp > 0 && mlist[2].hp <= 0)
 		printf("  ■  %s의 체력 : %3d / %3d                                    ○                                                             ■\n", clist[2].name, clist[2].hp, clist[2].fhp);
 	if (clist[2].hp <= 0 && mlist[2].hp <= 0)
-		printf("  ■                                                             ○                                                               ■\n");
+		printf("  ■                                                             ○                                                             ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■");
@@ -89,17 +89,17 @@ void print_choice_mon() {
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	if (mlist[0].hp > 0)
-		printf("  ■  1. %-18s                                                        = %18s을 공격합니다.  ■\n", mlist[0].name, mlist[0].name);
+		printf("  ■  1. %-18s                                       =                      %18s을 공격합니다.       ■\n", mlist[0].name, mlist[0].name);
 	if (mlist[0].hp <= 0)
-		printf("  ■                                                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
 	if (mlist[1].hp > 0)
-		printf("  ■  2. %-18s                                                        = %18s을 공격합니다.  ■\n", mlist[1].name, mlist[1].name);
+		printf("  ■  2. %-18s                                       =                      %18s을 공격합니다.       ■\n", mlist[1].name, mlist[1].name);
 	if (mlist[1].hp <= 0)
-		printf("  ■                                                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
 	if (mlist[2].hp > 0)
-		printf("  ■  3. %-18s                                                        = %18s을 공격합니다.  ■\n", mlist[2].name, mlist[2].name);
+		printf("  ■  3. %-18s                                       =                      %18s을 공격합니다.       ■\n", mlist[2].name, mlist[2].name);
 	if (mlist[2].hp <= 0)
-		printf("  ■                                                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
@@ -169,7 +169,7 @@ void prologue() {
 	while (1) {
 		system("cls");
 		print_line();
-		printf("  설명1111111111111111설명11111111111111설명11111111111111\n\n계속 하시려면 아무키나 누르세요.\n");
+		printf("  설명1111111111111111설명11111111111111설명11111111111111\n\n   계속 하시려면 아무키나 누르세요.\n");
 		print_line();
 		if (_getch())
 			break;
@@ -178,7 +178,7 @@ void prologue() {
 	while (1) {
 		system("cls");
 		print_line();
-		printf("  설명222222222222222설명222222222222222설명222222222222222\n\n계속 하시려면 아무키나 누르세요.\n");
+		printf("  설명222222222222222설명222222222222222설명222222222222222\n\n   계속 하시려면 아무키나 누르세요.\n");
 		print_line();
 		if (_getch())
 			break;
@@ -187,7 +187,7 @@ void prologue() {
 	while (1) {
 		system("cls");
 		print_line();
-		printf("  설명333333333333333설명333333333333333설명333333333333333\n\n계속 하시려면 아무키나 누르세요.\n");
+		printf("  설명333333333333333설명333333333333333설명333333333333333\n\n   계속 하시려면 아무키나 누르세요.\n");
 		print_line();
 		if (_getch())
 			break;
@@ -253,7 +253,7 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[0].name, clist[0].skill[1].name);
+		printf("  ■  %s의 %s 스킬!!                                          = 선택한 캐릭터의 스킬입니다.                                 ■\n", clist[0].name, clist[0].skill[1].name);
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '3'을 누르세요.\n");
 		print_line();
@@ -322,7 +322,7 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터의 공격입니다.\n\n", clist[1].name);
+		printf("  ■  %s의 공격!!                                               = 선택한 캐릭터의 공격입니다.                                 ■\n", clist[1].name);
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '3'을 누르세요.\n");
 		print_line();
@@ -391,7 +391,7 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터의 공격입니다.\n\n", clist[2].name);
+		printf("  ■  %s의 공격!!                                               = 선택한 캐릭터의 공격입니다.                                 ■\n", clist[2].name);
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
@@ -449,7 +449,7 @@ void prologue() {
 			print_hp();
 			print_line();
 			printf("\n");
-			printf("  %s이(가) %s을(를) 공격!!                                              = 선택된 몬스터입니다.\n\n", mlist[0].name, clist[who].name);
+			printf("  %s이(가) %s을(를) 공격!!                                   = 선택된 몬스터입니다.\n\n", mlist[0].name, clist[who].name);
 			printf("\n\n");
 			printf("\n\n");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -471,7 +471,7 @@ void prologue() {
 			print_line();
 			printf("\n");
 			printf("\n\n");
-			printf("  %s이(가) %d의 데미지를 입음!!!                                = %s이(가) %d의 데미지를 입었습니다.\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
+			printf("  %s이(가) %d의 데미지를 입음!!!                                 = %s이(가) %d의 데미지를 입었습니다.\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
 			kill_character(0);
 			printf("\n\n");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -493,7 +493,7 @@ void prologue() {
 			print_hp();
 			print_line();
 			printf("\n");
-			printf("  %s이(가) %s을(를) 공격!!                                              = 선택된 몬스터입니다.\n\n", mlist[1].name, clist[who].name);
+			printf("  %s이(가) %s을(를) 공격!!                                   = 선택된 몬스터입니다.\n\n", mlist[1].name, clist[who].name);
 			printf("\n\n");
 			printf("\n\n");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -515,7 +515,7 @@ void prologue() {
 			print_line();
 			printf("\n");
 			printf("\n\n");
-			printf("  %s이(가) %d의 데미지를 입음!!!                                = %s이(가) %d의 데미지를 입었습니다.\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
+			printf("  %s이(가) %d의 데미지를 입음!!!                                 = %s이(가) %d의 데미지를 입었습니다.\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
 			kill_character(1);
 			printf("\n\n");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -584,7 +584,7 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[0].name, clist[0].skill[1].name);
+		printf("  ■  %s의 %s 스킬!!                                          = 선택한 캐릭터의 스킬입니다.                                 ■\n", clist[0].name, clist[0].skill[1].name);
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '1'을 누르세요.\n");
 		print_line();
@@ -607,7 +607,7 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[0].name, clist[0].skill[0].name);
+		printf("  %s의 %s 스킬!!                                                  = 선택한 캐릭터의 스킬입니다.\n\n", clist[0].name, clist[0].skill[0].name);
 		printf("  %s가 %d의 데미지를 입음!!!                                   = %s이(가) %d의 데미지를 입었습니다.\n", mlist[0].name, hit_damage, mlist[0].name, hit_damage);
 		prologue_kill_monster(0, 0);
 		clist[0].mp -= clist[0].skill[1].diff_mp;
@@ -653,7 +653,7 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터의 공격입니다.\n\n", clist[1].name);
+		printf("  ■  %s의 공격!!                                               = 선택한 캐릭터의 공격입니다.                                 ■\n", clist[1].name);
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '2'을 누르세요.\n");
 		print_line();
@@ -677,7 +677,7 @@ void prologue() {
 		print_line();
 		printf("\n");
 		printf("  %s의 공격!!                                                   = 선택한 캐릭터입니다.\n\n", clist[1].name);
-		printf("  %s이(가) %d의 데미지를 입음!!!                               = %s이(가) %d의 데미지를 입었습니다.\n", mlist[2].name, hit_damage, mlist[2].name, hit_damage);
+		printf("  %s이(가) %d의 데미지를 입음!!!                               = %s이(가) %d의 데미지를 입었습니다.\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
 		prologue_kill_monster(1, 0);
 		printf("\n\n");
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -748,7 +748,7 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터의 공격입니다.\n\n", clist[2].name);
+		printf("  ■  %s의 공격!!                                               = 선택한 캐릭터의 공격입니다.                                 ■\n", clist[2].name);
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
@@ -1914,7 +1914,7 @@ void prologue() {
 		}
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("\n  계속 하시려면 1를 눌러주세요.\n\n  여기에서 원하는 스킬을 선택하여 총 2개까지 장착 가능합니다.\n");
+		printf("\n  계속 하시려면 1를 눌러주세요.\n  스킬은 장착하지 않으면 던전에서 사용할 수 없습니다.\n  스킬은 캐릭터당 2개씩만 장착할 수 있습니다.\n  여기에서 원하는 스킬을 선택하여 총 2개까지 장착 가능합니다.\n");
 		a = (_getch());
 
 		if (a == '1')
@@ -1944,7 +1944,7 @@ void prologue() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("\n  계속 하시려면 1를 눌러주세요.");
+		printf("\n  계속 하시려면 1를 눌러주세요.\n  스킬은 장착하지 않으면 던전에서 사용할 수 없습니다.\n  스킬은 캐릭터당 2개씩만 장착할 수 있습니다.");
 		printf("\n");
 		printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
 		a = (_getch());
@@ -2321,6 +2321,8 @@ void prologue() {
 
 	while (1) {
 		char a;
+		statm_check();
+		statp_check();
 		system("cls");
 		printf("\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -2350,13 +2352,13 @@ void prologue() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[0].readership + clist[0].item[0].add_readership + clist[0].item[1].add_readership, clist[0].att + clist[0].readership);
+		printf("  ■          ☆  1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[0].readership, clist[0].att);
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[0].def + clist[0].noteship);
+		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[0].def);
 		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[0].noteship);
 		printf("  ■                                                            ■                   총 hp        :       %3d                   ■\n", clist[0].fhp);
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■              3.   부         :       %3d                   ■                   총 mp        :       %3d                   ■\n", clist[0].wealth, clist[0].fmp + (clist[0].wealth * 2));
+		printf("  ■              3.   부         :       %3d                   ■                   총 mp        :       %3d                   ■\n", clist[0].wealth, clist[0].fmp);
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■              남은 스텟       :       %2d                    ■                            소지 골드 : %5d                 ■\n", clist[0].spare_stat, gold);
@@ -2366,7 +2368,7 @@ void prologue() {
 		printf("  ■                               레벨  :  %2d           경험치  :  %4d / %4d    ( %2d %% )                                     ■\n", clist[0].level, clist[0].expe, fexp[clist[0].level], clist[0].persent);
 		printf("  ■                    ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■                    ■\n");
 		printf("  ■        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        ■\n");
-		printf("  ■        ■           10        20        30        40        50        60        70        80        90           ■        ■\n");
+		printf("  ■        ■           10%       20%       30%       40%       50%       60%       70%       80%       90%          ■        ■\n");
 		printf("  ■        ■  ");
 		for (int i = 0; i < 50; i++) {
 			if (i * 2 < clist[0].persent)
@@ -2384,14 +2386,7 @@ void prologue() {
 				if (a == '1') {
 					clist[0].spare_stat--;
 					clist[0].readership++;
-				}
-				if (a == '2') {
-					clist[0].spare_stat--;
-					clist[0].noteship++;
-				}
-				if (a == '3') {
-					clist[0].spare_stat--;
-					clist[0].wealth++;
+					break;
 				}
 			}
 		}
@@ -2401,6 +2396,8 @@ void prologue() {
 
 	while (1) {
 		char a;
+		statm_check();
+		statp_check();
 		system("cls");
 		printf("\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -2430,7 +2427,7 @@ void prologue() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                                                              ■\n");
-		printf("  ■              1. 리더십       :       %3d                   ■                   공격력       :       %3d                   ■\n", clist[0].readership, clist[0].att);
+		printf("  ■          ☆  1. 리더십       :       %3d    <=             ■                   공격력       :       %3d                   ■\n", clist[0].readership, clist[0].att);
 		printf("  ■                                                            ■                                                              ■\n");
 		printf("  ■                                                            ■                   방어력       :       %3d                   ■\n", clist[0].def);
 		printf("  ■              2. 필기력       :       %3d                   ■                                                              ■\n", clist[0].noteship);
@@ -2446,7 +2443,7 @@ void prologue() {
 		printf("  ■                               레벨  :  %2d           경험치  :  %4d / %4d    ( %2d %% )                                     ■\n", clist[0].level, clist[0].expe, fexp[clist[0].level], clist[0].persent);
 		printf("  ■                    ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■                    ■\n");
 		printf("  ■        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        ■\n");
-		printf("  ■        ■           10        20        30        40        50        60        70        80        90           ■        ■\n");
+		printf("  ■        ■           10%       20%       30%       40%       50%       60%       70%       80%       90%          ■        ■\n");
 		printf("  ■        ■  ");
 		for (int i = 0; i < 50; i++) {
 			if (i * 2 < clist[0].persent)
@@ -2769,7 +2766,7 @@ void c_choice(int stnum) {
 						continue;
 					}
 					if (a == '4') {
-						printf("이번 스테이지에서 나가시겠습니까? Y or N\n");
+						printf("\n이번 스테이지에서 나가시겠습니까? Y or N\n");
 						a = getch();
 						if (a == 'y' || a == 'Y')
 							town();
@@ -2881,17 +2878,17 @@ void cs_attack(int cnum, int snum, int stnum) {
 		printf("  ■  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.                             ■\n", clist[cnum].name, clist[cnum].skill[snum].name);
 		printf("  ■                                                                                                                            ■\n");
 		if (mlist[0].hp > 0)
-			printf("  ■  1. %s                                                       = %s을 공격합니다.                                    ■\n", mlist[0].name, mlist[0].name);
+			printf("  ■  1. %-18s                                = %-18s을 공격합니다.                                    ■\n", mlist[0].name, mlist[0].name);
 		if (mlist[0].hp <= 0)
 			printf("  ■                                                                                                                            ■\n");
 
 		if (mlist[1].hp > 0)
-			printf("  ■  2. %s                                                       = %s을 공격합니다.                                    ■\n", mlist[1].name, mlist[1].name);
+			printf("  ■  2. %-18s                                   = %-18s을 공격합니다.                                    ■\n", mlist[1].name, mlist[1].name);
 		if (mlist[1].hp <= 0)
 			printf("  ■                                                                                                                            ■\n");
 
 		if (mlist[2].hp > 0)
-			printf("  ■  3. %s                                                       = %s을 공격합니다.                                    ■\n", mlist[2].name, mlist[2].name);
+			printf("  ■  3. %-18s                              = %-18s을 공격합니다.                                    ■\n", mlist[2].name, mlist[2].name);
 		if (mlist[2].hp <= 0)
 			printf("  ■                                                                                                                            ■\n");		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
@@ -3578,7 +3575,7 @@ void enter_dungeon1() {
 				turn_player();
 				c_choice(14);
 				if (check_exter_boss(1) == 2) {
-					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					stlist[2].is_clear = 1;
 					print_line();
@@ -3588,7 +3585,7 @@ void enter_dungeon1() {
 				turn_monster();
 				m_choice();
 				if (check_exter_boss(1) == 1) {
-					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					print_line();
 					if (_getch())
@@ -3925,7 +3922,7 @@ void enter_dungeon2() {
 				turn_player();
 				c_choice(25);
 				if (check_exter_boss(2) == 2) {
-					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					stlist[3].is_clear = 1;
 					print_line();
@@ -3935,7 +3932,7 @@ void enter_dungeon2() {
 				turn_monster();
 				m_choice();
 				if (check_exter_boss(2) == 1) {
-					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					print_line();
 					if (_getch())
@@ -4215,7 +4212,7 @@ void enter_dungeon3() {
 				turn_player();
 				c_choice(34);
 				if (check_exter_boss(3) == 2) {
-					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					stlist[4].is_clear = 1;
 					print_line();
@@ -4225,7 +4222,7 @@ void enter_dungeon3() {
 				turn_monster();
 				m_choice();
 				if (check_exter_boss(3) == 1) {
-					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					print_line();
 					if (_getch())
@@ -4563,78 +4560,80 @@ void enter_dungeon4() {
 				turn_player();
 				c_choice(45);
 				if (check_exter_boss(4) == 2) {
-					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					print_line();
-					printf("이번 학기의 모든 과정이 끝났습니다!!\n\n");
-					printf("□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□\n");
-					printf("□                                                                          □\n");
-					printf("■                                 성적표                                   ■\n");
-					printf("□                                                                          □\n");
-					printf("■                                                                          ■\n");
-					if(clist[0].level==10)
-						printf("□                  조장의 성적       :       A+                            □\n");
-					else if (clist[0].level == 10)
-						printf("□                  조장의 성적       :       A                            □\n");
-					else if (clist[0].level >= 8)
-						printf("□                  조장의 성적       :       B+                            □\n");
-					else if (clist[0].level >= 6)
-						printf("□                  조장의 성적       :       B                            □\n");
-					else if (clist[0].level >= 4)
-						printf("□                  조장의 성적       :       C+                            □\n");
-					else if (clist[0].level >= 2)
-						printf("□                  조장의 성적       :       C                            □\n");
-					else
-						printf("□                  조장의 성적       :       D+                            □\n");
-					printf("■                                                                          ■\n");
-					printf("□                                                                          □\n");
-					printf("■                                                                          ■\n");
-					if (clist[1].level == 10)
-						printf("□                  서기의 성적       :       A+                            □\n");
-					else if (clist[1].level == 10)
-						printf("□                  서기의 성적       :       A                            □\n");
-					else if (clist[1].level >= 8)
-						printf("□                  서기의 성적       :       B+                            □\n");
-					else if (clist[1].level >= 6)
-						printf("□                  서기의 성적       :       B                            □\n");
-					else if (clist[1].level >= 4)
-						printf("□                  서기의 성적       :       C+                            □\n");
-					else if (clist[1].level >= 2)
-						printf("□                  서기의 성적       :       C                            □\n");
-					else
-						printf("□                  서기의 성적       :       D+                            □\n");
-					printf("■                                                                          ■\n");
-					printf("□                                                                          □\n");
-					printf("■                                                                          ■\n");
-					if (clist[2].level == 10)
-						printf("□                  지갑의 성적       :       A+                            □\n");
-					else if (clist[2].level == 10)
-						printf("□                  지갑의 성적       :       A                            □\n");
-					else if (clist[2].level >= 8)
-						printf("□                  지갑의 성적       :       B+                            □\n");
-					else if (clist[2].level >= 6)
-						printf("□                  지갑의 성적       :       B                            □\n");
-					else if (clist[2].level >= 4)
-						printf("□                  지갑의 성적       :       C+                            □\n");
-					else if (clist[2].level >= 2)
-						printf("□                  지갑의 성적       :       C                            □\n");
-					else
-						printf("□                  지갑의 성적       :       D+                            □\n");
-					printf("□                                                                          □\n");
-					printf("■                                                                          ■\n");
-					printf("□                                                                          □\n");
-					printf("■                                                                          ■\n");
-					printf("□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□\n");
+					printf("\n                 이번 학기의 모든 과정이 끝났습니다!!\n\n");
+					while (1) {
+						printf("□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□\n");
+						printf("□                                                                          □\n");
+						printf("■                                 성적표                                   ■\n");
+						printf("□                                                                          □\n");
+						printf("■                                                                          ■\n");
+						if (clist[0].level == 10)
+							printf("□                  조장의 성적       :       A+                            □\n");
+						else if (clist[0].level == 10)
+							printf("□                  조장의 성적       :       A                            □\n");
+						else if (clist[0].level >= 8)
+							printf("□                  조장의 성적       :       B+                            □\n");
+						else if (clist[0].level >= 6)
+							printf("□                  조장의 성적       :       B                            □\n");
+						else if (clist[0].level >= 4)
+							printf("□                  조장의 성적       :       C+                            □\n");
+						else if (clist[0].level >= 2)
+							printf("□                  조장의 성적       :       C                            □\n");
+						else
+							printf("□                  조장의 성적       :       D+                            □\n");
+						printf("■                                                                          ■\n");
+						printf("□                                                                          □\n");
+						printf("■                                                                          ■\n");
+						if (clist[1].level == 10)
+							printf("□                  서기의 성적       :       A+                            □\n");
+						else if (clist[1].level == 10)
+							printf("□                  서기의 성적       :       A                            □\n");
+						else if (clist[1].level >= 8)
+							printf("□                  서기의 성적       :       B+                            □\n");
+						else if (clist[1].level >= 6)
+							printf("□                  서기의 성적       :       B                            □\n");
+						else if (clist[1].level >= 4)
+							printf("□                  서기의 성적       :       C+                            □\n");
+						else if (clist[1].level >= 2)
+							printf("□                  서기의 성적       :       C                            □\n");
+						else
+							printf("□                  서기의 성적       :       D+                            □\n");
+						printf("■                                                                          ■\n");
+						printf("□                                                                          □\n");
+						printf("■                                                                          ■\n");
+						if (clist[2].level == 10)
+							printf("□                  지갑의 성적       :       A+                            □\n");
+						else if (clist[2].level == 10)
+							printf("□                  지갑의 성적       :       A                            □\n");
+						else if (clist[2].level >= 8)
+							printf("□                  지갑의 성적       :       B+                            □\n");
+						else if (clist[2].level >= 6)
+							printf("□                  지갑의 성적       :       B                            □\n");
+						else if (clist[2].level >= 4)
+							printf("□                  지갑의 성적       :       C+                            □\n");
+						else if (clist[2].level >= 2)
+							printf("□                  지갑의 성적       :       C                            □\n");
+						else
+							printf("□                  지갑의 성적       :       D+                            □\n");
+						printf("□                                                                          □\n");
+						printf("■                                                                          ■\n");
+						printf("□                                                                          □\n");
+						printf("■                                                                          ■\n");
+						printf("□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□\n");
 
-					printf("게임을 종료하시려면 b를 눌러주세요.\n");
-					b = _getch();
-					if (b == 'b' || b == 'B')
-						exit(0);
+						printf("게임을 종료하시려면 b를 눌러주세요.\n");
+						b = _getch();
+						if (b == 'b' || b == 'B')
+							exit(0);
+					}
 				}
 				turn_monster();
 				m_choice();
 				if (check_exter_boss(4) == 1) {
-					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
 					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 					print_line();
 					if (_getch())

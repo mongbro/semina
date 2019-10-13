@@ -12,7 +12,6 @@ CHA clist[3] = { 0 };
 
 void initial_charac() {
 	skill_set();
-	//initial_exp();
 	strcpy(clist[0].name, "조장");
 	strcpy(clist[1].name, "서기");
 	strcpy(clist[2].name, "지갑");
@@ -38,14 +37,6 @@ void initial_charac() {
 	clist[0].skill[1] = slist[1];
 	clist[0].skill[2] = slist[2];
 
-	///////////테스트 시작
-
-	clist[1].skill[1] = slist[15];
-	clist[1].skill[2] = slist[17];
-	clist[2].skill[1] = slist[22];
-	clist[2].skill[2] = slist[30];
-
-	///////////테스트 끝
 
 	clist[0].item[0] = ilist[10];
 	clist[1].item[0] = ilist[20];
