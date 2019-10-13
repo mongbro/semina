@@ -164,11 +164,13 @@ void prologue_kill_monster(int cnum, int stnum) {
 	int item_num;
 	for (int i = 0; i < 3; i++) {
 		if (mlist[i].hp <= 0 && mlist[i].condition == 0) {
-			printf("\n\n  %s이(가) 죽었습니다!!                                        %s이(가) %d의 골드를 드랍했습니다!!\n\n", mlist[i].name, mlist[i].name, add_gold);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■ %s이(가) 죽었습니다!!                                     %s이(가) %2d의 골드를 드랍했습니다!!                        ■\n", mlist[i].name, mlist[i].name, add_gold);
 			gold += add_gold;
 			if (chance_drop == 0) {
 				item_num = rand() % stlist[stnum].num_item;
-				printf("  %s을(를) 획득!!\n", stlist[stnum].drop_item[item_num].name);
+				printf("  ■                                                            %20s을(를) 획득!!                               ■\n", stlist[stnum].drop_item[item_num].name);
 
 				ilist[stlist[stnum].drop_item[item_num].num].ea++;
 

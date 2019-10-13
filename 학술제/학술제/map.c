@@ -157,10 +157,20 @@ void event_hit() {
 
 void prologue() {
 	stage_prologue();
+	statm_check();
+	statp_check();
 	while (1) {
 		system("cls");
 		print_line();
-		printf("  프롤로그입니다.~~~~~~\n    이 게임은 저장기능을 지원하지 않습니다!!!!!\n    신중하게 선택을 해주세요!!!!!\n    방향키를 누르면 여러 페이지가 한번에 넘어갈 수도 있습니다.ㅠㅠ\n\n\n    계속 하시려면 아무키나 누르세요.\n");
+		printf("\n");
+		printf("  ■ 프롤로그입니다.~~~~~~                                                                                                      ■\n");
+		printf("  ■ 이 게임은 저장기능을 지원하지 않습니다!!!!!                                                                                ■\n");
+		printf("  ■ 신중하게 선택을 해주세요!!!!!                                                                                              ■\n");
+		printf("  ■ 방향키를 누르면 여러 페이지가 한번에 넘어갈 수도 있습니다.ㅠㅠ                                                             ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 계속 하시려면 아무키나 누르세요.                                                                                           ■\n");
+		printf("  ■                                                                                                                            ■");
 		print_line();
 		if (_getch())
 			break;
@@ -169,25 +179,14 @@ void prologue() {
 	while (1) {
 		system("cls");
 		print_line();
-		printf("  설명1111111111111111설명11111111111111설명11111111111111\n\n   계속 하시려면 아무키나 누르세요.\n");
-		print_line();
-		if (_getch())
-			break;
-	}
-
-	while (1) {
-		system("cls");
-		print_line();
-		printf("  설명222222222222222설명222222222222222설명222222222222222\n\n   계속 하시려면 아무키나 누르세요.\n");
-		print_line();
-		if (_getch())
-			break;
-	}
-
-	while (1) {
-		system("cls");
-		print_line();
-		printf("  설명333333333333333설명333333333333333설명333333333333333\n\n   계속 하시려면 아무키나 누르세요.\n");
+		printf("\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 재수강을 피하기 위해 같은조를 하게 된 조원들이 과제와 시험을 물리치고 학점을 얻게되는 이야기 입니다.                       ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 계속 하시려면 아무키나 누르세요.                                                                                           ■\n");
+		printf("  ■                                                                                                                            ■");
 		print_line();
 		if (_getch())
 			break;
@@ -205,11 +204,15 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[0].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+		printf("  ■ %s의 기술!!                                                = 공격하는 아군 캐릭터의 이름입니다.                          ■\n", clist[0].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. 기본공격                                                  = 캐릭터의 기본 공격을 합니다.                                ■\n");
+		printf("  ■ 2. 스킬                                                      = 캐릭터의 스킬을 선택합니다.                                 ■\n");
+		printf("  ■ 3. 아이템                                                    = 인벤토리에서 사용 가능한 아이템을 선택합니다.               ■\n");
+		printf("  ■ 4. 도망치기!                                                 = 이번 스테이지는 포기합니다.                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
 		printf("\n    ※아군 캐릭터는 조장, 서기, 지갑 순으로 진행됩니다.\n    ※취소 기능은 지원하지 않습니다!! \n    신중히 선택하세요.");
@@ -231,9 +234,13 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 스킬!!                                                   = 선택한 캐릭터의 이름입니다.\n\n", clist[0].name);
-		printf("  1. %s  : att + %2d def + %2d mp - %2d                            = %s의 스킬을 선택합니다.\n", clist[0].skill[1].name, clist[0].skill[1].add_att, clist[0].skill[1].add_def, clist[0].skill[1].diff_mp, clist[0].name);
-		printf("  2. %s  : att + %2d def + %2d mp - %2d                            = %s의 스킬을 선택합니다.\n", clist[0].skill[2].name, clist[0].skill[2].add_att, clist[0].skill[2].add_def, clist[0].skill[2].diff_mp, clist[0].name);
+		printf("  ■ %s의 스킬!!                                                = 선택한 캐릭터의 이름입니다.                                 ■\n", clist[0].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. %s  : att + %2d def + %2d mp - %2d                         = %s의 스킬을 선택합니다.                                   ■\n", clist[0].skill[1].name, clist[0].skill[1].add_att, clist[0].skill[1].add_def, clist[0].skill[1].diff_mp, clist[0].name);
+		printf("  ■ 2. %s  : att + %2d def + %2d mp - %2d                         = %s의 스킬을 선택합니다.                                   ■\n", clist[0].skill[2].name, clist[0].skill[2].add_att, clist[0].skill[2].add_def, clist[0].skill[2].diff_mp, clist[0].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
 		a = _getch();
@@ -276,9 +283,12 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 %s 스킬!!                                              = 선택한 캐릭터의 스킬입니다.\n\n", clist[0].name, clist[0].skill[1].name);
-		printf("  %s가 %d의 데미지를 입음!!!                                   = %s이(가) %d의 데미지를 입었습니다.\n", mlist[2].name, hit_damage, mlist[2].name, hit_damage);
-		clist[0].mp -= clist[0].skill[2].diff_mp;
+		printf("  ■ %s의 %s 스킬!!                                           = 선택한 캐릭터의 스킬입니다.                                 ■\n", clist[0].name, clist[0].skill[1].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ %s가 %d의 데미지를 입음!!!                                = %s이(가) %d의 데미지를 입었습니다.                       ■\n", mlist[2].name, hit_damage, mlist[2].name, hit_damage);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		kill_monster(0, 0);
 		printf("\n\n");
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -288,6 +298,7 @@ void prologue() {
 	}
 
 	while (1) {															//////////////// 프롤로그 c1 기술선택
+		hit_damage = 0;
 		char a;
 		system("cls");
 		print_line();
@@ -297,11 +308,15 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[1].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+		printf("  ■ %s의 기술!!                                                = 공격하는 아군 캐릭터의 이름입니다.                          ■\n", clist[1].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. 기본공격                                                  = 캐릭터의 기본 공격을 합니다.                                ■\n");
+		printf("  ■ 2. 스킬                                                      = 캐릭터의 스킬을 선택합니다.                                 ■\n");
+		printf("  ■ 3. 아이템                                                    = 인벤토리에서 사용 가능한 아이템을 선택합니다.               ■\n");
+		printf("  ■ 4. 도망치기!                                                 = 이번 스테이지는 포기합니다.                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '1'을 누르세요.\n");
 		print_line();
 		printf("\n    ※조장은 공격에 특화(딜러)되어있고, 서기는 방어(탱커), 지갑은 회복에 특화(힐러)되어 있습니다.");
@@ -346,10 +361,13 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터입니다.\n\n", clist[1].name);
-		printf("  %s이(가) %d의 데미지를 입음!!!                               = %s이(가) %d의 데미지를 입었습니다.\n", mlist[2].name, hit_damage, mlist[2].name, hit_damage);
+		printf("  ■ %s의 공격!!                                                = 선택한 캐릭터입니다.                                        ■\n", clist[1].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ %s이(가) %d의 데미지를 입음!!!                            = %s이(가) %d의 데미지를 입었습니다.                       ■\n", mlist[2].name, hit_damage, mlist[2].name, hit_damage);
+		printf("  ■                                                                                                                            ■\n");
 		prologue_kill_monster(1, 0);
-		printf("\n\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 		print_line();
 		if (_getch())
@@ -358,6 +376,7 @@ void prologue() {
 
 	while (1) {															//////////////// 프롤로그 c2 기술선택
 		char a;
+		hit_damage = 0;
 		system("cls");
 		print_line();
 		print_map();
@@ -366,11 +385,15 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[2].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+		printf("  ■ %s의 기술!!                                                = 공격하는 아군 캐릭터의 이름입니다.                          ■\n", clist[2].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. 기본공격                                                  = 캐릭터의 기본 공격을 합니다.                                ■\n");
+		printf("  ■ 2. 스킬                                                      = 캐릭터의 스킬을 선택합니다.                                 ■\n");
+		printf("  ■ 3. 아이템                                                    = 인벤토리에서 사용 가능한 아이템을 선택합니다.               ■\n");
+		printf("  ■ 4. 도망치기!                                                 = 이번 스테이지는 포기합니다.                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '1'을 누르세요.\n");
 		print_line();
 		printf("\n    ※각자 특성은 있지만 모두 기본공격은 할 수 있습니다.");
@@ -405,19 +428,8 @@ void prologue() {
 
 	event_hit();
 
-	while (1) {															//////////////// 프롤로그 c2 공격 효과
-		system("cls");								///////////////이거 본편에 추가
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
+	while (1) {
+		system("cls");
 		print_line();
 		print_map();
 		print_line();
@@ -425,8 +437,12 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터입니다.\n\n", clist[2].name);
-		printf("  %s이(가) %d의 데미지를 입음!!!                               = %s이(가) %d의 데미지를 입었습니다.\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
+		printf("  ■ %s의 공격!!                                                = 선택한 캐릭터입니다.                                        ■\n", clist[2].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ %s이(가) %d의 데미지를 입음!!!                            = %s이(가) %d의 데미지를 입었습니다.                       ■\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		kill_monster(2, 0);
 		printf("\n\n");
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -442,6 +458,7 @@ void prologue() {
 		who = choice_monster_to_character();
 		while (1) {															//////////////// 프롤로그 m0 공격 
 			system("cls");
+			hit_damage = 0;
 			print_line();
 			print_map();
 			print_line();
@@ -449,8 +466,11 @@ void prologue() {
 			print_hp();
 			print_line();
 			printf("\n");
-			printf("  %s이(가) %s을(를) 공격!!                                   = 선택된 몬스터입니다.\n\n", mlist[0].name, clist[who].name);
-			printf("\n\n");
+			printf("  ■ %s이(가) %s을(를) 공격!!                                = 선택된 몬스터입니다.                                        ■\n", mlist[0].name, clist[who].name);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■");
+			print_line();
 			printf("\n\n");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 			damage_monster_to_character(who, 0);
@@ -470,8 +490,12 @@ void prologue() {
 			print_hp();
 			print_line();
 			printf("\n");
-			printf("\n\n");
-			printf("  %s이(가) %d의 데미지를 입음!!!                                 = %s이(가) %d의 데미지를 입었습니다.\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■ %s이(가) %d의 데미지를 입음!!!                              = %s이(가) %d의 데미지를 입었습니다.                         ■\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■");
+			print_line();
 			kill_character(0);
 			printf("\n\n");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -486,6 +510,7 @@ void prologue() {
 		who = choice_monster_to_character();
 		while (1) {															//////////////// 프롤로그 m1 공격
 			system("cls");
+			hit_damage = 0;
 			print_line();
 			print_map();
 			print_line();
@@ -493,8 +518,11 @@ void prologue() {
 			print_hp();
 			print_line();
 			printf("\n");
-			printf("  %s이(가) %s을(를) 공격!!                                   = 선택된 몬스터입니다.\n\n", mlist[1].name, clist[who].name);
-			printf("\n\n");
+			printf("  ■ %s이(가) %s을(를) 공격!!                                = 선택된 몬스터입니다.                                        ■\n", mlist[1].name, clist[who].name);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■");
+			print_line();
 			printf("\n\n");
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 			damage_monster_to_character(who, 1);
@@ -514,10 +542,12 @@ void prologue() {
 			print_hp();
 			print_line();
 			printf("\n");
-			printf("\n\n");
-			printf("  %s이(가) %d의 데미지를 입음!!!                                 = %s이(가) %d의 데미지를 입었습니다.\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
-			kill_character(1);
-			printf("\n\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■ %s이(가) %d의 데미지를 입음!!!                              = %s이(가) %d의 데미지를 입었습니다.                         ■\n", clist[who].name, hit_damage, clist[who].name, hit_damage);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■");
+			print_line();
 			printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 			print_line();
 			if (_getch())
@@ -529,6 +559,7 @@ void prologue() {
 
 	while (1) {															//////////////// 프롤로그 c0 기술 효과
 		char a;
+		hit_damage = 0;
 		system("cls");
 		print_line();
 		print_map();
@@ -537,11 +568,15 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[0].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+		printf("  ■ %s의 기술!!                                                = 공격하는 아군 캐릭터의 이름입니다.                          ■\n", clist[0].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. 기본공격                                                  = 캐릭터의 기본 공격을 합니다.                                ■\n");
+		printf("  ■ 2. 스킬                                                      = 캐릭터의 스킬을 선택합니다.                                 ■\n");
+		printf("  ■ 3. 아이템                                                    = 인벤토리에서 사용 가능한 아이템을 선택합니다.               ■\n");
+		printf("  ■ 4. 도망치기!                                                 = 이번 스테이지는 포기합니다.                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
 		printf("\n    ※취소 기능은 지원하지 않습니다!! \n    신중히 선택하세요.");
@@ -562,9 +597,13 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 스킬!!                                                   = 선택한 캐릭터의 이름입니다.\n\n", clist[0].name);
-		printf("  1. %s  : att + %2d def + %2d mp - %2d                            = %s의 스킬을 선택합니다.\n", clist[0].skill[1].name, clist[0].skill[1].add_att, clist[0].skill[1].add_def, clist[0].skill[1].diff_mp, clist[0].name);
-		printf("  2. %s  : att + %2d def + %2d mp - %2d                            = %s의 스킬을 선택합니다.\n", clist[0].skill[2].name, clist[0].skill[2].add_att, clist[0].skill[2].add_def, clist[0].skill[2].diff_mp, clist[0].name);
+		printf("  ■ %s의 스킬!!                                                = 선택한 캐릭터의 이름입니다.                                 ■\n", clist[0].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. %s  : att + %2d def + %2d mp - %2d                         = %s의 스킬을 선택합니다.                                   ■\n", clist[0].skill[1].name, clist[0].skill[1].add_att, clist[0].skill[1].add_def, clist[0].skill[1].diff_mp, clist[0].name);
+		printf("  ■ 1. %s  : att + %2d def + %2d mp - %2d                         = %s의 스킬을 선택합니다.                                   ■\n", clist[0].skill[2].name, clist[0].skill[2].add_att, clist[0].skill[2].add_def, clist[0].skill[2].diff_mp, clist[0].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '1'를 누르세요.\n");
 		print_line();
 		a = _getch();
@@ -607,9 +646,12 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 %s 스킬!!                                                  = 선택한 캐릭터의 스킬입니다.\n\n", clist[0].name, clist[0].skill[0].name);
-		printf("  %s가 %d의 데미지를 입음!!!                                   = %s이(가) %d의 데미지를 입었습니다.\n", mlist[0].name, hit_damage, mlist[0].name, hit_damage);
+		printf("  ■ %s의 %s 스킬!!                                               = 선택한 캐릭터의 스킬입니다.                                 ■\n", clist[0].name, clist[0].skill[0].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ %s가 %d의 데미지를 입음!!!                                = %s이(가) %d의 데미지를 입었습니다.                       ■\n", mlist[0].name, hit_damage, mlist[0].name, hit_damage);
 		prologue_kill_monster(0, 0);
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		clist[0].mp -= clist[0].skill[1].diff_mp;
 		printf("\n\n");
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
@@ -620,6 +662,7 @@ void prologue() {
 
 	while (1) {															//////////////// 프롤로그 c1 기술선택
 		char a;
+		hit_damage = 0;
 		system("cls");
 		print_line();
 		print_map();
@@ -628,11 +671,15 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[1].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+		printf("  ■ %s의 기술!!                                                = 공격하는 아군 캐릭터의 이름입니다.                          ■\n", clist[1].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. 기본공격                                                  = 캐릭터의 기본 공격을 합니다.                                ■\n");
+		printf("  ■ 2. 스킬                                                      = 캐릭터의 스킬을 선택합니다.                                 ■\n");
+		printf("  ■ 3. 아이템                                                    = 인벤토리에서 사용 가능한 아이템을 선택합니다.               ■\n");
+		printf("  ■ 4. 도망치기!                                                 = 이번 스테이지는 포기합니다.                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '1'을 누르세요.\n");
 		print_line();
 		printf("\n    ※조장은 공격에 특화(딜러)되어있고, 서기는 방어(탱커), 지갑은 회복에 특화(힐러)되어 있습니다.\n    ※특화되어있는  능력 외에 기본공격은 누구나 가능합니다.\n");
@@ -676,10 +723,13 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터입니다.\n\n", clist[1].name);
-		printf("  %s이(가) %d의 데미지를 입음!!!                               = %s이(가) %d의 데미지를 입었습니다.\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
+		printf("  ■  %s의 공격!!                                               = 선택한 캐릭터의 공격입니다.                                 ■\n", clist[1].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ %s가 %d의 데미지를 입음!!!                                = %s이(가) %d의 데미지를 입었습니다.                       ■\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
 		prologue_kill_monster(1, 0);
-		printf("\n\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 		print_line();
 		if (_getch())
@@ -688,6 +738,7 @@ void prologue() {
 
 	while (1) {															//////////////// 프롤로그 c2 기술선택
 		char a;
+		hit_damage = 0;
 		system("cls");
 		print_line();
 		print_map();
@@ -696,11 +747,15 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[2].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+		printf("  ■ %s의 기술!!                                                = 공격하는 아군 캐릭터의 이름입니다.                          ■\n", clist[2].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. 기본공격                                                  = 캐릭터의 기본 공격을 합니다.                                ■\n");
+		printf("  ■ 2. 스킬                                                      = 캐릭터의 스킬을 선택합니다.                                 ■\n");
+		printf("  ■ 3. 아이템                                                    = 인벤토리에서 사용 가능한 아이템을 선택합니다.               ■\n");
+		printf("  ■ 4. 도망치기!                                                 = 이번 스테이지는 포기합니다.                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '3'을 누르세요.\n");
 		print_line();
 		printf("\n    ※각자 특성은 있지만 모두 기본공격은 할 수 있습니다.");
@@ -715,6 +770,7 @@ void prologue() {
 
 	while (1) {															//////////////// 프롤로그 c2 기술선택
 		char a;
+		hit_damage = 0;
 		system("cls");
 		print_line();
 		print_map();
@@ -723,11 +779,15 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 기술!!                                                   = 공격하는 아군 캐릭터의 이름입니다.\n\n", clist[2].name);
-		printf("  1. 기본공격                                                     = 캐릭터의 기본 공격을 합니다.\n");
-		printf("  2. 스킬                                                         = 캐릭터의 스킬을 선택합니다.\n");
-		printf("  3. 아이템                                                       = 인벤토리에서 사용 가능한 아이템을 선택합니다.\n");
-		printf("  4. 도망치기!                                                    = 이번 스테이지는 포기합니다.\n");
+		printf("  ■ %s의 기술!!                                                = 공격하는 아군 캐릭터의 이름입니다.                          ■\n", clist[2].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 1. 기본공격                                                  = 캐릭터의 기본 공격을 합니다.                                ■\n");
+		printf("  ■ 2. 스킬                                                      = 캐릭터의 스킬을 선택합니다.                                 ■\n");
+		printf("  ■ 3. 아이템                                                    = 인벤토리에서 사용 가능한 아이템을 선택합니다.               ■\n");
+		printf("  ■ 4. 도망치기!                                                 = 이번 스테이지는 포기합니다.                                 ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n  계속 하시려면 '1'을 누르세요.\n");
 		print_line();
 		printf("\n    ※각자 특성은 있지만 모두 기본공격은 할 수 있습니다.");
@@ -771,9 +831,13 @@ void prologue() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  %s의 공격!!                                                   = 선택한 캐릭터입니다.\n\n", clist[2].name);
-		printf("  %s이(가) %d의 데미지를 입음!!!                               = %s이(가) %d의 데미지를 입었습니다.\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
+		printf("  ■  %s의 공격!!                                               = 선택한 캐릭터의 공격입니다.                                 ■\n", clist[2].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ %s가 %d의 데미지를 입음!!!                                = %s이(가) %d의 데미지를 입었습니다.                       ■\n", mlist[1].name, hit_damage, mlist[1].name, hit_damage);
 		prologue_kill_monster(2, 0);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
 		printf("\n\n");
 
 		if (check_exter() == 1) {
@@ -3212,10 +3276,13 @@ void turn_monster() {
 		print_hp();
 		print_line();
 		printf("\n");
-		printf("  몬스터의 턴!!\n\n");
-		printf("  몬스터의 턴입니다!!\n");
-		printf("  \n");
-		printf("\n\n\n");
+		printf("  ■ 몬스터의 턴!!                                                                                                              ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 몬스터의 턴입니다!!                                                                                                        ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
 		print_line();
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 		print_line();

@@ -681,7 +681,7 @@ void town_inventory5() {
 					index++;
 				}
 				if (i >= 30 && i < 40) {
-					printf("  ■  %2d. %20s                   필기력(방어력) : %2d                   mp 증가 : %3d         남은 개수 : %3d    ■\n", index, ilist[i].name, ilist[i].add_wealth, ilist[i].add_mp, ilist[i].ea);
+					printf("  ■  %2d. %20s                     부  (마나) : %2d                     mp 증가 : %3d         남은 개수 : %3d    ■\n", index, ilist[i].name, ilist[i].add_wealth, ilist[i].add_mp, ilist[i].ea);
 					printf("  ■                                                                                                                            ■\n");
 					printf("  ■                                                                                                                            ■\n");
 					n[i] = i;
@@ -1498,24 +1498,23 @@ void use_item(int index) {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		if (clist[0].hp > 0)
-			printf("  ■  %s                                                       ○                                                        ■\n", clist[0].name);
+			printf("  ■  %s                                                       ○                                                             ■\n", clist[0].name);
 		if (clist[0].hp <= 0)
-			printf("  ■                                                                 ○                                                        ■\n");
+			printf("  ■                                                             ○                                                             ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		if (clist[1].hp > 0)
-			printf("  ■  %s                                                       ○                                                        ■\n", clist[1].name);
+			printf("  ■  %s                                                       ○                                                             ■\n", clist[1].name);
 		if (clist[1].hp <= 0)
-			printf("  ■                                                                 ○                                                        ■\n");
+			printf("  ■                                                             ○                                                             ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		if (clist[2].hp > 0)
-			printf("  ■  %s                                                       ○                                                        ■\n", clist[2].name);
+			printf("  ■  %s                                                       ○                                                             ■\n", clist[2].name);
 		if (clist[2].hp <= 0)
-			printf("  ■                                                                 ○                                                        ■\n");
+			printf("  ■                                                             ○                                                             ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
@@ -1524,27 +1523,27 @@ void use_item(int index) {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		if (clist[0].hp > 0)
-			printf("  ■  1. %s의 체력 : %3d / %3d    마나 : %3d / %3d               ○                                   ■\n", clist[0].name, clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp);
-		printf("  ■                                                                                                                            ■\n");
-		printf("  ■                                                                                                                            ■\n");
+			printf("  ■  1. %s의 체력 : %3d / %3d    마나 : %3d / %3d             ○                                                             ■\n", clist[0].name, clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp);
 		if (clist[0].hp <= 0)
-			printf("  ■                                                       ○                                     ■\n");
+			printf("  ■                                                             ○                                                             ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		if (clist[1].hp > 0)
-			printf("  ■  2. %s의 체력 : %3d / %3d    마나 : %3d / %3d               ○                                     ■\n", clist[1].name, clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp);
-		printf("  ■                                                                                                                            ■\n");
-		printf("  ■                                                                                                                            ■\n");
+			printf("  ■  2. %s의 체력 : %3d / %3d    마나 : %3d / %3d             ○                                                             ■\n", clist[1].name, clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp);
 		if (clist[1].hp <= 0)
-			printf("  ■                                                       ○                                     ■\n");
+			printf("  ■                                                             ○                                                             ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		if (clist[2].hp > 0)
-			printf("  ■  3. %s의 체력 : %3d / %3d    마나 : %3d / %3d               ○                                     ■\n", clist[2].name, clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp);
-		printf("  ■                                                                                                                            ■\n");
-		printf("  ■                                                                                                                            ■\n");
+			printf("  ■  3. %s의 체력 : %3d / %3d    마나 : %3d / %3d             ○                                                             ■\n", clist[2].name, clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp);
 		if (clist[2].hp <= 0)
-			printf("  ■                                                       ○                                     ■\n");
+			printf("  ■                                                             ○                                                             ■\n");
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -1554,7 +1553,7 @@ void use_item(int index) {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■  아이템 이름 : %20s             hp : %2d   mp : %2d   남은 개수 : %2d                ■\n", ilist[check].name, ilist[check].add_hp, ilist[check].add_mp, ilist[check].ea);
+		printf("  ■  아이템 이름 : %20s             hp : %2d   mp : %2d   남은 개수 : %2d                                         ■\n", ilist[check].name, ilist[check].add_hp, ilist[check].add_mp, ilist[check].ea);
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  사용할 캐릭터를 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n\n  던전 안에서는 소비형 아이템만 사용이 가능합니다.\n");
 		a = (_getch());
@@ -1937,28 +1936,28 @@ void item_store_choice_buy3() {
 		printf("  ■               이름                   능력치1                       능력치2                          가격                   ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     1. %20s         마나 : %2d                                                     %3d  골드                ■\n", ilist[30].name, ilist[30].add_wealth, ilist[20].price);
+		printf("  ■     1. %20s       부(마나) : %2d                                                   %3d  골드                ■\n", ilist[30].name, ilist[30].add_wealth, ilist[20].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     2. %20s         마나 : %2d                                                     %3d  골드                ■\n", ilist[31].name, ilist[31].add_wealth, ilist[31].price);
+		printf("  ■     2. %20s       부(마나) : %2d                                                   %3d  골드                ■\n", ilist[31].name, ilist[31].add_wealth, ilist[31].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     3. %20s         마나 : %2d                                                     %3d  골드                ■\n", ilist[32].name, ilist[32].add_wealth, ilist[32].price);
+		printf("  ■     3. %20s       부(마나) : %2d                                                   %3d  골드                ■\n", ilist[32].name, ilist[32].add_wealth, ilist[32].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     4. %20s         마나 : %2d                                                     %3d  골드                ■\n", ilist[33].name, ilist[33].add_wealth, ilist[33].price);
+		printf("  ■     4. %20s       부(마나) : %2d                                                   %3d  골드                ■\n", ilist[33].name, ilist[33].add_wealth, ilist[33].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     5. %20s         마나 : %2d                   최대마나 : %3d                    %3d  골드                ■\n", ilist[34].name, ilist[34].add_wealth, ilist[34].add_mp, ilist[34].price);
+		printf("  ■     5. %20s       부(마나) : %2d                 최대마나 : %3d                    %3d  골드                ■\n", ilist[34].name, ilist[34].add_wealth, ilist[34].add_mp, ilist[34].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     6. %20s         마나 : %2d                   최대마나 : %3d                    %3d  골드                ■\n", ilist[35].name, ilist[35].add_wealth, ilist[34].add_mp, ilist[35].price);
+		printf("  ■     6. %20s       부(마나) : %2d                 최대마나 : %3d                    %3d  골드                ■\n", ilist[35].name, ilist[35].add_wealth, ilist[34].add_mp, ilist[35].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     7. %20s         마나 : %2d                   최대마나 : %3d                    %3d  골드                ■\n", ilist[36].name, ilist[36].add_wealth, ilist[34].add_mp, ilist[36].price);
+		printf("  ■     7. %20s       부(마나) : %2d                 최대마나 : %3d                    %3d  골드                ■\n", ilist[36].name, ilist[36].add_wealth, ilist[34].add_mp, ilist[36].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■     8. %20s         마나 : %2d                   최대마나 : %3d                    %3d  골드                ■\n", ilist[37].name, ilist[37].add_wealth, ilist[34].add_mp, ilist[37].price);
+		printf("  ■     8. %20s       부(마나) : %2d                 최대마나 : %3d                    %3d  골드                ■\n", ilist[37].name, ilist[37].add_wealth, ilist[34].add_mp, ilist[37].price);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
