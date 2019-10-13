@@ -207,6 +207,8 @@ void stage2_B_monster() {
 	mlist[0].def = 80;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 1000;
+	mlist[1].condition = 1;
+	mlist[2].condition = 1;
 }
 
 
@@ -300,6 +302,8 @@ void stage3_B_monster() {
 	mlist[0].def = 10;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 100;
+	mlist[1].condition = 1;
+	mlist[2].condition = 1;
 }
 
 
@@ -408,4 +412,6 @@ void stage4_B_monster() {
 	mlist[0].def = 80;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 1000;
+	mlist[1].condition = 1;
+	mlist[2].condition = 1;
 }

@@ -45,7 +45,7 @@ void print_map() {
 	if (clist[2].hp > 0 && mlist[2].hp <= 0)
 		printf("  ■  %s                                                           ○                                                         ■\n", clist[2].name);
 	if (clist[2].hp <= 0 && mlist[2].hp <= 0)
-		printf("  ■                                                                 ○                                                       ■\n");
+		printf("  ■                                                                 ○                                                         ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■");
@@ -78,7 +78,7 @@ void print_hp() {
 	if (clist[2].hp > 0 && mlist[2].hp <= 0)
 		printf("  ■  %s의 체력 : %3d / %3d                                    ○                                                             ■\n", clist[2].name, clist[2].hp, clist[2].fhp);
 	if (clist[2].hp <= 0 && mlist[2].hp <= 0)
-		printf("                                                             ○                                                               ■\n");
+		printf("  ■                                                             ○                                                               ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■");
@@ -2740,7 +2740,7 @@ void c_choice(int stnum) {
 					if (a == '1') {
 						c_attack(i, stnum);
 						if (check_exter() == 2) {
-							printf("\n\n  첫번째 적들을 모두 처치했습니다!!\n\n");
+							printf("\n\n  적들을 모두 처치했습니다!!\n\n");
 							printf("  계속 하시려면 아무키나 누르세요.\n");
 							print_line();
 							if (_getch())
@@ -2753,7 +2753,7 @@ void c_choice(int stnum) {
 					if (a == '2') {
 						c_skill(i, stnum);
 						if (check_exter() == 2) {
-							printf("\n\n  첫번째 적들을 모두 처치했습니다!!\n\n");
+							printf("\n\n  적들을 모두 처치했습니다!!\n\n");
 							printf("  계속 하시려면 아무키나 누르세요.\n");
 							print_line();
 							if (_getch())
@@ -2768,8 +2768,14 @@ void c_choice(int stnum) {
 						i--;
 						continue;
 					}
-					if (a == '4')
-						town();
+					if (a == '4') {
+						printf("이번 스테이지에서 나가시겠습니까? Y or N\n");
+						a = getch();
+						if (a == 'y' || a == 'Y')
+							town();
+						else
+							continue;
+					}
 					else {
 						i--;
 						continue;
@@ -2797,17 +2803,17 @@ void c_attack(int cnum, int stnum) {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		if (mlist[0].hp > 0) 
-			printf("  ■  1. %s                                                       = %s을 공격합니다.                                    ■\n", mlist[0].name, mlist[0].name);
+			printf("  ■  1. %-18s                                             = %18s을(를) 공격합니다.                  ■\n", mlist[0].name, mlist[0].name);
 		if (mlist[0].hp <= 0)
 			printf("  ■                                                                                                                            ■\n");
 
 		if (mlist[1].hp > 0)
-			printf("  ■  2. %s                                                       = %s을 공격합니다.                                    ■\n", mlist[1].name, mlist[1].name);
+			printf("  ■  2. %-18s                                             = %18s을(를) 공격합니다.                  ■\n", mlist[1].name, mlist[1].name);
 		if (mlist[1].hp <= 0)
 			printf("  ■                                                                                                                            ■\n");
 
 		if (mlist[2].hp > 0)
-			printf("  ■  3. %s                                                       = %s을 공격합니다.                                    ■\n", mlist[2].name, mlist[2].name);
+			printf("  ■  3. %-18s                                             = %18s을(를) 공격합니다.                  ■\n", mlist[2].name, mlist[2].name);
 		if (mlist[2].hp <= 0)
 			printf("  ■                                                                                                                            ■\n");
 
@@ -3090,7 +3096,7 @@ void c_skill(int cnum, int stnum) {
 			if (clist[cnum].skill[2].num == 21)
 				printf("  ■  2. %-16s : 추가 att + %2d 추가 def + %2d mp소모 - %2d  %-41s= %s의 스킬     ■\n", clist[cnum].skill[2].name, clist[cnum].skill[2].add_att, clist[cnum].skill[2].add_def, clist[cnum].skill[2].diff_mp, clist[cnum].skill[2].info, clist[cnum].name);
 			else
-				printf("  ■  1. %-16s : hp 회복 + %2d  mp 회복 + %2d  mp소모 - %2d  %-41s= %s의 스킬     ■\n", clist[cnum].skill[2].name, clist[cnum].skill[2].add_hp, clist[cnum].skill[2].add_mp, clist[cnum].skill[2].diff_mp, clist[cnum].skill[2].info, clist[cnum].name);	
+				printf("  ■  2. %-16s : hp 회복 + %2d  mp 회복 + %2d  mp소모 - %2d  %-41s= %s의 스킬     ■\n", clist[cnum].skill[2].name, clist[cnum].skill[2].add_hp, clist[cnum].skill[2].add_mp, clist[cnum].skill[2].diff_mp, clist[cnum].skill[2].info, clist[cnum].name);	
 
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■                                                                                                                            ■\n");
@@ -3371,7 +3377,7 @@ void enter_dungeon1() {
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                       ■■                                        ■■                                     ■\n");
-				printf("  ■                                       ■■                                        ■■                                     ■\n");
+				printf("  ■                                     ■■■                                      ■■■                                     ■\n");
 				printf("  ■                                   ■■■■                                    ■■■■                                     ■\n");
 				printf("  ■                                 ■■  ■■                                  ■■  ■■                                     ■\n");
 				printf("  ■                                       ■■                                        ■■                                     ■\n");
@@ -3431,7 +3437,7 @@ void enter_dungeon1() {
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                       ■■                                   ■■■■■                                    ■\n");
-				printf("  ■                                       ■■                                 ■■■■■■■                                  ■\n");
+				printf("  ■                                     ■■■                                 ■■■■■■■                                  ■\n");
 				printf("  ■                                   ■■■■                               ■■          ■■                                ■\n");
 				printf("  ■                                 ■■  ■■                               ■■          ■■                                ■\n");
 				printf("  ■                                       ■■                                             ■■                                ■\n");
@@ -3488,7 +3494,7 @@ void enter_dungeon1() {
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                       ■■                                      ■■■■■                                 ■\n");
-				printf("  ■                                       ■■                                    ■■■■■■■                               ■\n");
+				printf("  ■                                     ■■■                                    ■■■■■■■                               ■\n");
 				printf("  ■                                   ■■■■                                  ■■        ■■■                             ■\n");
 				printf("  ■                                 ■■  ■■                                  ■■          ■■                             ■\n");
 				printf("  ■                                       ■■                                    ■■        ■■                             ■\n");
@@ -3545,7 +3551,7 @@ void enter_dungeon1() {
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                                                                                                            ■\n");
 				printf("  ■                                       ■■                                  ■■■■■■■                                 ■\n");
-				printf("  ■                                       ■■                                  ■■■■■■■■                               ■\n");
+				printf("  ■                                     ■■■                                  ■■■■■■■■                               ■\n");
 				printf("  ■                                   ■■■■                                  ■■        ■■■                             ■\n");
 				printf("  ■                                 ■■  ■■                                  ■■          ■■                             ■\n");
 				printf("  ■                                       ■■                                  ■■          ■■                             ■\n");
@@ -3596,6 +3602,12 @@ void enter_dungeon1() {
 }
 
 void enter_dungeon2() {
+	clist[0].hp = clist[0].fhp;
+	clist[1].hp = clist[1].fhp;
+	clist[2].hp = clist[2].fhp;
+	clist[0].mp = clist[0].fmp;
+	clist[1].mp = clist[1].fmp;
+	clist[2].mp = clist[2].fmp;
 	while (1) {
 		char a;
 		system("cls");
@@ -3632,8 +3644,304 @@ void enter_dungeon2() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
 		a = (_getch());
+		for (int i = 0; i < 3; i++) {
+			mlist[i] = empty_mlist[i];
+		}
 		if (a != 'b' && a != 'B') {
-			stage2_1_monster();
+			ditem_2_1();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                   ■■■■■                                      ■■                                     ■\n");
+				printf("  ■                                 ■■■■■■■                                  ■■■                                     ■\n");
+				printf("  ■                               ■■          ■■                              ■■■■                                     ■\n");
+				printf("  ■                               ■■          ■■                            ■■  ■■                                     ■\n");
+				printf("  ■                                             ■■                                  ■■                                     ■\n");
+				printf("  ■                                           ■■■        ■■■■■■              ■■                                     ■\n");
+				printf("  ■                                         ■■■          ■■■■■■              ■■                                     ■\n");
+				printf("  ■                                       ■■■                                      ■■                                     ■\n");
+				printf("  ■                                     ■■■                                        ■■                                     ■\n");
+				printf("  ■                                   ■■■                                          ■■                                     ■\n");
+				printf("  ■                                 ■■■                                            ■■                                     ■\n");
+				printf("  ■                               ■■■■■■■■■                            ■■■■■■■■                               ■\n");
+				printf("  ■                               ■■■■■■■■■                            ■■■■■■■■                               ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch())
+					break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(21);
+				if (check_exter() != 2) {
+					turn_monster();
+					m_choice();
+					if (check_exter() == 1) {
+						printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+						printf("  계속 하시려면 아무키나 누르세요.\n");
+						print_line();
+						if (_getch())
+							break;
+					}
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_2_2();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                   ■■■■■                                    ■■■■■                                 ■\n");
+				printf("  ■                                 ■■■■■■■                                ■■■■■■■                               ■\n");
+				printf("  ■                               ■■          ■■                            ■■          ■■                             ■\n");
+				printf("  ■                               ■■          ■■                            ■■          ■■                             ■\n");
+				printf("  ■                                             ■■                                          ■■                             ■\n");
+				printf("  ■                                           ■■■        ■■■■■■                    ■■■                             ■\n");
+				printf("  ■                                         ■■■          ■■■■■■                  ■■■                               ■\n");
+				printf("  ■                                       ■■■                                        ■■■                                 ■\n");
+				printf("  ■                                     ■■■                                        ■■■                                   ■\n");
+				printf("  ■                                   ■■■                                        ■■■                                     ■\n");
+				printf("  ■                                 ■■■                                        ■■■                                       ■\n");
+				printf("  ■                               ■■■■■■■■■                            ■■■■■■■■■                             ■\n");
+				printf("  ■                               ■■■■■■■■■                            ■■■■■■■■■                             ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(22);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_2_3();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                   ■■■■■                                    ■■■■■                                 ■\n");
+				printf("  ■                                 ■■■■■■■                                ■■■■■■■                               ■\n");
+				printf("  ■                               ■■          ■■                            ■■        ■■■                             ■\n");
+				printf("  ■                               ■■          ■■                            ■■          ■■                             ■\n");
+				printf("  ■                                             ■■                              ■■        ■■                             ■\n");
+				printf("  ■                                           ■■■        ■■■■■■          ■■      ■■                               ■\n");
+				printf("  ■                                         ■■■          ■■■■■■                  ■■■                               ■\n");
+				printf("  ■                                       ■■■                                  ■■      ■■                               ■\n");
+				printf("  ■                                     ■■■                                    ■■        ■■                             ■\n");
+				printf("  ■                                   ■■■                                    ■■          ■■                             ■\n");
+				printf("  ■                                 ■■■                                      ■■        ■■■                             ■\n");
+				printf("  ■                               ■■■■■■■■■                              ■■■■■■■                               ■\n");
+				printf("  ■                               ■■■■■■■■■                                ■■■■■                                 ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(23);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_2_4();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                   ■■■■■                                                ■■                           ■\n");
+				printf("  ■                                 ■■■■■■■                                            ■■■                           ■\n");
+				printf("  ■                               ■■          ■■                                        ■■■■                           ■\n");
+				printf("  ■                               ■■          ■■                                      ■■  ■■                           ■\n");
+				printf("  ■                                             ■■                                    ■■    ■■                           ■\n");
+				printf("  ■                                           ■■■        ■■■■■■              ■■      ■■                           ■\n");
+				printf("  ■                                         ■■■          ■■■■■■            ■■        ■■                           ■\n");
+				printf("  ■                                       ■■■                                  ■■          ■■                           ■\n");
+				printf("  ■                                     ■■■                                  ■■■          ■■                           ■\n");
+				printf("  ■                                   ■■■                                    ■■■■■■■■■■■■                       ■\n");
+				printf("  ■                                 ■■■                                      ■■■■■■■■■■■■                       ■\n");
+				printf("  ■                               ■■■■■■■■■                                            ■■                           ■\n");
+				printf("  ■                               ■■■■■■■■■                                            ■■                           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(24);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_2_5();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                   ■■■■■                                ■■■■■■■                                 ■\n");
+				printf("  ■                                 ■■■■■■■                              ■■■■■■■■                               ■\n");
+				printf("  ■                               ■■          ■■                            ■■        ■■■                             ■\n");
+				printf("  ■                               ■■          ■■                            ■■          ■■                             ■\n");
+				printf("  ■                                             ■■                            ■■          ■■                             ■\n");
+				printf("  ■                                           ■■■        ■■■■■■        ■■        ■■■                             ■\n");
+				printf("  ■                                         ■■■          ■■■■■■        ■■■■■■■■                               ■\n");
+				printf("  ■                                       ■■■                                ■■■■■■■■■                             ■\n");
+				printf("  ■                                     ■■■                                  ■■          ■■■                           ■\n");
+				printf("  ■                                   ■■■                                    ■■            ■■                           ■\n");
+				printf("  ■                                 ■■■                                      ■■            ■■                           ■\n");
+				printf("  ■                               ■■■■■■■■■                            ■■■■■■■■■■                           ■\n");
+				printf("  ■                               ■■■■■■■■■                            ■■■■■■■■■                             ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter_boss(1) != 1 || check_exter_boss(1) != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(25);
+				if (check_exter_boss(2) == 2) {
+					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					stlist[3].is_clear = 1;
+					print_line();
+					if (_getch())
+						town();
+				}
+				turn_monster();
+				m_choice();
+				if (check_exter_boss(2) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
 		}
 		if (a == 'b' || a == 'B')
 			break;
@@ -3641,10 +3949,16 @@ void enter_dungeon2() {
 }
 
 void enter_dungeon3() {
+	clist[0].hp = clist[0].fhp;
+	clist[1].hp = clist[1].fhp;
+	clist[2].hp = clist[2].fhp;
+	clist[0].mp = clist[0].fmp;
+	clist[1].mp = clist[1].fmp;
+	clist[2].mp = clist[2].fmp;
 	while (1) {
 		char a;
 		system("cls");
-		printf("\n");
+		printf("\n");		
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
@@ -3677,8 +3991,247 @@ void enter_dungeon3() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
 		a = (_getch());
+		for (int i = 0; i < 3; i++) {
+			mlist[i] = empty_mlist[i];
+		}
 		if (a != 'b' && a != 'B') {
-			stage3_1_monster();
+			ditem_3_1();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                   ■■■■■                                      ■■                                     ■\n");
+				printf("  ■                                 ■■■■■■■                                  ■■■                                     ■\n");
+				printf("  ■                               ■■        ■■■                              ■■■■                                     ■\n");
+				printf("  ■                               ■■          ■■                            ■■  ■■                                     ■\n");
+				printf("  ■                                 ■■        ■■                                  ■■                                     ■\n");
+				printf("  ■                                 ■■      ■■          ■■■■■■              ■■                                     ■\n");
+				printf("  ■                                         ■■■          ■■■■■■              ■■                                     ■\n");
+				printf("  ■                                 ■■      ■■                                    ■■                                     ■\n");
+				printf("  ■                                 ■■        ■■                                  ■■                                     ■\n");
+				printf("  ■                               ■■          ■■                                  ■■                                     ■\n");
+				printf("  ■                               ■■        ■■■                                  ■■                                     ■\n");
+				printf("  ■                                 ■■■■■■■                              ■■■■■■■■                               ■\n");
+				printf("  ■                                   ■■■■■                                ■■■■■■■■                               ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch())
+					break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(31);
+				if (check_exter() != 2) {
+					turn_monster();
+					m_choice();
+					if (check_exter() == 1) {
+						printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+						printf("  계속 하시려면 아무키나 누르세요.\n");
+						print_line();
+						if (_getch())
+							break;
+					}
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_3_2();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                     ■■■■■                               ■■■■■                                    ■\n");
+				printf("  ■                                   ■■■■■■■                           ■■■■■■■                                  ■\n");
+				printf("  ■                                 ■■        ■■■                       ■■          ■■                                ■\n");
+				printf("  ■                                 ■■          ■■                       ■■          ■■                                ■\n");
+				printf("  ■                                   ■■        ■■                                     ■■                                ■\n");
+				printf("  ■                                   ■■      ■■        ■■■■■■                 ■■■                                ■\n");
+				printf("  ■                                           ■■■        ■■■■■■               ■■■                                  ■\n");
+				printf("  ■                                   ■■      ■■                                 ■■■                                    ■\n");
+				printf("  ■                                   ■■        ■■                             ■■■                                      ■\n");
+				printf("  ■                                 ■■          ■■                           ■■■                                        ■\n");
+				printf("  ■                                 ■■        ■■■                         ■■■                                          ■\n");
+				printf("  ■                                   ■■■■■■■                         ■■■■■■■■■                                ■\n");
+				printf("  ■                                     ■■■■■                           ■■■■■■■■■                                ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(32);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_3_3();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                     ■■■■■                                  ■■■■■                                 ■\n");
+				printf("  ■                                   ■■■■■■■                              ■■■■■■■                               ■\n");
+				printf("  ■                                 ■■        ■■■                          ■■        ■■■                             ■\n");
+				printf("  ■                                 ■■          ■■                          ■■          ■■                             ■\n");
+				printf("  ■                                   ■■        ■■                            ■■        ■■                             ■\n");
+				printf("  ■                                   ■■      ■■        ■■■■■■          ■■      ■■                               ■\n");
+				printf("  ■                                           ■■■        ■■■■■■                  ■■■                               ■\n");
+				printf("  ■                                   ■■      ■■                              ■■      ■■                               ■\n");
+				printf("  ■                                   ■■        ■■                            ■■        ■■                             ■\n");
+				printf("  ■                                 ■■          ■■                          ■■          ■■                             ■\n");
+				printf("  ■                                 ■■        ■■■                          ■■        ■■■                             ■\n");
+				printf("  ■                                   ■■■■■■■                              ■■■■■■■                               ■\n");
+				printf("  ■                                     ■■■■■                                  ■■■■■                                 ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(33);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_3_4();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                     ■■■■■                              ■■■■■■■                                 ■\n");
+				printf("  ■                                   ■■■■■■■                            ■■■■■■■■                               ■\n");
+				printf("  ■                                 ■■        ■■■                          ■■        ■■■                             ■\n");
+				printf("  ■                                 ■■          ■■                          ■■          ■■                             ■\n");
+				printf("  ■                                   ■■        ■■                          ■■          ■■                             ■\n");
+				printf("  ■                                   ■■      ■■        ■■■■■■        ■■        ■■■                             ■\n");
+				printf("  ■                                           ■■■        ■■■■■■        ■■■■■■■■                               ■\n");
+				printf("  ■                                   ■■      ■■                            ■■■■■■■■■                             ■\n");
+				printf("  ■                                   ■■        ■■                          ■■          ■■■                           ■\n");
+				printf("  ■                                 ■■          ■■                          ■■            ■■                           ■\n");
+				printf("  ■                                 ■■        ■■■                          ■■            ■■                           ■\n");
+				printf("  ■                                   ■■■■■■■                            ■■■■■■■■■■                           ■\n");
+				printf("  ■                                     ■■■■■                              ■■■■■■■■■                             ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter_boss(1) != 1 || check_exter_boss(1) != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(34);
+				if (check_exter_boss(3) == 2) {
+					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					stlist[4].is_clear = 1;
+					print_line();
+					if (_getch())
+						town();
+				}
+				turn_monster();
+				m_choice();
+				if (check_exter_boss(3) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
 		}
 		if (a == 'b' || a == 'B')
 			break;
@@ -3686,6 +4239,13 @@ void enter_dungeon3() {
 }
 
 void enter_dungeon4() {
+	clist[0].hp = clist[0].fhp;
+	clist[1].hp = clist[1].fhp;
+	clist[2].hp = clist[2].fhp;
+	clist[0].mp = clist[0].fmp;
+	clist[1].mp = clist[1].fmp;
+	clist[2].mp = clist[2].fmp;
+	char b;
 	while (1) {
 		char a;
 		system("cls");
@@ -3705,25 +4265,382 @@ void enter_dungeon4() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■                                                                                                                            ■\n");
-		printf("  ■                                                                                                                            ■\n");
-		printf("  ■                                                               ■■                                                         ■\n");
-		printf("  ■                                                             ■■■                                                         ■\n");
-		printf("  ■                                                           ■■■■                                                         ■\n");
-		printf("  ■                                                         ■■  ■■                                                         ■\n");
-		printf("  ■                                                       ■■    ■■                                                         ■\n");
-		printf("  ■                                                     ■■      ■■                                                         ■\n");
-		printf("  ■                                                   ■■■      ■■                                                         ■\n");
-		printf("  ■                                                   ■■■■■■■■■■                                                     ■\n");
-		printf("  ■                                                   ■■■■■■■■■■                                                     ■\n");
-		printf("  ■                                                               ■■                                                         ■\n");
-		printf("  ■                                                               ■■                                                         ■\n");
+		printf("  ■                                                                 ■■                                                       ■\n");
+		printf("  ■                                                               ■■■                                                       ■\n");
+		printf("  ■                                                             ■■■■                                                       ■\n");
+		printf("  ■                                                           ■■  ■■                                                       ■\n");
+		printf("  ■                                                         ■■    ■■                                                       ■\n");
+		printf("  ■                                                       ■■      ■■                                                       ■\n");
+		printf("  ■                                                     ■■        ■■                                                       ■\n");
+		printf("  ■                                                   ■■          ■■                                                       ■\n");
+		printf("  ■                                                 ■■■          ■■                                                       ■\n");
+		printf("  ■                                                 ■■■■■■■■■■■■                                                   ■\n");
+		printf("  ■                                                 ■■■■■■■■■■■■                                                   ■\n");
+		printf("  ■                                                                 ■■                                                       ■\n");
+		printf("  ■                                                                 ■■                                                       ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
 		a = (_getch());
+		for (int i = 0; i < 3; i++) {
+			mlist[i] = empty_mlist[i];
+		}
 		if (a != 'b' && a != 'B') {
-			stage4_1_monster();
+			ditem_4_1();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                         ■■                                      ■■                                     ■\n");
+				printf("  ■                                       ■■■                                    ■■■                                     ■\n");
+				printf("  ■                                     ■■■■                                  ■■■■                                     ■\n");
+				printf("  ■                                   ■■  ■■                                ■■  ■■                                     ■\n");
+				printf("  ■                                 ■■    ■■                                      ■■                                     ■\n");
+				printf("  ■                               ■■      ■■            ■■■■■■              ■■                                     ■\n");
+				printf("  ■                             ■■        ■■            ■■■■■■              ■■                                     ■\n");
+				printf("  ■                           ■■          ■■                                      ■■                                     ■\n");
+				printf("  ■                         ■■■          ■■                                      ■■                                     ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                                  ■■                                     ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                                  ■■                                     ■\n");
+				printf("  ■                                         ■■                                ■■■■■■■■                               ■\n");
+				printf("  ■                                         ■■                                ■■■■■■■■                               ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch())
+					break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(41);
+				if (check_exter() != 2) {
+					turn_monster();
+					m_choice();
+					if (check_exter() == 1) {
+						printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+						printf("  계속 하시려면 아무키나 누르세요.\n");
+						print_line();
+						if (_getch())
+							break;
+					}
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_4_2();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                         ■■                                    ■■■■■                                 ■\n");
+				printf("  ■                                       ■■■                                  ■■■■■■■                               ■\n");
+				printf("  ■                                     ■■■■                                ■■          ■■                             ■\n");
+				printf("  ■                                   ■■  ■■                                ■■          ■■                             ■\n");
+				printf("  ■                                 ■■    ■■                                              ■■                             ■\n");
+				printf("  ■                               ■■      ■■            ■■■■■■                    ■■■                             ■\n");
+				printf("  ■                             ■■        ■■            ■■■■■■                  ■■■                               ■\n");
+				printf("  ■                           ■■          ■■                                        ■■■                                 ■\n");
+				printf("  ■                         ■■■          ■■                                      ■■■                                   ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                                ■■■                                     ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                              ■■■                                       ■\n");
+				printf("  ■                                         ■■                                ■■■■■■■■■                             ■\n");
+				printf("  ■                                         ■■                                ■■■■■■■■■                             ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(42);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_4_3();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                         ■■                                    ■■■■■                                 ■\n");
+				printf("  ■                                       ■■■                                  ■■■■■■■                               ■\n");
+				printf("  ■                                     ■■■■                                ■■        ■■■                             ■\n");
+				printf("  ■                                   ■■  ■■                                ■■          ■■                             ■\n");
+				printf("  ■                                 ■■    ■■                                  ■■        ■■                             ■\n");
+				printf("  ■                               ■■      ■■            ■■■■■■          ■■      ■■                               ■\n");
+				printf("  ■                             ■■        ■■            ■■■■■■                  ■■■                               ■\n");
+				printf("  ■                           ■■          ■■                                  ■■      ■■                               ■\n");
+				printf("  ■                         ■■■          ■■                                  ■■        ■■                             ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                            ■■          ■■                             ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                            ■■        ■■■                             ■\n");
+				printf("  ■                                         ■■                                  ■■■■■■■                               ■\n");
+				printf("  ■                                         ■■                                    ■■■■■                                 ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(43);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_4_4();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                         ■■                                                ■■                           ■\n");
+				printf("  ■                                       ■■■                                              ■■■                           ■\n");
+				printf("  ■                                     ■■■■                                            ■■■■                           ■\n");
+				printf("  ■                                   ■■  ■■                                          ■■  ■■                           ■\n");
+				printf("  ■                                 ■■    ■■                                        ■■    ■■                           ■\n");
+				printf("  ■                               ■■      ■■            ■■■■■■              ■■      ■■                           ■\n");
+				printf("  ■                             ■■        ■■            ■■■■■■            ■■        ■■                           ■\n");
+				printf("  ■                           ■■          ■■                                  ■■          ■■                           ■\n");
+				printf("  ■                         ■■■          ■■                                ■■■          ■■                           ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                            ■■■■■■■■■■■■                       ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                            ■■■■■■■■■■■■                       ■\n");
+				printf("  ■                                         ■■                                                ■■                           ■\n");
+				printf("  ■                                         ■■                                                ■■                           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter() != 1 && check_exter() != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(44);
+				m_choice();
+				if (check_exter() == 1) {
+					printf("\n\n  캐릭터가 모두 밤샘에 지쳐 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				mlist[i] = empty_mlist[i];
+			}
+			ditem_4_5();
+			while (1) {
+				system("cls");
+				printf("\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■             ■■■■■■      ■■■■■■■■■            ■                ■■■■■      ■■■■■■■■■           ■\n");
+				printf("  ■           ■            ■    ■      ■      ■          ■■■            ■          ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■                  ■  ■          ■                  ■                           ■\n");
+				printf("  ■           ■                          ■                ■      ■        ■                  ■                           ■\n");
+				printf("  ■             ■■■■■■              ■                ■      ■        ■                  ■■■■■■■■             ■\n");
+				printf("  ■                         ■            ■              ■          ■      ■        ■■■    ■                           ■\n");
+				printf("  ■           ■            ■            ■              ■■■■■■■      ■            ■    ■                           ■\n");
+				printf("  ■           ■            ■            ■            ■              ■      ■          ■    ■                           ■\n");
+				printf("  ■             ■■■■■■              ■            ■              ■        ■■■■■■    ■■■■■■■■■           ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                         ■■                                ■■■■■■■                                 ■\n");
+				printf("  ■                                       ■■■                                ■■■■■■■■                               ■\n");
+				printf("  ■                                     ■■■■                                ■■        ■■■                             ■\n");
+				printf("  ■                                   ■■  ■■                                ■■          ■■                             ■\n");
+				printf("  ■                                 ■■    ■■                                ■■          ■■                             ■\n");
+				printf("  ■                               ■■      ■■            ■■■■■■        ■■        ■■■                             ■\n");
+				printf("  ■                             ■■        ■■            ■■■■■■        ■■■■■■■■                               ■\n");
+				printf("  ■                           ■■          ■■                                ■■■■■■■■■                             ■\n");
+				printf("  ■                         ■■■          ■■                                ■■          ■■■                           ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                            ■■            ■■                           ■\n");
+				printf("  ■                         ■■■■■■■■■■■■                            ■■            ■■                           ■\n");
+				printf("  ■                                         ■■                                ■■■■■■■■■■                           ■\n");
+				printf("  ■                                         ■■                                ■■■■■■■■■                             ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■                                                                                                                            ■\n");
+				printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+				printf("\n  계속하시려면 아무키나 누르세요.\n\n");
+				if (_getch());
+				break;
+			}
+			while (check_exter_boss(1) != 1 || check_exter_boss(1) != 2) {
+				for (int i = 0; i < 3; i++) {
+					clist[i].turn = 0;
+					mlist[i].turn = 0;
+				}
+				turn_player();
+				c_choice(45);
+				if (check_exter_boss(4) == 2) {
+					printf("  모든 과제를 성공적으로 완수했습니다!!!!\n  하지만 성적은 교수님만이 알고계십니다.");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					printf("이번 학기의 모든 과정이 끝났습니다!!\n\n");
+					printf("□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□\n");
+					printf("□                                                                          □\n");
+					printf("■                                 성적표                                   ■\n");
+					printf("□                                                                          □\n");
+					printf("■                                                                          ■\n");
+					if(clist[0].level==10)
+						printf("□                  조장의 성적       :       A+                            □\n");
+					else if (clist[0].level == 10)
+						printf("□                  조장의 성적       :       A                            □\n");
+					else if (clist[0].level >= 8)
+						printf("□                  조장의 성적       :       B+                            □\n");
+					else if (clist[0].level >= 6)
+						printf("□                  조장의 성적       :       B                            □\n");
+					else if (clist[0].level >= 4)
+						printf("□                  조장의 성적       :       C+                            □\n");
+					else if (clist[0].level >= 2)
+						printf("□                  조장의 성적       :       C                            □\n");
+					else
+						printf("□                  조장의 성적       :       D+                            □\n");
+					printf("■                                                                          ■\n");
+					printf("□                                                                          □\n");
+					printf("■                                                                          ■\n");
+					if (clist[1].level == 10)
+						printf("□                  서기의 성적       :       A+                            □\n");
+					else if (clist[1].level == 10)
+						printf("□                  서기의 성적       :       A                            □\n");
+					else if (clist[1].level >= 8)
+						printf("□                  서기의 성적       :       B+                            □\n");
+					else if (clist[1].level >= 6)
+						printf("□                  서기의 성적       :       B                            □\n");
+					else if (clist[1].level >= 4)
+						printf("□                  서기의 성적       :       C+                            □\n");
+					else if (clist[1].level >= 2)
+						printf("□                  서기의 성적       :       C                            □\n");
+					else
+						printf("□                  서기의 성적       :       D+                            □\n");
+					printf("■                                                                          ■\n");
+					printf("□                                                                          □\n");
+					printf("■                                                                          ■\n");
+					if (clist[2].level == 10)
+						printf("□                  지갑의 성적       :       A+                            □\n");
+					else if (clist[2].level == 10)
+						printf("□                  지갑의 성적       :       A                            □\n");
+					else if (clist[2].level >= 8)
+						printf("□                  지갑의 성적       :       B+                            □\n");
+					else if (clist[2].level >= 6)
+						printf("□                  지갑의 성적       :       B                            □\n");
+					else if (clist[2].level >= 4)
+						printf("□                  지갑의 성적       :       C+                            □\n");
+					else if (clist[2].level >= 2)
+						printf("□                  지갑의 성적       :       C                            □\n");
+					else
+						printf("□                  지갑의 성적       :       D+                            □\n");
+					printf("□                                                                          □\n");
+					printf("■                                                                          ■\n");
+					printf("□                                                                          □\n");
+					printf("■                                                                          ■\n");
+					printf("□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□\n");
+
+					printf("게임을 종료하시려면 b를 눌러주세요.\n");
+					b = _getch();
+					if (b == 'b' || b == 'B')
+						exit(0);
+				}
+				turn_monster();
+				m_choice();
+				if (check_exter_boss(4) == 1) {
+					printf("  캐릭터가 모두 밤샘에 지켜 쓰러졌습니다!!!!\n  해당 과제를 제출기한에 맞추지 못했습니다.\n\n");
+					printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+					print_line();
+					if (_getch())
+						break;
+				}
+			}
 		}
 		if (a == 'b' || a == 'B')
 			break;

@@ -137,9 +137,7 @@ void kill_monster(int cnum, int stnum) {
 			if (chance_drop == 0) {
 				item_num = rand() % stlista[stnum].num_item;
 				printf("  %sÀ»(¸¦) È¹µæ!!\n", stlista[stnum].drop_item[item_num].name);
-				for (int j = 0; j < 30; j++) {
-						ilist[j].ea++;
-				}
+				ilist[stlista[stnum].drop_item[item_num].num].ea++;
 			}
 			clist[cnum].expe += mlist[i].mexp;
 			mlist[i].condition = 1; 

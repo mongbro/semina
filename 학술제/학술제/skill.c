@@ -87,7 +87,7 @@ void skill_set() {
 	slist[5].add_att = 15;
 	slist[5].diff_mp = 30;
 	slist[6].add_att = 25;
-	slist[6].diff_mp = 50;
+	slist[6].diff_mp = 10;
 	slist[7].add_att = 35;
 	slist[7].diff_mp = 80;
 
@@ -98,13 +98,13 @@ void skill_set() {
 	slist[13].add_att = 10;
 	slist[13].diff_mp = 20;
 	slist[14].add_att = 0;
-	slist[14].diff_mp = 20; //스턴
+	slist[14].diff_mp = 50; //스턴
 	slist[15].add_att = 0;
-	slist[15].diff_mp = 50;	//광역스턴
+	slist[15].diff_mp = 80;	//광역스턴
 	slist[16].add_att = 0;
-	slist[16].diff_mp = 20;	//막기
+	slist[16].diff_mp = 40;	//막기
 	slist[17].add_att = 0;
-	slist[17].diff_mp = 35;
+	slist[17].diff_mp = 75;
 
 	slist[21].add_att = 10;
 	slist[21].diff_mp = 10;

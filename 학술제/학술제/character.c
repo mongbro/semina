@@ -65,7 +65,7 @@ void check_level() {
 				if (clist[i].expe >= fexp[j]) {
 					printf("\n\n                     ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★\n");
 					printf("                     ★☆ %s이(가) %2d에서 %2d(으)로 레벨업!!!!☆★\n", clist[i].name, clist[i].level, clist[i].level + 1);
-					printf("                     ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★\n");
+					printf("                     ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★");
 					clist[i].level++;
 					clist[i].expe -= fexp[j];
 					clist[i].spare_stat += 5;
