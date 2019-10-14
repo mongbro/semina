@@ -127,20 +127,22 @@ int check_exter_boss(int stage) {
 
 void kill_monster(int cnum, int stnum) {
 	srand((unsigned)time(NULL));
-	int add_gold = (rand() % 10 + 1)*(stnum/10);
-	int chance_drop = (rand() % 3)*0;		//33%확률로 드랍 => 0일때 드랍
+	int add_gold = (rand() % 10 + 1) * (stnum / 10);
+	int chance_drop = (rand() % 3) * 0;		//33%확률로 드랍 => 0일때 드랍
 	int item_num;
 	for (int i = 0; i < 3; i++) {
 		if (mlist[i].hp <= 0 && mlist[i].condition == 0) {
-			printf("\n\n  %s이(가) 죽었습니다!!            %s이(가) %d의 골드를 드랍했습니다!!\n", mlist[i].name, mlist[i].name, add_gold);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■ %18s이(가) 죽었습니다!!                                 %18s이(가) %2d의 골드를 드랍했습니다!!  ■\n", mlist[i].name, mlist[i].name, add_gold);
 			gold += add_gold;
 			if (chance_drop == 0) {
 				item_num = rand() % stlista[stnum].num_item;
-				printf("  %s을(를) 획득!!\n", stlista[stnum].drop_item[item_num].name);
+				printf("  ■                                                            %20s을(를) 획득!!                               ■\n", stlista[stnum].drop_item[item_num].name);
 				ilist[stlista[stnum].drop_item[item_num].num].ea++;
 			}
 			clist[cnum].expe += mlist[i].mexp;
-			mlist[i].condition = 1; 
+			mlist[i].condition = 1;
 			check_level();
 		}
 		if (mlist[i].condition == 1)
@@ -151,7 +153,9 @@ void kill_monster(int cnum, int stnum) {
 void kill_character(int mnum) {
 	for (int i = 0; i < 3; i++) {
 		if (clist[i].hp <= 0 && clist[i].condition == 0) {
-			printf("\n\n  %s이(가) 죽었습니다!!", clist[i].name);
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");
+			printf("  ■ %s이(가) 죽었습니다!!                                                                                                     ■", clist[i].name);
 			clist[i].condition = 1;
 		}
 	}
