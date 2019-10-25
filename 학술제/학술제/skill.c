@@ -553,15 +553,18 @@ void s_buy3(int snum) {
 		printf("  ■              이름                                      능력치             소모 마나              보유 여부      가격       ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		if (snum == 21)
-			printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp, exist, slist[snum].price);
-		if (snum > 21 && snum < 28 && snum != 24)
-			printf("  ■      %-20s                              회복량 : %2d      소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp, exist, slist[snum].price);
-		else if (snum == 24) {
-			printf("  ■      %-20s                              회복량 : %2d     소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp, exist, slist[snum].price);
+		if (snum == 21) {
+			printf("  ■      %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_att, slist[snum].diff_mp);
 		}
-		else
-			printf("  ■      %-20s                              회복량 : %2d      소모 마나 : %2d           %6s       %3d 골드     ■\n", slist[snum].name, slist[snum].add_mp, slist[snum].diff_mp, exist, slist[snum].price);
+		if (snum > 21 && snum < 28 && snum != 24) {
+			printf("  ■      %-20s                           회복량 : %2d         소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp);
+		}
+		if (snum > 27) {
+			printf("  ■      %-20s                           회복량 : %2d         소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_mp, slist[snum].diff_mp);
+		}
+		if (snum == 24) {
+			printf("  ■      %-20s                           회복량 : %2d        소모 마나 : %2d                                     ■\n", slist[snum].name, slist[snum].add_hp, slist[snum].diff_mp);
+		}
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■      스킬 설명 :                                                                                                           ■\n");
 		printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
@@ -890,7 +893,7 @@ void skill_equip1(int character, int snum) {
 			printf("  ■      1. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[0].skill[1].name, clist[0].skill[1].add_att, clist[0].skill[1].diff_mp);
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■      스킬 설명 :                                                                                                           ■\n");
-			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+			printf("  ■      %-46s                                                                        ■\n", clist[0].skill[1].info);
 		}
 		else {
 			printf("  ■      1. 장비 중인 스킬 없음                                                                                                ■\n");
@@ -901,7 +904,7 @@ void skill_equip1(int character, int snum) {
 			printf("  ■      2. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[0].skill[2].name, clist[0].skill[2].add_att, clist[0].skill[2].diff_mp);
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■      스킬 설명 :                                                                                                           ■\n");
-			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+			printf("  ■      %-46s                                                                        ■\n", clist[0].skill[2].info);
 		}
 		else {
 			printf("  ■      2. 장비 중인 스킬 없음                                                                                                ■\n");
@@ -982,7 +985,7 @@ void skill_equip2(int character, int snum) {
 			printf("  ■      1. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[1].skill[1].name, clist[1].skill[1].add_att, clist[1].skill[1].diff_mp);
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■      스킬 설명 :                                                                                                           ■\n");
-			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+			printf("  ■      %-46s                                                                        ■\n", clist[1].skill[1].info);
 		}
 		else {
 			printf("  ■      1. 장비 중인 스킬 없음                                                                                                ■\n");
@@ -993,7 +996,7 @@ void skill_equip2(int character, int snum) {
 			printf("  ■      2. %-20s                          추가 공격력 : %2d     소모 마나 : %2d                                  ■\n", clist[1].skill[2].name, clist[1].skill[2].add_att, clist[1].skill[2].diff_mp);
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■      스킬 설명 :                                                                                                           ■\n");
-			printf("  ■      %-46s                                                                        ■\n", slist[snum].info);
+			printf("  ■      %-46s                                                                        ■\n", clist[1].skill[2].info);
 		}
 		else {
 			printf("  ■      2. 장비 중인 스킬 없음                                                                                                ■\n");
@@ -1083,7 +1086,7 @@ void skill_equip3(int character, int snum) {
 				printf("  ■      1.%-20s                          회복량 : %2d      소모 마나 : %2d                                      ■\n", clist[2].skill[1].name, clist[2].skill[1].add_hp, clist[2].skill[1].diff_mp);
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■      스킬 설명 :                                                                                                           ■\n");
-			printf("  ■      %-46s                                                                        ■\n", slist[clist[2].skill[1].num].info);
+			printf("  ■      %-46s                                                                        ■\n", clist[2].skill[1].info);
 		}
 		else {
 			printf("  ■      1. 장비 중인 스킬 없음                                                                                                ■\n");
@@ -1104,7 +1107,7 @@ void skill_equip3(int character, int snum) {
 				printf("  ■      2.%-20s                          회복량 : %2d      소모 마나 : %2d                                      ■\n", clist[2].skill[2].name, clist[2].skill[2].add_hp, clist[2].skill[2].diff_mp);
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■      스킬 설명 :                                                                                                           ■\n");
-			printf("  ■      %-46s                                                                        ■\n", slist[clist[2].skill[2].num].info);
+			printf("  ■      %-46s                                                                        ■\n", clist[2].skill[2].info);
 		}
 		else {
 			printf("  ■      2. 장비 중인 스킬 없음                                                                                                ■\n");

@@ -3310,11 +3310,6 @@ void choice_stage() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		if (stlist[0].is_clear == 1) {
-			printf("  ■      0. 프롤로그                                                                   보스 없음                               ■\n");
-		}
-		else
-			printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
@@ -3355,10 +3350,6 @@ void choice_stage() {
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  계속하시려면 아무키나 누르세요.\n\n  뒤로가기는 'b'를 선택해주세요.");
 		a = (_getch());
-		if (a == '0') {
-			if (stlist[0].is_clear == 1)
-				prologue();
-		}
 		if (a == '1') {
 			if (stlist[1].is_clear == 1)
 				enter_dungeon1();
