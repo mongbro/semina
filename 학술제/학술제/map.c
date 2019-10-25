@@ -159,6 +159,12 @@ void prologue() {
 	stage_prologue();
 	statm_check();
 	statp_check();
+	clist[0].hp = clist[0].fhp;
+	clist[1].hp = clist[1].fhp;
+	clist[2].hp = clist[2].fhp;
+	clist[0].mp = clist[0].fmp;
+	clist[1].mp = clist[1].fmp;
+	clist[2].mp = clist[2].fmp;
 	while (1) {
 		system("cls");
 		print_line();
@@ -343,7 +349,6 @@ void prologue() {
 		print_line();
 		a = _getch();
 		if (a == '3') {
-			damage_character_to_monster(1, 2, 0);
 			break;
 		}
 		else
@@ -353,6 +358,7 @@ void prologue() {
 	event_hit();
 
 	while (1) {															//////////////// 프롤로그 c1 공격 효과
+		damage_character_to_monster(1, 2, 0);
 		system("cls");
 		print_line();
 		print_map();
@@ -418,7 +424,6 @@ void prologue() {
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
-		damage_character_to_monster(2, 1, 0);
 		a = _getch();
 		if (a == '2')
 			break;
@@ -429,6 +434,7 @@ void prologue() {
 	event_hit();
 
 	while (1) {
+		damage_character_to_monster(2, 1, 0);
 		system("cls");
 		print_line();
 		print_map();
@@ -704,7 +710,6 @@ void prologue() {
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '2'을 누르세요.\n");
 		print_line();
-		damage_character_to_monster(1, 1, 0);
 		a = _getch();
 		if (a == '2')
 			break;
@@ -715,6 +720,7 @@ void prologue() {
 	event_hit();
 
 	while (1) {															//////////////// 프롤로그 c1 공격 효과
+		damage_character_to_monster(1, 1, 0);
 		system("cls");
 		print_line();
 		print_map();
@@ -812,7 +818,6 @@ void prologue() {
 		print_choice_mon();
 		printf("\n\n  계속 하시려면 '2'를 누르세요.\n");
 		print_line();
-		damage_character_to_monster(2, 1, 0);
 		a = _getch();
 		if (a == '2')
 			break;
@@ -823,6 +828,7 @@ void prologue() {
 	event_hit();
 
 	while (1) {															//////////////// 프롤로그 c2 공격 효과
+		damage_character_to_monster(2, 1, 0);
 		system("cls");
 		print_line();
 		print_map();
@@ -1266,9 +1272,9 @@ void prologue() {
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("\n  계속 하시려면 2를 눌러주세요.\n\n  판매 할때는 구매한 값의 절반가격으로 판매합니다.\n\n  프롤로그이기때문에 원래 가격으로 판매됩니다.");
+		printf("\n  계속 하시려면 1를 눌러주세요.\n\n  판매 할때는 구매한 값의 절반가격으로 판매합니다.\n\n  프롤로그이기때문에 원래 가격으로 판매됩니다.");
 		a = (_getch());
-		if (a == '2')
+		if (a == '1')
 			break;
 		else
 			continue;
@@ -1655,7 +1661,7 @@ void prologue() {
 		printf("  ■                                                                                          소지 골드 : %5d                 ■\n", gold);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-		printf("\n  계속 하시려면 2를 눌러주세요.");
+		printf("\n  계속 하시려면 2를 눌러주세요.(10은 0을 선택해 주세요.)");
 
 		a = (_getch());
 
@@ -2432,7 +2438,7 @@ void prologue() {
 		printf("  ■                               레벨  :  %2d           경험치  :  %4d / %4d    ( %2d %% )                                     ■\n", clist[0].level, clist[0].expe, fexp[clist[0].level], clist[0].persent);
 		printf("  ■                    ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■      ■■                    ■\n");
 		printf("  ■        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        ■\n");
-		printf("  ■        ■           10%       20%       30%       40%       50%       60%       70%       80%       90%          ■        ■\n");
+		printf("  ■        ■           10%%       20%%       30%%       40%%       50%%       60%%       70%%       80%%       90%%          ■        ■\n");
 		printf("  ■        ■  ");
 		for (int i = 0; i < 50; i++) {
 			if (i * 2 < clist[0].persent)

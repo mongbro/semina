@@ -46,7 +46,7 @@ int choice_monster_to_character() {
 	if (clist[0].hp > 0 && clist[1].hp > 0 && clist[2].hp > 0) {
 		int n = rand() % 10;			//n이 6보다 작거나 같으면 cnum1 즉 탱커를 공격
 		int m = rand() % 2;				//아닐경우 m이 0일때 cnum0 즉 딜러 공격, m이 1일때 cnum2 즉 힐러 공격
-		if (n <= 6)
+		if (n <= 7)
 			return 1;
 		else {
 			if (m == 0)
@@ -57,14 +57,14 @@ int choice_monster_to_character() {
 	}
 	if (clist[0].hp > 0 && clist[1].hp > 0 && clist[2].hp <= 0) {
 		int n = rand() % 10;			//n이 6보다 작거나 같으면 cnum1 즉 탱커를 공격
-		if (n <= 6)
+		if (n <= 7)
 			return 1;
 		else
 			return 0;
 	}
 	if (clist[0].hp <= 0 && clist[1].hp > 0 && clist[2].hp > 0) {
 		int n = rand() % 10;			//n이 6보다 작거나 같으면 cnum1 즉 탱커를 공격
-		if (n <= 6)
+		if (n <= 7)
 			return 1;
 		else
 			return 2;
