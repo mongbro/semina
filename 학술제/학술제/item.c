@@ -28,31 +28,38 @@ void all_0_item() {
 	ilist[0].add_mp = 0;
 	ilist[0].price = 10;
 	ilist[0].ea = 1;
+	ilist[0].num = 0;
 
 	ilist[1].add_hp = 30;
 	ilist[1].add_mp = 0;
 	ilist[1].price = 20;
+	ilist[1].num = 1;
 
 	ilist[2].add_hp = 50;
 	ilist[2].add_mp = 0;
 	ilist[2].price = 35;
+	ilist[2].num = 2;
 
 	ilist[3].add_hp = 0;
 	ilist[3].add_mp = 20;
 	ilist[3].price = 10;
 	ilist[3].ea = 1;
+	ilist[3].num = 3;
 
 	ilist[4].add_hp = 0;
 	ilist[4].add_mp = 30;
 	ilist[4].price = 20;
+	ilist[4].num = 4;
 
 	ilist[5].add_hp = 0;
 	ilist[5].add_mp = 50;
 	ilist[5].price = 35;
+	ilist[5].num = 5;
 
 	ilist[6].add_hp = 50;
 	ilist[6].add_mp = 50;
 	ilist[6].price = 80;
+	ilist[6].num = 6;
 }
 
 void all_1_item() {
