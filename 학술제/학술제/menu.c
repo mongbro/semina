@@ -1394,6 +1394,9 @@ void dun_inf_cha() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                           조  장 □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
 		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □          레벨                   경험치         □                                      ■\n");
+		printf("  ■                                  □           %2d                     %2d%%           □                                      ■\n", clist[0].level, clist[0].persent);
+		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[0].att, clist[0].def);
 		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □           hp                       mp          □                                      ■\n");
@@ -1405,6 +1408,9 @@ void dun_inf_cha() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                           서  기 □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
 		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □          레벨                   경험치         □                                      ■\n");
+		printf("  ■                                  □           %2d                     %2d%%           □                                      ■\n", clist[1].level, clist[1].persent);
+		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[1].att, clist[1].def);
 		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □           hp                       mp          □                                      ■\n");
@@ -1415,6 +1421,9 @@ void dun_inf_cha() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                           지  갑 □□□□□□□□□□□□□□□□□□□□□□□□□□                                      ■\n");
+		printf("  ■                                  □                                                □                                      ■\n");
+		printf("  ■                                  □          레벨                   경험치         □                                      ■\n");
+		printf("  ■                                  □           %2d                     %2d%%           □                                      ■\n", clist[2].level, clist[2].persent);
 		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[2].att, clist[2].def);
 		printf("  ■                                  □                                                □                                      ■\n");

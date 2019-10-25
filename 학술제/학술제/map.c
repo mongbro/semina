@@ -2840,8 +2840,10 @@ void c_choice(int stnum) {
 						a = getch();
 						if (a == 'y' || a == 'Y')
 							town();
-						else
+						else {
+							i--;
 							continue;
+						}
 					}
 					else {
 						i--;
@@ -2972,6 +2974,7 @@ void cs_attack(int cnum, int snum, int stnum) {
 			if (mlist[0].hp > 0) {
 				damage_character_to_monster(cnum, 0, snum);
 				hit_monster(cnum, 0, stnum);
+				clist[cnum].mp -= slist[snum].diff_mp;
 				clist[cnum].turn = 1;
 				break;
 			}
@@ -2985,6 +2988,7 @@ void cs_attack(int cnum, int snum, int stnum) {
 			if (mlist[1].hp > 0) {
 				damage_character_to_monster(cnum, 1, snum);
 				hit_monster(cnum, 1, stnum);
+				clist[cnum].mp -= slist[snum].diff_mp;
 				clist[cnum].turn = 1;
 				break;
 			}
@@ -2998,6 +3002,7 @@ void cs_attack(int cnum, int snum, int stnum) {
 			if (mlist[2].hp > 0) {
 				damage_character_to_monster(cnum, 2, snum);
 				hit_monster(cnum, 2, stnum);
+				clist[cnum].mp -= slist[snum].diff_mp;
 				clist[cnum].turn = 1;
 				break;
 			}
@@ -4769,7 +4774,7 @@ void double_attack(int cnum, int snum, int stnum) {
 						damage_character_to_monster(cnum, 0, snum);
 						damage_character_to_monster(cnum, 0, snum);
 						clist[cnum].mp -= slist[snum].diff_mp;
-						hit_monster(cnum, 0, stnum);
+						hit_double_monster(cnum, 0, stnum, 2);
 						clist[cnum].turn = 1;
 						break;
 					}
@@ -4779,7 +4784,7 @@ void double_attack(int cnum, int snum, int stnum) {
 					damage_character_to_monster(cnum, 0, snum);
 					damage_character_to_monster(cnum, 0, snum);
 					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 0, stnum);
+					hit_double_monster(cnum, 0, stnum, 3);
 					clist[cnum].turn = 1;
 					break;
 				}
@@ -4797,7 +4802,7 @@ void double_attack(int cnum, int snum, int stnum) {
 						damage_character_to_monster(cnum, 1, snum);
 						damage_character_to_monster(cnum, 1, snum);
 						clist[cnum].mp -= slist[snum].diff_mp;
-						hit_monster(cnum, 1, stnum);
+						hit_double_monster(cnum, 1, stnum, 2);
 						clist[cnum].turn = 1;
 						break;
 					}
@@ -4807,7 +4812,7 @@ void double_attack(int cnum, int snum, int stnum) {
 					damage_character_to_monster(cnum, 1, snum);
 					damage_character_to_monster(cnum, 1, snum);
 					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 1, stnum);
+					hit_double_monster(cnum, 1, stnum, 3);
 					clist[cnum].turn = 1;
 					break;
 				}
@@ -4826,7 +4831,7 @@ void double_attack(int cnum, int snum, int stnum) {
 						damage_character_to_monster(cnum, 2, snum);
 						damage_character_to_monster(cnum, 2, snum);
 						clist[cnum].mp -= slist[snum].diff_mp;
-						hit_monster(cnum, 2, stnum);
+						hit_double_monster(cnum, 2, stnum, 2);
 						clist[cnum].turn = 1;
 						break;
 					}
@@ -4836,7 +4841,7 @@ void double_attack(int cnum, int snum, int stnum) {
 					damage_character_to_monster(cnum, 2, snum);
 					damage_character_to_monster(cnum, 2, snum);
 					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 2, stnum);
+					hit_double_monster(cnum, 2, stnum, 3);
 					clist[cnum].turn = 1;
 					break;
 				}
@@ -4865,9 +4870,20 @@ void wide_attack(int cnum, int snum, int stnum) {
 		printf("\n");
 		printf("  ■ %-4s의 %-20s 스킬!!                           = 선택한 캐릭터의 스킬입니다.                                 ■\n", clist[cnum].name, slist[snum].name);
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■ 1. %18s                                        = %13s스킬로 %18s을 공격합니다.        ■\n", mlist[0].name, slist[snum].name, mlist[0].name);
-		printf("  ■ 2. %18s                                        = %13s스킬로 %18s을 공격합니다.        ■\n", mlist[1].name, slist[snum].name, mlist[1].name);
-		printf("  ■ 3. %18s                                        = %13s스킬로 %18s을 공격합니다         ■\n", mlist[2].name, slist[snum].name, mlist[2].name);
+		if (mlist[0].hp > 0)
+			printf("  ■     %-18s                                       = %-18s을 공격합니다.                            ■\n", mlist[0].name, mlist[0].name);
+		if (mlist[0].hp <= 0)
+			printf("  ■                                                                                                                            ■\n");
+
+		if (mlist[1].hp > 0)
+			printf("  ■     %-18s                                       = %-18s을 공격합니다.                            ■\n", mlist[1].name, mlist[1].name);
+		if (mlist[1].hp <= 0)
+			printf("  ■                                                                                                                            ■\n");
+
+		if (mlist[2].hp > 0)
+			printf("  ■     %-18s                                       = %-18s을 공격합니다.                            ■\n", mlist[2].name, mlist[2].name);
+		if (mlist[2].hp <= 0)
+			printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■ 광역기 입니다.  계속 진행하시려면 아무키나 눌러주세요.                                                                     ■\n");
@@ -4879,11 +4895,14 @@ void wide_attack(int cnum, int snum, int stnum) {
 
 		if (a != 'b' && a != 'B') {
 			if (snum != 15) {
-				damage_character_to_monster(cnum, 0, snum);
-				damage_character_to_monster(cnum, 1, snum);
-				damage_character_to_monster(cnum, 2, snum);
+				if(mlist[0].condition==0)
+					damage_character_to_monster(cnum, 0, snum);
+				if (mlist[1].condition == 0)
+					damage_character_to_monster(cnum, 1, snum);
+				if (mlist[2].condition == 0)
+					damage_character_to_monster(cnum, 2, snum);
 				clist[cnum].mp -= slist[snum].diff_mp;
-				hit_monster(cnum, 0, stnum);
+				hit_wide_monster(cnum, stnum);
 				clist[cnum].turn = 1;
 				break;
 			}
@@ -4892,9 +4911,7 @@ void wide_attack(int cnum, int snum, int stnum) {
 				mlist[1].is_stun = 1;
 				mlist[2].is_stun = 1;
 				clist[cnum].mp -= slist[snum].diff_mp;
-				hit_monster(cnum, 0, stnum);
-				hit_monster(cnum, 1, stnum);
-				hit_monster(cnum, 2, stnum);
+				hit_wide_monster(cnum, stnum);
 				clist[cnum].turn = 1;
 				break;
 			}
@@ -5110,7 +5127,68 @@ void hit_monster(int cnum, int mnum, int stnum) {
 		printf("\n");
 		printf("  ■ %s의 공격!!                                                = 선택한 캐릭터입니다.                                        ■\n", clist[cnum].name);
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■ 총 %3d의 데미지!!!                                           =         %18s이(가) %3d의 데미지를 입었습니다. ■\n", hit_damage, mlist[mnum].name, hit_damage);
+		printf("  ■ 총 %3d의 데미지!!!                                           =         %-18s이(가) %3d의 데미지를 입었습니다. ■\n", hit_damage, mlist[mnum].name, hit_damage);
+		kill_monster(cnum, stnum);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
+		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+		print_line();
+		if (_getch())
+			break;
+	}
+}
+
+void hit_double_monster(int cnum, int mnum, int stnum, int anum) {
+
+	event_hit();
+
+	while (1) {
+		system("cls");
+		print_line();
+		print_map();
+		print_line();
+		printf("\n");
+		print_hp();
+		print_line();
+		printf("\n");
+		printf("  ■ %s의 공격!!                                                = 선택한 캐릭터입니다.                                        ■\n", clist[cnum].name);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■ 총 %3d의 데미지!!!                                           = %18s이(가) %3d의 데미지를 입었습니다.         ■\n", hit_damage*anum, mlist[mnum].name, hit_damage*anum);
+		kill_monster(cnum, stnum);
+		printf("  ■                                                                                                                            ■\n");
+		printf("  ■                                                                                                                            ■");
+		print_line();
+		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
+		print_line();
+		if (_getch())
+			break;
+	}
+}
+
+void hit_wide_monster(int cnum, int stnum) {
+
+	event_hit();
+
+	while (1) {
+		system("cls");
+		print_line();
+		print_map();
+		print_line();
+		printf("\n");
+		print_hp();
+		print_line();
+		printf("\n");
+		printf("  ■ %s의 공격!!                                                = 선택한 캐릭터입니다.                                        ■\n", clist[cnum].name);
+		printf("  ■                                                                                                                            ■\n");
+		if(mlist[0].condition==0)
+			printf("  ■    %3d의 데미지!!!                                           =         %-18s이(가) %3d의 데미지를 입었습니다. ■\n", hit_damage, mlist[0].name, hit_damage);
+		printf("  ■                                                                                                                            ■\n");
+		if (mlist[1].condition == 0)
+			printf("  ■    %3d의 데미지!!!                                           =         %-18s이(가) %3d의 데미지를 입었습니다. ■\n", hit_damage, mlist[1].name, hit_damage);
+		printf("  ■                                                                                                                            ■\n");
+		if (mlist[2].condition == 0)
+			printf("  ■    %3d의 데미지!!!                                           =         %-18s이(가) %3d의 데미지를 입었습니다. ■\n", hit_damage, mlist[2].name, hit_damage);
 		kill_monster(cnum, stnum);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■");
@@ -5171,11 +5249,19 @@ void character_hp_heal(int cnum, int snum) {
 					continue;
 			}
 			if (clist[0].condition == 0) {					//살아있는데 회복하려는 경우
-				if (clist[0].fhp < clist[0].hp + clist[cnum].skill[snum].add_hp)
+				if (clist[0].hp == clist[0].fhp) {
+					printf("\n  대상은 이미 체력이 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
+					if (_getch())
+						continue;
+				}
+				else if (clist[0].fhp <= clist[0].hp + clist[cnum].skill[snum].add_hp) {
 					clist[0].hp = clist[0].fhp;
-				else
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
+				else if (clist[0].hp > 0 && clist[0].fhp > clist[0].hp + clist[cnum].skill[snum].add_hp) {
 					clist[0].hp += clist[cnum].skill[snum].add_hp;
 					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
 			}
 		}
 		if (a == '2') {
@@ -5185,11 +5271,19 @@ void character_hp_heal(int cnum, int snum) {
 					continue;
 			}
 			if (clist[1].condition == 0) {					//살아있는데 회복하려는 경우
-				if (clist[1].fhp < clist[1].hp + clist[cnum].skill[snum].add_hp)
+				if (clist[0].hp == clist[0].fhp) {
+					printf("\n  대상은 이미 체력이 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
+					if (_getch())
+						continue;
+				}
+				else if (clist[1].fhp < clist[1].hp + clist[cnum].skill[snum].add_hp) {
 					clist[1].hp = clist[1].fhp;
-				else
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
+				else {
 					clist[1].hp += clist[cnum].skill[snum].add_hp;
 					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
 			}
 		}
 		if (a == '3') {
@@ -5198,18 +5292,26 @@ void character_hp_heal(int cnum, int snum) {
 				if (_getch())
 					continue;
 			}
-			if (clist[2].condition == 0) {					//살아있는데 회복하려는 경우
-				if (clist[2].fhp < clist[2].hp + clist[cnum].skill[snum].add_hp)
+			if (clist[0].hp == clist[0].fhp) {
+				printf("\n  대상은 이미 체력이 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
+				if (_getch())
+					continue;
+			}
+			else if (clist[2].condition == 0) {					//살아있는데 회복하려는 경우
+				if (clist[2].fhp < clist[2].hp + clist[cnum].skill[snum].add_hp) {
 					clist[2].hp = clist[2].fhp;
-				else
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
+				else {
 					clist[2].hp += clist[cnum].skill[snum].add_hp;
 					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
 			}
 		}
-		clist[cnum].turn = 1;
-		break;
 		if (a == 'b' || a == 'B')
 			break;
+		clist[cnum].turn = 1;
+		break;
 	}
 }
 
@@ -5277,28 +5379,76 @@ void character_mp_heal(int cnum, int snum) {
 		printf("  ■                                                                                                                            ■");
 		print_line();
 		a = _getch();
-		for (int i = 0; i < 3; i++) {
-			if (a == i + 49) {
-				if (clist[i].condition == 1) {					//죽었는데 회복하려는 경우
-					printf("  해당 캐릭터는 이미 죽었습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요. \n");
+		if (a == '1') {
+			if (clist[0].condition == 1) {					//죽었는데 회복하려는 경우
+				printf("  해당 캐릭터는 이미 죽었습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요. \n");
+				if (_getch())
+					continue;
+			}
+			if (clist[0].condition == 0) {					//살아있는데 회복하려는 경우
+				if (clist[0].mp == clist[0].fmp) {
+					printf("\n  대상은 이미 마나가 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
 					if (_getch())
 						continue;
 				}
-
-				if (clist[i].condition == 0) {					//살아있는데 회복하려는 경우
-					if (clist[i].fmp < clist[i].mp + clist[cnum].skill[snum].add_mp)
-						clist[i].mp = clist[i].fmp;
-					else
-						clist[i].mp += clist[cnum].skill[snum].add_mp;
-
+				else if (clist[0].fmp <= clist[0].mp + clist[cnum].skill[snum].add_mp) {
+					clist[0].mp = clist[0].fmp;
 					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
-					clist[i].turn = 1;
-					break;
+				}
+				else if (clist[0].mp > 0 && clist[0].fmp > clist[0].mp + clist[cnum].skill[snum].add_mp) {
+					clist[0].mp += clist[cnum].skill[snum].add_mp;
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
+			}
+		}
+		if (a == '2') {
+			if (clist[1].condition == 1) {					//죽었는데 회복하려는 경우
+				printf("  해당 캐릭터는 이미 죽었습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요. \n");
+				if (_getch())
+					continue;
+			}
+			if (clist[1].condition == 0) {					//살아있는데 회복하려는 경우
+				if (clist[0].mp == clist[0].fmp) {
+					printf("\n  대상은 이미 마나가 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
+					if (_getch())
+						continue;
+				}
+				else if (clist[1].fmp < clist[1].mp + clist[cnum].skill[snum].add_mp) {
+					clist[1].mp = clist[1].fmp;
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
+				else {
+					clist[1].mp += clist[cnum].skill[snum].add_mp;
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
+			}
+		}
+		if (a == '3') {
+			if (clist[2].condition == 1) {					//죽었는데 회복하려는 경우
+				printf("  해당 캐릭터는 이미 죽었습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요. \n");
+				if (_getch())
+					continue;
+			}
+			if (clist[0].mp == clist[0].fmp) {
+				printf("\n  대상은 이미 마나가 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
+				if (_getch())
+					continue;
+			}
+			else if (clist[2].condition == 0) {					//살아있는데 회복하려는 경우
+				if (clist[2].fmp < clist[2].mp + clist[cnum].skill[snum].add_mp) {
+					clist[2].mp = clist[2].fmp;
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+				}
+				else {
+					clist[2].mp += clist[cnum].skill[snum].add_mp;
+					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
 				}
 			}
 		}
 		if (a == 'b' || a == 'B')
 			break;
+		clist[cnum].turn = 1;
+		break;
 	}
 }
 
@@ -5369,22 +5519,19 @@ void all_character_hp_mp_heal(int cnum, int snum) {
 		if (a == 'b' || a == 'B')
 			break;
 		else {
+			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
 			for (int i = 0; i < 3; i++) {
 				if (clist[i].condition == 0) {					//살아있는데 회복하려는 경우
-					if (clist[i].condition == 0) {
-						if (clist[i].fhp < clist[i].hp + clist[cnum].skill[snum].add_hp)
-							clist[i].hp = clist[i].fhp;
-						else
-							clist[i].hp += clist[cnum].skill[snum].add_hp;
-
-						if (clist[i].fmp < clist[i].mp + clist[cnum].skill[snum].add_mp)
-							clist[i].mp = clist[i].fmp;
-						else
-							clist[i].mp += clist[cnum].skill[snum].add_mp;
-					}
+					if (clist[i].fhp < clist[i].hp + clist[cnum].skill[snum].add_hp)
+						clist[i].hp = clist[i].fhp;
+					else
+						clist[i].hp += clist[cnum].skill[snum].add_hp;
+					if (clist[i].fmp < clist[i].mp + clist[cnum].skill[snum].add_mp)
+						clist[i].mp = clist[i].fmp;
+					else
+						clist[i].mp += clist[cnum].skill[snum].add_mp;
 				}
 			}
-			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
 			clist[cnum].turn = 1;
 			break;
 		}

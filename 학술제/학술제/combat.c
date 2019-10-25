@@ -18,9 +18,9 @@ void damage_character_to_monster(int cnum, int mnum, int snum) {
 	else
 		mlist[mnum].hp = mlist[mnum].hp - (clist[cnum].att + clist[cnum].skill[snum].add_att - (mlist[mnum].def / 10));
 	if (clist[cnum].readership >= 10)
-		hit_damage = hit_damage + (clist[cnum].att + clist[cnum].skill[snum].add_att) + clist[cnum].readership / 10 - (mlist[mnum].def / 10);
+		hit_damage = (clist[cnum].att + clist[cnum].skill[snum].add_att) + clist[cnum].readership / 10 - (mlist[mnum].def / 10);
 	else
-		hit_damage = hit_damage + (clist[cnum].att + clist[cnum].skill[snum].add_att - (mlist[mnum].def / 10));
+		hit_damage = (clist[cnum].att + clist[cnum].skill[snum].add_att - (mlist[mnum].def / 10));
 }
 
 void damage_monster_to_character(int cnum, int mnum) {

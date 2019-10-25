@@ -46,5 +46,7 @@ void all_character_hp_heal(int cnum, int snum);
 void character_mp_heal(int cnum, int snum);
 void all_character_mp_heal(int cnum, int snum);
 void all_character_hp_mp_heal(int cnum, int snum);
+void hit_double_monster(int cnum, int mnum, int stnum, int anum);
+void hit_wide_monster(int cnum, int stnum);
 
 #endif
