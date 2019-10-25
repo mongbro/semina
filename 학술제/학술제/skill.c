@@ -80,9 +80,9 @@ void skill_set() {
 	slist[1].diff_mp = 20;
 	slist[2].add_att = 10;
 	slist[2].diff_mp = 10;
-	slist[3].add_att = 20;
+	slist[3].add_att = 0;
 	slist[3].diff_mp = 25;
-	slist[4].add_att = 20;
+	slist[4].add_att = 0;
 	slist[4].diff_mp = 30;
 	slist[5].add_att = 15;
 	slist[5].diff_mp = 30;

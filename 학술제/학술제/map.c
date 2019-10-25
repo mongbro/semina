@@ -3126,7 +3126,7 @@ void c_skill(int cnum, int stnum) {
 						stun_attack(cnum, slist[clist[cnum].skill[1].num].num, stnum);
 						break;
 					}
-					if (clist[cnum].skill[1].num == 16) {
+					if (clist[cnum].skill[1].num == 16 || clist[cnum].skill[1].num == 17) {
 						armor(cnum, slist[clist[cnum].skill[1].num].num);
 						break;
 					}
