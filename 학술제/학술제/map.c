@@ -2960,7 +2960,8 @@ void cs_attack(int cnum, int snum, int stnum) {
 		if (mlist[2].hp > 0)
 			printf("  ■  3. %-18s                                       = %-18s을 공격합니다.                            ■\n", mlist[2].name, mlist[2].name);
 		if (mlist[2].hp <= 0)
-			printf("  ■                                                                                                                            ■\n");		printf("  ■                                                                                                                            ■\n");
+			printf("  ■                                                                                                                            ■\n");		
+		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -2968,25 +2969,43 @@ void cs_attack(int cnum, int snum, int stnum) {
 		print_line();
 		a = _getch();
 		if (a == '1') {
-			damage_character_to_monster(cnum, 0, snum);
-			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
-			hit_monster(cnum, 0, stnum);
-			clist[cnum].turn = 1;
-			break;
+			if (mlist[0].hp > 0) {
+				damage_character_to_monster(cnum, 0, snum);
+				hit_monster(cnum, 0, stnum);
+				clist[cnum].turn = 1;
+				break;
+			}
+			else {
+				printf("\n  해당 몬스터는 이미 쓰러졌습니다.\n\n 아무키나 누르세요.");
+				if (_getch())
+					continue;
+			}
 		}
 		if (a == '2') {
-			damage_character_to_monster(cnum, 1, snum);
-			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
-			hit_monster(cnum, 1,stnum);
-			clist[cnum].turn = 1;
-			break;
+			if (mlist[1].hp > 0) {
+				damage_character_to_monster(cnum, 1, snum);
+				hit_monster(cnum, 1, stnum);
+				clist[cnum].turn = 1;
+				break;
+			}
+			else {
+				printf("\n  해당 몬스터는 이미 쓰러졌습니다.\n\n 아무키나 누르세요.");
+				if (_getch())
+					continue;
+			}
 		}
 		if (a == '3') {
-			damage_character_to_monster(cnum, 2, snum);
-			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
-			hit_monster(cnum, 2, stnum);
-			clist[cnum].turn = 1;
-			break;
+			if (mlist[2].hp > 0) {
+				damage_character_to_monster(cnum, 2, snum);
+				hit_monster(cnum, 2, stnum);
+				clist[cnum].turn = 1;
+				break;
+			}
+			else {
+				printf("\n  해당 몬스터는 이미 쓰러졌습니다.\n\n 아무키나 누르세요.");
+				if (_getch())
+					continue;
+			}
 		}
 		if (a == 'b' || a == 'B')
 			break;
@@ -4723,9 +4742,20 @@ void double_attack(int cnum, int snum, int stnum) {
 		printf("\n");
 		printf("  ■ %-4s의 %-20s 스킬!!                           = 선택한 캐릭터의 스킬입니다.                                 ■\n", clist[cnum].name, slist[snum].name);
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■ 1. %18s                                        = %11s스킬로 %18s을 공격합니다.          ■\n", mlist[0].name, slist[snum].name, mlist[0].name);
-		printf("  ■ 2. %18s                                        = %11s스킬로 %18s을 공격합니다.          ■\n", mlist[1].name, slist[snum].name, mlist[1].name);
-		printf("  ■ 3. %18s                                        = %11s스킬로 %18s을 공격합니다           ■\n", mlist[2].name, slist[snum].name, mlist[2].name);
+		if (mlist[0].hp > 0)
+			printf("  ■  1. %-18s                                       = %-18s을 공격합니다.                            ■\n", mlist[0].name, mlist[0].name);
+		if (mlist[0].hp <= 0)
+			printf("  ■                                                                                                                            ■\n");
+
+		if (mlist[1].hp > 0)
+			printf("  ■  2. %-18s                                       = %-18s을 공격합니다.                            ■\n", mlist[1].name, mlist[1].name);
+		if (mlist[1].hp <= 0)
+			printf("  ■                                                                                                                            ■\n");
+
+		if (mlist[2].hp > 0)
+			printf("  ■  3. %-18s                                       = %-18s을 공격합니다.                            ■\n", mlist[2].name, mlist[2].name);
+		if (mlist[2].hp <= 0)
+			printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■ 공격할 적을 선택하세요.                                                                                                    ■\n");
@@ -4735,19 +4765,21 @@ void double_attack(int cnum, int snum, int stnum) {
 		if (a == '1') {
 			if (mlist[0].condition == 0) {
 				if (snum == 3) {
-					damage_character_to_monster(cnum, 0, 0);
-					damage_character_to_monster(cnum, 0, 0);
-					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 2, stnum);
-					clist[cnum].turn = 1;
-					break;
+					if (mlist[0].hp > 0) {
+						damage_character_to_monster(cnum, 0, snum);
+						damage_character_to_monster(cnum, 0, snum);
+						clist[cnum].mp -= slist[snum].diff_mp;
+						hit_monster(cnum, 0, stnum);
+						clist[cnum].turn = 1;
+						break;
+					}
 				}
 				if (snum == 4) {
-					damage_character_to_monster(cnum, 0, 0);
-					damage_character_to_monster(cnum, 0, 0);
-					damage_character_to_monster(cnum, 0, 0);
+					damage_character_to_monster(cnum, 0, snum);
+					damage_character_to_monster(cnum, 0, snum);
+					damage_character_to_monster(cnum, 0, snum);
 					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 2, stnum);
+					hit_monster(cnum, 0, stnum);
 					clist[cnum].turn = 1;
 					break;
 				}
@@ -4759,21 +4791,23 @@ void double_attack(int cnum, int snum, int stnum) {
 			}
 		}
 		if (a == '2') {
-			if (mlist[0].condition == 0) {
+			if (mlist[1].condition == 0) {
 				if (snum == 3) {
-					damage_character_to_monster(cnum, 1, 0);
-					damage_character_to_monster(cnum, 1, 0);
-					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 2, stnum);
-					clist[cnum].turn = 1;
-					break;
+					if (mlist[1].hp > 0) {
+						damage_character_to_monster(cnum, 1, snum);
+						damage_character_to_monster(cnum, 1, snum);
+						clist[cnum].mp -= slist[snum].diff_mp;
+						hit_monster(cnum, 1, stnum);
+						clist[cnum].turn = 1;
+						break;
+					}
 				}
 				if (snum == 4) {
-					damage_character_to_monster(cnum, 1, 0);
-					damage_character_to_monster(cnum, 1, 0);
-					damage_character_to_monster(cnum, 1, 0);
+					damage_character_to_monster(cnum, 1, snum);
+					damage_character_to_monster(cnum, 1, snum);
+					damage_character_to_monster(cnum, 1, snum);
 					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 2, stnum);
+					hit_monster(cnum, 1, stnum);
 					clist[cnum].turn = 1;
 					break;
 				}
@@ -4786,19 +4820,21 @@ void double_attack(int cnum, int snum, int stnum) {
 		}
 
 		if (a == '3') {
-			if (mlist[0].condition == 0) {
+			if (mlist[2].condition == 0) {
 				if (snum == 3) {
-					damage_character_to_monster(cnum, 2, 0);
-					damage_character_to_monster(cnum, 2, 0);
-					clist[cnum].mp -= slist[snum].diff_mp;
-					hit_monster(cnum, 2, stnum);
-					clist[cnum].turn = 1;
-					break;
+					if (mlist[2].hp > 0) {
+						damage_character_to_monster(cnum, 2, snum);
+						damage_character_to_monster(cnum, 2, snum);
+						clist[cnum].mp -= slist[snum].diff_mp;
+						hit_monster(cnum, 2, stnum);
+						clist[cnum].turn = 1;
+						break;
+					}
 				}
 				if (snum == 4) {
-					damage_character_to_monster(cnum, 2, 0);
-					damage_character_to_monster(cnum, 2, 0);
-					damage_character_to_monster(cnum, 2, 0);
+					damage_character_to_monster(cnum, 2, snum);
+					damage_character_to_monster(cnum, 2, snum);
+					damage_character_to_monster(cnum, 2, snum);
 					clist[cnum].mp -= slist[snum].diff_mp;
 					hit_monster(cnum, 2, stnum);
 					clist[cnum].turn = 1;
@@ -5049,7 +5085,7 @@ void m_choice() {
 
 void stun(int mnum) {
 	while (1) {
-		printf("  %s은(는) 현재 스턴상태입니다!!!                                \n", mlist[mnum].name);
+		printf("\n  %s은(는) 현재 스턴상태입니다!!!                                \n", mlist[mnum].name);
 		printf("\n\n");
 		printf("\n\n  계속 하시려면 아무키나 누르세요.\n");
 		mlist[mnum].turn = 1;
@@ -5256,6 +5292,8 @@ void character_mp_heal(int cnum, int snum) {
 						clist[i].mp += clist[cnum].skill[snum].add_mp;
 
 					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+					clist[i].turn = 1;
+					break;
 				}
 			}
 		}
@@ -5299,6 +5337,8 @@ void all_character_mp_heal(int cnum, int snum) {
 				}
 			}
 			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			clist[cnum].turn = 1;
+			break;
 		}
 	}
 }
@@ -5345,6 +5385,8 @@ void all_character_hp_mp_heal(int cnum, int snum) {
 				}
 			}
 			clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
+			clist[cnum].turn = 1;
+			break;
 		}
 	}
 }
