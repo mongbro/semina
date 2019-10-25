@@ -3045,13 +3045,13 @@ void c_skill(int cnum, int stnum) {
 				if (clist[cnum].mp >= clist[cnum].skill[1].diff_mp) {
 					if (clist[cnum].skill[1].num == 3 || clist[cnum].skill[1].num == 4) {
 						if (clist[cnum].skill[1].num == 3)
-							double_attack(cnum, 1, stnum);
+							double_attack(cnum, slist[clist[cnum].skill[1].num].num, stnum);
 						if (clist[cnum].skill[1].num == 4)
-							double_attack(cnum, 1, stnum);
+							double_attack(cnum, slist[clist[cnum].skill[1].num].num, stnum);
 						break;
 					}
 					if (clist[cnum].skill[1].num == 5 || clist[cnum].skill[1].num == 6 || clist[cnum].skill[1].num == 7) {
-						wide_attack(cnum, 1, stnum);
+						wide_attack(cnum, slist[clist[cnum].skill[1].num].num, stnum, 1);
 						break;
 					}
 					else {
@@ -3069,13 +3069,13 @@ void c_skill(int cnum, int stnum) {
 				if (clist[cnum].mp >= clist[cnum].skill[2].diff_mp) {
 					if (clist[cnum].skill[2].num == 3 || clist[cnum].skill[2].num == 4) {
 						if (clist[cnum].skill[2].num == 3)
-							double_attack(cnum, 2, stnum);
+							double_attack(cnum, slist[clist[cnum].skill[2].num].num, stnum);
 						if (clist[cnum].skill[2].num == 4)
-							double_attack(cnum, 2, stnum);
+							double_attack(cnum, slist[clist[cnum].skill[2].num].num, stnum);
 						break;
 					}
 					if (clist[cnum].skill[2].num == 5 || clist[cnum].skill[2].num == 6 || clist[cnum].skill[2].num == 7) {
-						wide_attack(cnum, 2, stnum);
+						wide_attack(cnum, slist[clist[cnum].skill[2].num].num, stnum, 2);
 						break;
 					}
 					else {
@@ -3119,7 +3119,7 @@ void c_skill(int cnum, int stnum) {
 			if (a == '1') {
 				if (clist[cnum].mp >= clist[cnum].skill[1].diff_mp) {
 					if (clist[cnum].skill[1].num == 13 || clist[cnum].skill[1].num == 15) {
-						wide_attack(cnum, slist[clist[cnum].skill[1].num].num, stnum);
+						wide_attack(cnum, slist[clist[cnum].skill[1].num].num, stnum, 1);
 						break;
 					}
 					if (clist[cnum].skill[1].num == 14) {
@@ -3144,7 +3144,7 @@ void c_skill(int cnum, int stnum) {
 			if (a == '2') {
 				if (clist[cnum].mp >= clist[cnum].skill[2].diff_mp) {
 					if (clist[cnum].skill[2].num == 13 || clist[cnum].skill[2].num == 15) {
-						wide_attack(cnum, slist[clist[cnum].skill[2].num].num, stnum);
+						wide_attack(cnum, slist[clist[cnum].skill[2].num].num, stnum, 2);
 						break;
 					}
 					if (clist[cnum].skill[2].num == 14) {
@@ -4860,7 +4860,7 @@ void double_attack(int cnum, int snum, int stnum) {
 	}
 }
 
-void wide_attack(int cnum, int snum, int stnum) {
+void wide_attack(int cnum, int snum, int stnum, int csnum) {
 	while (1) {
 		char a;
 		system("cls");
@@ -4899,11 +4899,11 @@ void wide_attack(int cnum, int snum, int stnum) {
 		if (a != 'b' && a != 'B') {
 			if (snum != 15) {
 				if(mlist[0].condition==0)
-					damage_character_to_monster(cnum, 0, snum);
+					damage_character_to_monster(cnum, 0, csnum);
 				if (mlist[1].condition == 0)
-					damage_character_to_monster(cnum, 1, snum);
+					damage_character_to_monster(cnum, 1, csnum);
 				if (mlist[2].condition == 0)
-					damage_character_to_monster(cnum, 2, snum);
+					damage_character_to_monster(cnum, 2, csnum);
 				clist[cnum].mp -= slist[snum].diff_mp;
 				hit_wide_monster(cnum, stnum);
 				clist[cnum].turn = 1;
