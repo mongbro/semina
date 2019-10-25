@@ -3045,13 +3045,13 @@ void c_skill(int cnum, int stnum) {
 				if (clist[cnum].mp >= clist[cnum].skill[1].diff_mp) {
 					if (clist[cnum].skill[1].num == 3 || clist[cnum].skill[1].num == 4) {
 						if (clist[cnum].skill[1].num == 3)
-							double_attack(cnum, 3, stnum);
+							double_attack(cnum, 1, stnum);
 						if (clist[cnum].skill[1].num == 4)
-							double_attack(cnum, 4, stnum);
+							double_attack(cnum, 1, stnum);
 						break;
 					}
 					if (clist[cnum].skill[1].num == 5 || clist[cnum].skill[1].num == 6 || clist[cnum].skill[1].num == 7) {
-						wide_attack(cnum, slist[clist[cnum].skill[1].num].num, stnum);
+						wide_attack(cnum, 1, stnum);
 						break;
 					}
 					else {
@@ -3068,11 +3068,14 @@ void c_skill(int cnum, int stnum) {
 			if (a == '2') {
 				if (clist[cnum].mp >= clist[cnum].skill[2].diff_mp) {
 					if (clist[cnum].skill[2].num == 3 || clist[cnum].skill[2].num == 4) {
-						double_attack(cnum, slist[clist[cnum].skill[2].num].num, stnum);
+						if (clist[cnum].skill[2].num == 3)
+							double_attack(cnum, 2, stnum);
+						if (clist[cnum].skill[2].num == 4)
+							double_attack(cnum, 2, stnum);
 						break;
 					}
 					if (clist[cnum].skill[2].num == 5 || clist[cnum].skill[2].num == 6 || clist[cnum].skill[2].num == 7) {
-						wide_attack(cnum, slist[clist[cnum].skill[2].num].num, stnum);
+						wide_attack(cnum, 2, stnum);
 						break;
 					}
 					else {
@@ -5189,6 +5192,7 @@ void hit_wide_monster(int cnum, int stnum) {
 		printf("  ■                                                                                                                            ■\n");
 		if (mlist[2].condition == 0)
 			printf("  ■    %3d의 데미지!!!                                           =         %-18s이(가) %3d의 데미지를 입었습니다. ■\n", hit_damage, mlist[2].name, hit_damage);
+		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		kill_monster(cnum, stnum);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■");
@@ -5232,9 +5236,12 @@ void character_hp_heal(int cnum, int snum) {
 		printf("  ■ %-4s의 %-20s 스킬!!                            = 선택한 캐릭터의 스킬입니다.                                ■\n", clist[cnum].name, clist[cnum].skill[snum].name);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                   현재 남은 hp                                                             ■\n");
-		printf("  ■ 1. %s                                               %3d     = %s스킬로 %s을 회복합니다.                         ■\n", clist[0].name, clist[0].hp, clist[cnum].skill[snum].name, clist[0].name);
-		printf("  ■ 2. %s                                               %3d     = %s스킬로 %s을 회복합니다.                         ■\n", clist[1].name, clist[1].hp, clist[cnum].skill[snum].name, clist[1].name);
-		printf("  ■ 3. %s                                               %3d     = %s스킬로 %s을 회복합니다.                         ■\n", clist[2].name, clist[2].hp, clist[cnum].skill[snum].name, clist[2].name);
+		if (clist[0].hp > 0)
+			printf("  ■ 1. %s                                               %3d     = %s스킬로 %s을 회복합니다.                         ■\n", clist[0].name, clist[0].hp, clist[cnum].skill[snum].name, clist[0].name);
+		if (clist[1].hp > 0)
+			printf("  ■ 2. %s                                               %3d     = %s스킬로 %s을 회복합니다.                         ■\n", clist[1].name, clist[1].hp, clist[cnum].skill[snum].name, clist[1].name);
+		if (clist[2].hp > 0)
+			printf("  ■ 3. %s                                               %3d     = %s스킬로 %s을 회복합니다.                         ■\n", clist[2].name, clist[2].hp, clist[cnum].skill[snum].name, clist[2].name);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■ 회복할 캐릭터를 선택하세요.                                                                                                ■\n");
@@ -5271,7 +5278,7 @@ void character_hp_heal(int cnum, int snum) {
 					continue;
 			}
 			if (clist[1].condition == 0) {					//살아있는데 회복하려는 경우
-				if (clist[0].hp == clist[0].fhp) {
+				if (clist[1].hp == clist[1].fhp) {
 					printf("\n  대상은 이미 체력이 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
 					if (_getch())
 						continue;
@@ -5292,13 +5299,13 @@ void character_hp_heal(int cnum, int snum) {
 				if (_getch())
 					continue;
 			}
-			if (clist[0].hp == clist[0].fhp) {
-				printf("\n  대상은 이미 체력이 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
-				if (_getch())
-					continue;
-			}
-			else if (clist[2].condition == 0) {					//살아있는데 회복하려는 경우
-				if (clist[2].fhp < clist[2].hp + clist[cnum].skill[snum].add_hp) {
+			if (clist[2].condition == 0) {					//살아있는데 회복하려는 경우
+				if (clist[2].hp == clist[2].fhp) {
+					printf("\n  대상은 이미 체력이 가득차있습니다. 다른 캐릭터를 선택하려면 아무키나 눌러주세요.\n");
+					if (_getch())
+						continue;
+				}
+				else if (clist[2].fhp < clist[2].hp + clist[cnum].skill[snum].add_hp) {
 					clist[2].hp = clist[2].fhp;
 					clist[cnum].mp -= clist[cnum].skill[snum].diff_mp;
 				}

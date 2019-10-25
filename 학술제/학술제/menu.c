@@ -1385,6 +1385,7 @@ void dun_inventory() {
 }
 
 void dun_inf_cha() {
+	check_exp();
 	while (1) {
 		char a;
 		system("cls");
