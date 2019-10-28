@@ -31,19 +31,19 @@ void initial_charac() {
 		clist[i].expe = 0;
 	}
 
-	slist[4].ea = 1;
-	slist[7].ea = 1;
-	slist[16].ea = 1;
+	slist[1].ea = 1;
+	slist[2].ea = 1;
+	/*slist[16].ea = 1;
 	slist[17].ea = 1;
 	slist[24].ea = 1;
-	slist[30].ea = 1;
+	slist[30].ea = 1;*/
 
-	clist[0].skill[1] = slist[4];
-	clist[0].skill[2] = slist[7];
-	clist[1].skill[1] = slist[16];
+	clist[0].skill[1] = slist[1];
+	clist[0].skill[2] = slist[2];
+	/*clist[1].skill[1] = slist[16];
 	clist[1].skill[2] = slist[17];
 	clist[2].skill[1] = slist[24];
-	clist[2].skill[2] = slist[30];
+	clist[2].skill[2] = slist[30];*/
 
 
 	clist[0].item[0] = ilist[10];

@@ -2780,7 +2780,7 @@ void prologue() {
 void c_choice(int stnum) {
 	while (1) {
 		for (int i = 0; i < 3; i++) {
-			clist[i].mp = clist[i].fmp;
+			//clist[i].mp = clist[i].fmp;
 			if (clist[i].turn == 0) {
 				hit_damage = 0;
 				if (clist[i].hp > 0) {
