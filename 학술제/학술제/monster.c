@@ -14,8 +14,8 @@ void prologue_monster() {
 	strcpy(mlist[1].name, "과제2");
 	strcpy(mlist[2].name, "과제3");
 	for (int i = 0; i < 3; i++) {
-		mlist[i].fhp = 30;
-		mlist[i].hp = 30;
+		mlist[i].fhp = 40;
+		mlist[i].hp = 40;
 		mlist[i].att = 10;
 		mlist[i].def = 10;
 		mlist[i].condition = 0;
@@ -406,8 +406,8 @@ void stage4_B_monster() {
 
 	strcpy(mlist[0].name, "기말고사");
 
-	mlist[0].fhp = 1000;
-	mlist[0].hp = 1000;
+	mlist[0].fhp = 999;
+	mlist[0].hp = 999;
 	mlist[0].att = 80;
 	mlist[0].def = 80;
 	mlist[0].condition = 0;

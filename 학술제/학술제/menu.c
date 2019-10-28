@@ -20,6 +20,10 @@ void town() {
 	clist[0].mp = clist[0].fmp;
 	clist[1].mp = clist[1].fmp;
 	clist[2].mp = clist[2].fmp;
+	clist[0].condition = 0;
+	clist[1].condition = 0;
+	clist[2].condition = 0;
+	clist[1].armor = 0;
 	while (1) {
 		char a;
 		statm_check();
@@ -1398,7 +1402,7 @@ void dun_inf_cha() {
 		printf("  ■                                  □          레벨                   경험치         □                                      ■\n");
 		printf("  ■                                  □           %2d                     %2d%%           □                                      ■\n", clist[0].level, clist[0].persent);
 		printf("  ■                                  □                                                □                                      ■\n");
-		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[0].att, clist[0].def);
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[0].att + clist[0].readership, clist[0].def + clist[0].noteship);
 		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □           hp                       mp          □                                      ■\n");
 		printf("  ■                                  □       %3d / %3d                %3d / %3d       □                                      ■\n", clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp);
@@ -1412,7 +1416,7 @@ void dun_inf_cha() {
 		printf("  ■                                  □          레벨                   경험치         □                                      ■\n");
 		printf("  ■                                  □           %2d                     %2d%%           □                                      ■\n", clist[1].level, clist[1].persent);
 		printf("  ■                                  □                                                □                                      ■\n");
-		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[1].att, clist[1].def);
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[1].att + clist[1].readership, clist[1].def + clist[1].noteship);
 		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □           hp                       mp          □                                      ■\n");
 		printf("  ■                                  □       %3d / %3d                %3d / %3d       □                                      ■\n", clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp);
@@ -1426,7 +1430,7 @@ void dun_inf_cha() {
 		printf("  ■                                  □          레벨                   경험치         □                                      ■\n");
 		printf("  ■                                  □           %2d                     %2d%%           □                                      ■\n", clist[2].level, clist[2].persent);
 		printf("  ■                                  □                                                □                                      ■\n");
-		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[2].att, clist[2].def);
+		printf("  ■                                  □      공격력 : %3d            방어력 : %3d      □                                      ■\n", clist[2].att + clist[2].readership, clist[2].def + clist[2].noteship);
 		printf("  ■                                  □                                                □                                      ■\n");
 		printf("  ■                                  □           hp                       mp          □                                      ■\n");
 		printf("  ■                                  □       %3d / %3d                %3d / %3d       □                                      ■\n", clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp);
@@ -1568,18 +1572,24 @@ void use_item(int index) {
 		printf("\n  사용할 캐릭터를 선택해주세요.\n\n  뒤로가기는 'b'를 선택해주세요.\n\n  던전 안에서는 소비형 아이템만 사용이 가능합니다.\n");
 		a = (_getch());
 		if (a == '1') {
+			if (clist[0].hp <= 0)
+				continue;
 			if (check_hpmp(0, check) == 1)
 				continue;
 			else
 				effect_item(0, check);
 		}
 		if (a == '2') {
+			if (clist[1].hp <= 0)
+				continue;
 			if (check_hpmp(1, check) == 1)
 				continue;
 			else
 				effect_item(1, check);
 		}
 		if (a == '3') {
+			if (clist[2].hp <= 0)
+				continue;
 			if (check_hpmp(2, check) == 1)
 				continue;
 			else

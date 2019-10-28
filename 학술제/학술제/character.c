@@ -31,11 +31,19 @@ void initial_charac() {
 		clist[i].expe = 0;
 	}
 
-	slist[1].ea = 1;
-	slist[2].ea = 1;
+	slist[4].ea = 1;
+	slist[7].ea = 1;
+	slist[16].ea = 1;
+	slist[17].ea = 1;
+	slist[24].ea = 1;
+	slist[30].ea = 1;
 
-	clist[0].skill[1] = slist[1];
-	clist[0].skill[2] = slist[2];
+	clist[0].skill[1] = slist[4];
+	clist[0].skill[2] = slist[7];
+	clist[1].skill[1] = slist[16];
+	clist[1].skill[2] = slist[17];
+	clist[2].skill[1] = slist[24];
+	clist[2].skill[2] = slist[30];
 
 
 	clist[0].item[0] = ilist[10];
@@ -55,11 +63,9 @@ void check_level() {
 			if (clist[i].level == j) {
 				if (clist[i].expe >= fexp[j]) {
 					printf("  ■                                                                                                                            ■\n");
-					printf("  ■                                                                                                                            ■\n");
 					printf("  ■                                    ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★                                          ■\n");
 					printf("  ■                                    ★☆ %s이(가) %2d에서 %2d(으)로 레벨업!!!!☆★                                          ■\n", clist[i].name, clist[i].level, clist[i].level + 1);
 					printf("  ■                                    ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★                                          ■\n");
-					printf("  ■                                                                                                                            ■\n");
 					clist[i].level++;
 					clist[i].expe -= fexp[j];
 					clist[i].spare_stat += 5;
