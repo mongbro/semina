@@ -32,7 +32,7 @@ void enter_dungeon2();
 void enter_dungeon3();
 void enter_dungeon4();
 void choice_stage();
-void double_attack(int cnum, int snum, int stnum);
+void double_attack(int cnum, int snum, int csnum, int stnum);
 void wide_attack(int cnum, int snum, int stnum, int csnum);
 void stun_attack(int cnum, int snum, int stnum);
 void armor(int cnum, int snum);
