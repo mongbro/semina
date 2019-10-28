@@ -19,6 +19,8 @@ int main() {
 	print_initial_disp();
 	stlist[0].is_clear = 1;
 	stlist[1].is_clear = 1;
+	stlist[2].is_clear = 1;
+	stlist[3].is_clear = 1;
 	while (1) {
 		char a;
 		system("cls");

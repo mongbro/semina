@@ -13,14 +13,8 @@
 #include"exp.h"
 
 void damage_character_to_monster(int cnum, int mnum, int snum) {
-	if (mlist[mnum].def >= 10)
-		mlist[mnum].hp = mlist[mnum].hp - (clist[cnum].att + clist[cnum].skill[snum].add_att + clist[cnum].readership / 10 - (mlist[mnum].def / 10));
-	else
-		mlist[mnum].hp = mlist[mnum].hp - (clist[cnum].att + clist[cnum].skill[snum].add_att - (mlist[mnum].def / 10));
-	if (clist[cnum].readership >= 10)
-		hit_damage = (clist[cnum].att + clist[cnum].skill[snum].add_att) + clist[cnum].readership / 10 - (mlist[mnum].def / 10);
-	else
-		hit_damage = (clist[cnum].att + clist[cnum].skill[snum].add_att - (mlist[mnum].def / 10));
+	mlist[mnum].hp = mlist[mnum].hp - (clist[cnum].att + clist[cnum].skill[snum].add_att + clist[cnum].readership - (mlist[mnum].def / 10));
+	hit_damage = (clist[cnum].att + clist[cnum].skill[snum].add_att + clist[cnum].readership - (mlist[mnum].def / 10));
 }
 
 void damage_monster_to_character(int cnum, int mnum) {
@@ -155,7 +149,7 @@ void kill_character(int mnum) {
 		if (clist[i].hp <= 0 && clist[i].condition == 0) {
 			printf("  ■                                                                                                                            ■\n");
 			printf("  ■                                                                                                                            ■\n");
-			printf("  ■ %s이(가) 죽었습니다!!                                                                                                     ■", clist[i].name);
+			printf("  ■ %s이(가) 죽었습니다!!                                                                                                    ■\n", clist[i].name);
 			clist[i].condition = 1;
 		}
 	}

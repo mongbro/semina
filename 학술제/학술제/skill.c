@@ -38,7 +38,6 @@ void skill_set() {
 	strcpy(slist[7].name, "광역기 상");
 	strcpy(slist[7].info, "전체 대상에게 강력한 피해를 입힘");
 
-	slist[5].price = 60;
 	strcpy(slist[11].name, "강타");
 	strcpy(slist[11].info, "강력한 일격을 날림");
 	strcpy(slist[12].name, "방어막 강타");
