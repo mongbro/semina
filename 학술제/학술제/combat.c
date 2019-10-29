@@ -122,7 +122,7 @@ int check_exter_boss(int stage) {
 void kill_monster(int cnum, int stnum) {
 	srand((unsigned)time(NULL));
 	int add_gold = (rand() % 10 + 1) * (stnum / 10);
-	int chance_drop = (rand() % 3) * 0;		//33%확률로 드랍 => 0일때 드랍
+	int chance_drop = (rand() % 3);		//33%확률로 드랍 => 0일때 드랍
 	int item_num;
 	for (int i = 0; i < 3; i++) {
 		if (mlist[i].hp <= 0 && mlist[i].condition == 0) {

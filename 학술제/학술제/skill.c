@@ -137,7 +137,7 @@ void skill_set() {
 
 	slist[22].add_hp = 20;	//초급 회복
 	slist[22].diff_mp = 20;
-	slist[22].price = 30;
+	slist[22].price = 0;
 
 	slist[23].add_hp = 50;	//중급 회복
 	slist[23].diff_mp = 30;
