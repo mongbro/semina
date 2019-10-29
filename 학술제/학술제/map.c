@@ -3195,7 +3195,7 @@ void c_skill(int cnum, int stnum) {
 								break;
 							}
 							else {
-								cs_attack(cnum, clist[cnum].skill[1].num, stnum);
+								cs_attack(cnum, 1, stnum);
 								break;
 							}
 						}
@@ -3226,7 +3226,7 @@ void c_skill(int cnum, int stnum) {
 								break;
 							}
 							else {
-								cs_attack(cnum, clist[cnum].skill[2].num, stnum);
+								cs_attack(cnum, 2, stnum);
 								break;
 							}
 						}
@@ -3273,21 +3273,21 @@ void c_skill(int cnum, int stnum) {
 				printf("  ■                                                                                                                            ■\n");
 				if (clist[cnum].skill[1].ea != 0) {
 					if (clist[cnum].skill[1].num == 21) {
-						printf("  ■  1. %-18s :     hp 회복 + %3d      mp 회복 + %2d      mp소모 - %2d      = %s의 스킬                           ■\n", clist[cnum].skill[1].name, clist[cnum].skill[1].add_att, clist[cnum].skill[1].add_def, clist[cnum].skill[1].diff_mp, clist[cnum].name);
+						printf("  ■  1. %-18s  :     추가 att + %2d      추가 def + %2d      mp소모 - %2d       = %s의 스킬                        ■\n", clist[cnum].skill[1].name, clist[cnum].skill[1].add_att, clist[cnum].skill[1].add_def, clist[cnum].skill[1].diff_mp, clist[cnum].name);
 						printf("  ■                           %-41s                                                        ■\n", clist[cnum].skill[1].info);
 					}
 					else {
-						printf("  ■  1. %-18s :     hp 회복 + %3d      mp 회복 + %2d      mp소모 - %2d      = %s의 스킬                           ■\n", clist[cnum].skill[1].name, clist[cnum].skill[1].add_hp, clist[cnum].skill[1].add_mp, clist[cnum].skill[1].diff_mp, clist[cnum].name);
+						printf("  ■  1. %-18s  :     hp 회복 + %3d       mp 회복 + %2d      mp소모 - %2d       = %s의 스킬                        ■\n", clist[cnum].skill[1].name, clist[cnum].skill[1].add_hp, clist[cnum].skill[1].add_mp, clist[cnum].skill[1].diff_mp, clist[cnum].name);
 						printf("  ■                           %-41s                                                        ■\n", clist[cnum].skill[1].info);
 					}
 				}
 				if (clist[cnum].skill[2].ea != 0) {
 					if (clist[cnum].skill[2].num == 21) {
-						printf("  ■  2. %-18s :     hp 회복 + %3d      mp 회복 + %2d      mp소모 - %2d      = %s의 스킬                           ■\n", clist[cnum].skill[2].name, clist[cnum].skill[2].add_att, clist[cnum].skill[2].add_def, clist[cnum].skill[2].diff_mp, clist[cnum].name);
+						printf("  ■  1. %-18s  :     추가 att + %2d      추가 def + %2d      mp소모 - %2d       = %s의 스킬                        ■\n", clist[cnum].skill[2].name, clist[cnum].skill[2].add_att, clist[cnum].skill[2].add_def, clist[cnum].skill[2].diff_mp, clist[cnum].name);
 						printf("  ■                           %-41s                                                        ■\n", clist[cnum].skill[2].info);
 					}
 					else {
-						printf("  ■  2. %-18s :     hp 회복 + %3d      mp 회복 + %2d      mp소모 - %2d      = %s의 스킬                           ■\n", clist[cnum].skill[2].name, clist[cnum].skill[2].add_hp, clist[cnum].skill[2].add_mp, clist[cnum].skill[2].diff_mp, clist[cnum].name);
+						printf("  ■  2. %-18s  :     hp 회복 + %3d       mp 회복 + %2d      mp소모 - %2d       = %s의 스킬                        ■\n", clist[cnum].skill[2].name, clist[cnum].skill[2].add_hp, clist[cnum].skill[2].add_mp, clist[cnum].skill[2].diff_mp, clist[cnum].name);
 						printf("  ■                           %-41s                                                        ■\n", clist[cnum].skill[2].info);
 					}
 				}
@@ -3322,7 +3322,7 @@ void c_skill(int cnum, int stnum) {
 								break;
 							}
 							else {
-								cs_attack(cnum, clist[cnum].skill[1].num, stnum);
+								cs_attack(cnum, 1, stnum);
 								break;
 							}
 						}
@@ -3359,7 +3359,7 @@ void c_skill(int cnum, int stnum) {
 								break;
 							}
 							else {
-								cs_attack(cnum, clist[cnum].skill[2].num, stnum);
+								cs_attack(cnum, 2, stnum);
 								break;
 							}
 						}
