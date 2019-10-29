@@ -77,55 +77,100 @@ void skill_set() {
 
 	slist[1].add_att = 20;
 	slist[1].diff_mp = 20;
+
 	slist[2].add_att = 10;
 	slist[2].diff_mp = 10;
-	slist[3].add_att = 0;
+
+	slist[3].add_att = 0;	//더블
 	slist[3].diff_mp = 25;
-	slist[4].add_att = 0;
-	slist[4].diff_mp = 30;
-	slist[5].add_att = 15;
+	slist[3].price = 50;
+
+	slist[4].add_att = 0;	//트리플
+	slist[4].diff_mp = 50;
+	slist[4].price = 150;
+
+	slist[5].add_att = 15;	//광역기 하
 	slist[5].diff_mp = 30;
-	slist[6].add_att = 25;
-	slist[6].diff_mp = 10;
-	slist[7].add_att = 35;
+	slist[5].price = 70;
+
+	slist[6].add_att = 25;	//광역기 중
+	slist[6].diff_mp = 50;
+	slist[6].price = 150;
+
+	slist[7].add_att = 35;	//광역기 상
 	slist[7].diff_mp = 80;
+	slist[7].price = 200;
+
 
 	slist[11].add_att = 15;
 	slist[11].diff_mp = 20;
-	slist[12].add_att = 30;
+	slist[11].price = 10;
+
+
+	slist[12].add_att = 30;	//방어막 강타
 	slist[12].diff_mp = 20;
-	slist[13].add_att = 10;
+	slist[12].price = 30;
+
+	slist[13].add_att = 10;	//광역기 약
 	slist[13].diff_mp = 20;
-	slist[14].add_att = 0;
-	slist[14].diff_mp = 50; //스턴
-	slist[15].add_att = 0;
-	slist[15].diff_mp = 80;	//광역스턴
-	slist[16].add_att = 0;
-	slist[16].diff_mp = 40;	//막기
+	slist[13].price = 35;
+
+	slist[14].add_att = 0;	//스턴
+	slist[14].diff_mp = 50;
+	slist[14].price = 150;
+
+	slist[15].add_att = 0;	//광역스턴
+	slist[15].diff_mp = 80;
+	slist[15].price = 150;
+
+	slist[16].add_att = 0;	//막기
+	slist[16].diff_mp = 40;
+	slist[16].price = 50;
+
 	slist[17].add_att = 0;
-	slist[17].diff_mp = 75;
+	slist[17].diff_mp = 70;
+	slist[17].price = 100;
 
 	slist[21].add_att = 10;
 	slist[21].diff_mp = 10;
-	slist[22].add_hp = 20;
+	slist[21].price = 10;
+
+	slist[22].add_hp = 20;	//초급 회복
 	slist[22].diff_mp = 20;
-	slist[23].add_hp = 50;
-	slist[23].diff_mp = 25;
-	slist[24].add_hp = 100;
-	slist[24].diff_mp = 30;
-	slist[25].add_hp = 20;
+	slist[22].price = 30;
+
+	slist[23].add_hp = 50;	//중급 회복
+	slist[23].diff_mp = 30;
+	slist[23].price = 60;
+
+	slist[24].add_hp = 100;	//고급 회복
+	slist[24].diff_mp = 50;
+	slist[24].price = 100;
+
+	slist[25].add_hp = 20;	//초급 전체 힐
 	slist[25].diff_mp = 30;
-	slist[26].add_hp = 30;
-	slist[26].diff_mp = 35;
-	slist[27].add_hp = 40;
-	slist[27].diff_mp = 40;
-	slist[28].add_mp = 50;
+	slist[25].price = 50;
+
+	slist[26].add_hp = 30;	//중급 전체 힐
+	slist[26].diff_mp = 50;
+	slist[26].price = 80;
+
+	slist[27].add_hp = 40;	//고급 전체 힐
+	slist[27].diff_mp = 70;
+	slist[27].price = 135;
+
+	slist[28].add_mp = 50;	//마나 회복
 	slist[28].diff_mp = 30;
-	slist[29].add_mp = 30;
-	slist[29].diff_mp = 50;
-	slist[30].add_hp = 50;
+	slist[28].price = 60;
+
+	slist[29].add_mp = 40;	//전체 마나 회복
+	slist[29].diff_mp = 70;
+	slist[29].price = 100;
+
+	slist[30].add_hp = 80;	//전체 체력 마나 회복
 	slist[30].add_mp = 50;
 	slist[30].diff_mp = 80;
+	slist[30].price = 200;
 }
 
 void initial_skill() {
@@ -178,7 +223,7 @@ void skill_choice() {
 			skill_store_choice_buy();
 		if (a == '2')
 			skill_inventory_choice();
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			town();
 	}
 }
@@ -230,7 +275,7 @@ void skill_store_choice_buy() {
 			skill_store_choice_buy2();
 		if (a == '3')
 			skill_store_choice_buy3();
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -268,7 +313,7 @@ void skill_store_choice_buy1() {
 			if (a == slist[i].index + 48)
 				s_buy1(slist[i].num);
 		}
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -309,7 +354,7 @@ void skill_store_choice_buy2() {
 				s_buy2(slist[i].num);
 		}
 
-		if (a == 'b')
+		if (a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -421,16 +466,14 @@ void skill_store_choice_buy3() {
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 		printf("\n  원하는 메뉴를 선택하세요(10은 0을 선택해 주세요.).\n\n  뒤로가기는 'b'를 선택해주세요.");
-
 		a = (_getch());
-
+		if (a == 'b' || a == 'B')
+			break;
 		for (int i = 21; i < 31; i++) {
 			if (a == slist[i].index + 48)
 				s_buy3(slist[i].num);
 		}
 
-		if (a == 'b')
-			break;
 	}
 }
 
@@ -480,7 +523,7 @@ void s_buy1(int snum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -531,7 +574,7 @@ void s_buy2(int snum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -593,7 +636,7 @@ void s_buy3(int snum) {
 				break;
 			}
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -792,7 +835,7 @@ void skill_inven_info1(int snum) {
 		if (a == '1') {
 			skill_equip1(0, snum);
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -827,7 +870,7 @@ void skill_inven_info2(int snum) {
 		if (a == '1') {
 			skill_equip2(1, snum);
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }
@@ -873,7 +916,7 @@ void skill_inven_info3(int snum) {
 		if (a == '1') {
 			skill_equip3(2, snum);
 		}
-		if (a == '2' || a == 'b')
+		if (a == '2' || a == 'b' || a == 'B')
 			break;
 	}
 }

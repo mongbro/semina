@@ -73,15 +73,15 @@ void stage1_3_monster() {
 	for (int i = 0; i < 2; i++) {
 		mlist[i].fhp = 45;
 		mlist[i].hp = 45;
-		mlist[i].att = 10;
-		mlist[i].def = 10;
+		mlist[i].att = 20;
+		mlist[i].def = 20;
 		mlist[i].condition = 0;
 		mlist[i].mexp = 50;
 	}
 	mlist[2].fhp = 50;
 	mlist[2].hp = 50;
-	mlist[2].att = 10;
-	mlist[2].def = 10;
+	mlist[2].att = 20;
+	mlist[2].def = 20;
 	mlist[2].condition = 0;
 	mlist[2].mexp = 50;
 }
@@ -92,8 +92,8 @@ void stage1_B_monster() {
 
 	mlist[0].fhp = 200;
 	mlist[0].hp = 200;
-	mlist[0].att = 10;
-	mlist[0].def = 10;
+	mlist[0].att = 30;
+	mlist[0].def = 30;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 100;
 	mlist[1].condition = 1;
@@ -203,8 +203,8 @@ void stage2_B_monster() {
 
 	mlist[0].fhp = 300;
 	mlist[0].hp = 300;
-	mlist[0].att = 80;
-	mlist[0].def = 80;
+	mlist[0].att = 60;
+	mlist[0].def = 60;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 1000;
 	mlist[1].condition = 1;
@@ -222,16 +222,16 @@ void stage3_1_monster() {
 	strcpy(mlist[2].name, "¾ÈÇÏ´Â ³ð");
 	for (int i = 1; i < 3; i++) {
 		mlist[i].fhp = 130;
-		mlist[i].hp = 110;
-		mlist[i].att = 10;
-		mlist[i].def = 10;
+		mlist[i].hp = 130;
+		mlist[i].att = 40;
+		mlist[i].def = 40;
 		mlist[i].condition = 0;
 		mlist[i].mexp = 200;
 	}
 	mlist[0].fhp = 115;
 	mlist[0].hp = 115;
-	mlist[0].att = 10;
-	mlist[0].def = 10;
+	mlist[0].att = 40;
+	mlist[0].def = 40;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 200;
 }
@@ -244,22 +244,22 @@ void stage3_2_monster() {
 
 	mlist[0].fhp = 145;
 	mlist[0].hp = 145;
-	mlist[0].att = 10;
-	mlist[0].def = 10;
+	mlist[0].att = 40;
+	mlist[0].def = 40;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 200;
 
 	mlist[1].fhp = 160;
 	mlist[1].hp = 160;
-	mlist[1].att = 10;
-	mlist[1].def = 10;
+	mlist[1].att = 40;
+	mlist[1].def = 40;
 	mlist[1].condition = 0;
 	mlist[1].mexp = 200;
 
 	mlist[2].fhp = 175;
 	mlist[2].hp = 175;
-	mlist[2].att = 10;
-	mlist[2].def = 10;
+	mlist[2].att = 40;
+	mlist[2].def = 40;
 	mlist[2].condition = 0;
 	mlist[2].mexp = 200;
 }
@@ -272,15 +272,15 @@ void stage3_3_monster() {
 
 	mlist[0].fhp = 190;
 	mlist[0].hp = 190;
-	mlist[0].att = 10;
-	mlist[0].def = 10;
+	mlist[0].att = 50;
+	mlist[0].def = 50;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 200;
 
 	mlist[1].fhp = 160;
 	mlist[1].hp = 160;
-	mlist[1].att = 10;
-	mlist[1].def = 10;
+	mlist[1].att = 50;
+	mlist[1].def = 50;
 	mlist[1].condition = 0;
 	mlist[1].mexp = 200;
 
@@ -298,8 +298,8 @@ void stage3_B_monster() {
 
 	mlist[0].fhp = 700;
 	mlist[0].hp = 700;
-	mlist[0].att = 10;
-	mlist[0].def = 10;
+	mlist[0].att = 80;
+	mlist[0].def = 80;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 100;
 	mlist[1].condition = 1;
@@ -319,16 +319,16 @@ void stage4_1_monster() {
 	for (int i = 0; i < 2; i++) {
 		mlist[i].fhp = 160;
 		mlist[i].hp = 160;
-		mlist[i].att = 30;
-		mlist[i].def = 30;
+		mlist[i].att = 50;
+		mlist[i].def = 50;
 		mlist[i].condition = 0;
 		mlist[i].mexp = 100;
 	}
 
 	mlist[2].fhp = 150;
 	mlist[2].hp = 150;
-	mlist[2].att = 30;
-	mlist[2].def = 30;
+	mlist[2].att = 50;
+	mlist[2].def = 50;
 	mlist[2].condition = 0;
 	mlist[2].mexp = 110;
 }
@@ -342,16 +342,16 @@ void stage4_2_monster() {
 	for (int i = 0; i < 2; i++) {
 		mlist[i].fhp = 170;
 		mlist[i].hp = 170;
-		mlist[i].att = 30;
-		mlist[i].def = 30;
+		mlist[i].att = 50;
+		mlist[i].def = 50;
 		mlist[i].condition = 0;
 		mlist[i].mexp = 100;
 	}
 
 	mlist[2].fhp = 160;
 	mlist[2].hp = 160;
-	mlist[2].att = 30;
-	mlist[2].def = 30;
+	mlist[2].att = 50;
+	mlist[2].def = 50;
 	mlist[2].condition = 0;
 	mlist[2].mexp = 110;
 }
@@ -365,16 +365,16 @@ void stage4_3_monster() {
 	for (int i = 0; i < 2; i++) {
 		mlist[i].fhp = 180;
 		mlist[i].hp = 180;
-		mlist[i].att = 30;
-		mlist[i].def = 30;
+		mlist[i].att = 60;
+		mlist[i].def = 60;
 		mlist[i].condition = 0;
 		mlist[i].mexp = 100;
 	}
 
 	mlist[2].fhp = 170;
 	mlist[2].hp = 170;
-	mlist[2].att = 30;
-	mlist[2].def = 30;
+	mlist[2].att = 60;
+	mlist[2].def = 60;
 	mlist[2].condition = 0;
 	mlist[2].mexp = 110;
 }
@@ -388,16 +388,16 @@ void stage4_4_monster() {
 	for (int i = 0; i < 2; i++) {
 		mlist[i].fhp = 180;
 		mlist[i].hp = 180;
-		mlist[i].att = 30;
-		mlist[i].def = 30;
+		mlist[i].att = 60;
+		mlist[i].def = 60;
 		mlist[i].condition = 0;
 		mlist[i].mexp = 100;
 	}
 
 	mlist[2].fhp = 200;
 	mlist[2].hp = 200;
-	mlist[2].att = 30;
-	mlist[2].def = 30;
+	mlist[2].att = 60;
+	mlist[2].def = 60;
 	mlist[2].condition = 0;
 	mlist[2].mexp = 110;
 }
@@ -408,8 +408,8 @@ void stage4_B_monster() {
 
 	mlist[0].fhp = 999;
 	mlist[0].hp = 999;
-	mlist[0].att = 80;
-	mlist[0].def = 80;
+	mlist[0].att = 100;
+	mlist[0].def = 100;
 	mlist[0].condition = 0;
 	mlist[0].mexp = 1000;
 	mlist[1].condition = 1;

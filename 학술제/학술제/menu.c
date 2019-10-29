@@ -2807,7 +2807,7 @@ void sell1(int inum) {
 		printf("  ■              이름                                  능력치1                                       소지 개수      가격       ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■       %20s                 리더십(공격력) : %3d                                   %2d 개      %3d 골드      ■\n", ilist[inum].name, ilist[inum].add_readership, ilist[inum].ea, ilist[inum].price / 10 * 5);
+		printf("  ■       %20s                 리더십(공격력) : %3d                                   %2d 개      %3d 골드      ■\n", ilist[inum].name, ilist[inum].add_readership, ilist[inum].ea, ilist[inum].price / 2);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■      판매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
@@ -2860,7 +2860,7 @@ void sell2(int inum) {
 		printf("  ■              이름                                        능력치1             능력치2             소지 개수      가격       ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■       %20s                 필기력(방어력) : %3d           hp 증가 : %3d          %2d 개      %3d 골드       ■\n", ilist[inum].name, ilist[inum].add_noteship, ilist[inum].add_hp, ilist[inum].ea, ilist[inum].price / 10 * 5);
+		printf("  ■       %20s                 필기력(방어력) : %3d           hp 증가 : %3d          %2d 개      %3d 골드       ■\n", ilist[inum].name, ilist[inum].add_noteship, ilist[inum].add_hp, ilist[inum].ea, ilist[inum].price / 2);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■      판매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
@@ -2913,7 +2913,7 @@ void sell3(int inum) {
 		printf("  ■              이름                                        능력치1             능력치2             소지 개수      가격       ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
-		printf("  ■       %20s                       부(마나) : %3d           mp 증가 : %3d          %2d 개      %3d 골드       ■\n", ilist[inum].name, ilist[inum].add_wealth, ilist[inum].add_mp, ilist[inum].ea, ilist[inum].price / 10 * 5);
+		printf("  ■       %20s                       부(마나) : %3d           mp 증가 : %3d          %2d 개      %3d 골드       ■\n", ilist[inum].name, ilist[inum].add_wealth, ilist[inum].add_mp, ilist[inum].ea, ilist[inum].price / 2);
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■                                                                                                                            ■\n");
 		printf("  ■      판매 하시겠습니까?         1. YES        2. NO                                                                        ■\n");
