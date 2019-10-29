@@ -56,27 +56,27 @@ void print_hp() {
 	printf("  ■                                                                                                                            ■\n");
 	printf("  ■                                                                                                                            ■\n");
 	if (clist[0].hp > 0 && mlist[0].hp > 0)
-		printf("  ■  %s의 체력 : %3d / %3d                                    ○                      %18s의 체력 : %3d / %3d  ■\n", clist[0].name, clist[0].hp, clist[0].fhp, mlist[0].name, mlist[0].hp, mlist[0].fhp);
+		printf("  ■  %s의 체력 : %3d / %3d         마나 : %3d / %3d           ○                      %18s의 체력 : %3d / %3d  ■\n", clist[0].name, clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp, mlist[0].name, mlist[0].hp, mlist[0].fhp);
 	if (clist[0].hp <= 0 && mlist[0].hp > 0)
 		printf("  ■                                                             ○                      %18s의 체력 : %3d / %3d  ■\n", mlist[0].name, mlist[0].hp, mlist[0].fhp);
 	if (clist[0].hp > 0 && mlist[0].hp <= 0)
-		printf("  ■  %s의 체력 : %3d / %3d                                    ○                                                             ■\n", clist[0].name, clist[0].hp, clist[0].fhp);
+		printf("  ■  %s의 체력 : %3d / %3d         마나 : %3d / %3d           ○                                                             ■\n", clist[0].name, clist[0].hp, clist[0].fhp, clist[0].mp, clist[0].fmp);
 	if (clist[0].hp <= 0 && mlist[0].hp <= 0)
 		printf("  ■                                                             ○                                                             ■\n");
 	if (clist[1].hp > 0 && mlist[1].hp > 0)
-		printf("  ■  %s의 체력 : %3d / %3d                                    ○                      %18s의 체력 : %3d / %3d  ■\n", clist[1].name, clist[1].hp, clist[1].fhp, mlist[1].name, mlist[1].hp, mlist[1].fhp);
+		printf("  ■  %s의 체력 : %3d / %3d         마나 : %3d / %3d           ○                      %18s의 체력 : %3d / %3d  ■\n", clist[1].name, clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp, mlist[1].name, mlist[1].hp, mlist[1].fhp);
 	if (clist[1].hp <= 0 && mlist[1].hp > 0)
 		printf("  ■                                                             ○                      %18s의 체력 : %3d / %3d  ■\n", mlist[1].name, mlist[1].hp, mlist[1].fhp);
 	if (clist[1].hp > 0 && mlist[1].hp <= 0)
-		printf("  ■  %s의 체력 : %3d / %3d                                    ○                                                             ■\n", clist[1].name, clist[1].hp, clist[1].fhp);
+		printf("  ■  %s의 체력 : %3d / %3d         마나 : %3d / %3d           ○                                                             ■\n", clist[1].name, clist[1].hp, clist[1].fhp, clist[1].mp, clist[1].fmp);
 	if (clist[1].hp <= 0 && mlist[1].hp <= 0)
 		printf("  ■                                                             ○                                                             ■\n");
 	if (clist[2].hp > 0 && mlist[2].hp > 0)
-		printf("  ■  %s의 체력 : %3d / %3d                                    ○                      %18s의 체력 : %3d / %3d  ■\n", clist[2].name, clist[2].hp, clist[2].fhp, mlist[2].name, mlist[2].hp, mlist[2].fhp);
+		printf("  ■  %s의 체력 : %3d / %3d         마나 : %3d / %3d           ○                      %18s의 체력 : %3d / %3d  ■\n", clist[2].name, clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp, mlist[2].name, mlist[2].hp, mlist[2].fhp);
 	if (clist[2].hp <= 0 && mlist[2].hp > 0)
 		printf("  ■                                                             ○                      %18s의 체력 : %3d / %3d  ■\n", mlist[2].name, mlist[2].hp, mlist[2].fhp);
 	if (clist[2].hp > 0 && mlist[2].hp <= 0)
-		printf("  ■  %s의 체력 : %3d / %3d                                    ○                                                             ■\n", clist[2].name, clist[2].hp, clist[2].fhp);
+		printf("  ■  %s의 체력 : %3d / %3d         마나 : %3d / %3d           ○                                                             ■\n", clist[2].name, clist[2].hp, clist[2].fhp, clist[2].mp, clist[2].fmp);
 	if (clist[2].hp <= 0 && mlist[2].hp <= 0)
 		printf("  ■                                                             ○                                                             ■\n");
 	printf("  ■                                                                                                                            ■\n");
@@ -3281,7 +3281,7 @@ void c_skill(int cnum, int stnum) {
 							break;
 						}
 						else {
-							cs_attack(cnum, 1, stnum);
+							cs_attack(cnum, 21, stnum);
 							break;
 						}
 					}
@@ -5747,7 +5747,7 @@ void all_character_hp_mp_heal(int cnum, int snum) {
 					continue;
 			}
 			else {
-				printf("  ■                                                                                                                            ■\n");
+				printf("\n  ■                                                                                                                            ■\n");
 				for (int i = 0; i < 3; i++) {
 					if (clist[i].condition == 0) {					//살아있는데 회복하려는 경우
 						if (clist[i].fhp <= clist[i].hp + clist[cnum].skill[snum].add_hp) {
@@ -5759,12 +5759,12 @@ void all_character_hp_mp_heal(int cnum, int snum) {
 							printf("  ■  %s의 체력이 %3d ", clist[i].name, clist[cnum].skill[snum].add_hp);
 						}
 						if (clist[i].fmp <= clist[i].mp + clist[cnum].skill[snum].add_hp) {
-							printf("마나가 %3d 회복되었습니다.                                                                                  ■\n", clist[i].fmp - clist[i].mp);
+							printf("마나가 %3d 회복되었습니다.                                                                              ■\n", clist[i].fmp - clist[i].mp);
 							clist[i].mp = clist[i].fmp;
 						}
 						else {
 							clist[i].mp += clist[cnum].skill[snum].add_mp;
-							printf("마나가 %3d 회복되었습니다.                                                                                  ■\n", clist[cnum].skill[snum].add_mp);
+							printf("마나가 %3d 회복되었습니다.                                                                              ■\n", clist[cnum].skill[snum].add_mp);
 						}
 					}
 					printf("  ■                                                                                                                            ■\n");
