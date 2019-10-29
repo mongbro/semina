@@ -21,6 +21,7 @@ int main() {
 	stlist[1].is_clear = 1;
 	//stlist[2].is_clear = 1;
 	//stlist[3].is_clear = 1;
+	gold = 50000;
 	while (1) {
 		char a;
 		system("cls");

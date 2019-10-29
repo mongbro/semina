@@ -75,7 +75,7 @@ void all_1_item() {
 	ilist[10].add_readership = 5;
 	ilist[10].num = 10;
 	ilist[10].ea = 1;
-	ilist[10].price = 0;
+	ilist[10].price = 1;
 
 	ilist[11].add_readership = 10;
 	ilist[11].num = 11;
@@ -126,7 +126,7 @@ void all_2_item() {
 	ilist[20].add_noteship = 5;
 	ilist[20].num = 20;
 	ilist[20].ea = 1;
-	ilist[20].price = 0;
+	ilist[20].price = 1;
 
 	ilist[21].add_noteship = 10;
 	ilist[21].num = 21;
@@ -182,7 +182,7 @@ void all_3_item() {
 	ilist[30].add_wealth = 5;
 	ilist[30].num = 30;
 	ilist[30].ea = 1;
-	ilist[30].price = 0;
+	ilist[30].price = 1;
 
 	ilist[31].add_wealth = 10;
 	ilist[31].num = 31;
